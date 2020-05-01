@@ -1,0 +1,26 @@
+<div class="search-user mt-2 mb-2">
+  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Cauta laborator dupa denumire, Profesor sau sala in care se desfasoara">
+</div>
+
+<button class="btn btn-info mt-2 mb-2" (click)="insertLaboratory()">Adaugare Laborator</button>
+
+<div class="row" *appHasRole="['Admin']">
+  <table class="table">
+    <tr>
+      <th style="width: 18%"> Denumire Laborator</th>
+      <th style="width: 18%"> Profesor</th>
+      <th style="width: 20%"> Denumire Sub-grupa</th>
+      <th style="width: 10%"> Sala de curs</th>
+      <th style="width: 20%"> Sterge Laborator</th>
+      <th style="width: 24%"> Modifica Laborator</th>
+    </tr>
+    <tr *ngFor="let laboratory of laboratories | filter:searchText">
+      <td>{{laboratory.name}}</td>
+      <td>{{laboratory.teacherName}}</td>
+      <td>{{laboratory.subGroupName}}</td>
+      <td>{{laboratory.className}}</td>
+      <td><button class="btn btn-info">Sterge Laborator</button></td>
+      <td><button class="btn btn-info" (click)="updateLaboratory(laboratory)">Modifica Laborator</button></td>
+    </tr>
+  </table>
+</div>

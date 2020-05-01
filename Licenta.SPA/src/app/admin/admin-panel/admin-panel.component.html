@@ -1,0 +1,47 @@
+<div class="container mt-5">
+  <h2>Panou de administrare</h2>
+  <div class="tab-panel">
+    <tabset class="member-tabset">
+      <tab heading="Utilizatori" *appHasRole="['Admin']">
+        <div class="container">
+          <app-user-management></app-user-management>
+        </div>
+      </tab>
+      <tab heading="Clase" *appHasRole="['Admin']">
+        <div class="container">
+          <app-class-management></app-class-management>
+        </div>
+      </tab>
+      <tab heading="Specializari" *appHasRole="['Admin']">
+        <div class="container">
+          <app-specialization-management></app-specialization-management>
+        </div>
+      </tab>
+      <tab heading="Grupe" *appHasRole="['Admin']">
+        <div class="container">
+          <app-group-management></app-group-management>
+        </div>
+      </tab>
+      <tab heading="Subgrupe" *appHasRole="['Admin']">
+        <div class="container">
+          <app-subGroups-management></app-subGroups-management>
+        </div>
+      </tab>
+      <tab heading="Cursuri" *appHasRole="['Admin']">
+        <div class="container">
+          <app-course-management></app-course-management>
+        </div>
+      </tab>
+      <tab heading="Seminare" *appHasRole="['Admin']">
+        <div class="container">
+          <app-seminar-management></app-seminar-management>
+        </div>
+      </tab>
+      <tab heading="Laboratoare" *appHasRole="['Admin']">
+        <div class="container">
+          <app-laboratory-management></app-laboratory-management>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+</div>

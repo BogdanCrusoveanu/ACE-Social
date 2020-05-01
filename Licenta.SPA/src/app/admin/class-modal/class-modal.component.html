@@ -1,0 +1,66 @@
+
+<div class="modal-header">
+  <h4 class="modal-title pull-left" *ngIf="insert">Insert class name</h4>
+  <h4 class="modal-title pull-left" *ngIf="!insert">Edit class name</h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+<form #classesForm="ngForm" id="classesForm" [formGroup]="classForm">
+  <div class="form-group">
+    <input
+      [ngClass]="{
+        'is-invalid':
+          classForm.get('name').errors && classForm.get('name').touched
+      }"
+      type="text"
+      class="form-control mt-3 mb-3"
+      formControlName="name"
+      placeholder="Class Name"
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="
+        classForm.get('name').touched &&
+        classForm.get('name').hasError('required')
+      "
+    >
+      First Name as is required
+      </div>
+    </div>
+</form>
+</div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-success"
+      form="classesForm"
+      (click) = "insertClass()"
+      [hidden]="!insert"
+    >
+      Insert
+    </button>
+    <button
+      type="button"
+      class="btn btn-success"
+      form="classesForm"
+      (click) = "updateClass()"
+      [hidden]="insert"
+    >
+      Update
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">
+      Cancel
+    </button>
+  </div>
+
+
+
+

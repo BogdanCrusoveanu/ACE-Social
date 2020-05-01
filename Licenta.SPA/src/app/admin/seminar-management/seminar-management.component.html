@@ -1,0 +1,26 @@
+<div class="search-user mt-2 mb-2">
+  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Cauta seminar dupa denumire, Profesor sau sala de curs">
+</div>
+
+<button class="btn btn-info mt-2 mb-2" (click)="InsertSeminar()">Adaugare Seminar</button>
+
+<div class="row" *appHasRole="['Admin']">
+  <table class="table">
+    <tr>
+      <th style="width: 18%"> Denumire Seminar</th>
+      <th style="width: 18%"> Profesor</th>
+      <th style="width: 20%"> Denumire Grupa</th>
+      <th style="width: 10%"> Sala de curs</th>
+      <th style="width: 20%"> Sterge Seminar</th>
+      <th style="width: 24%"> Modifica Seminar</th>
+    </tr>
+    <tr *ngFor="let seminar of seminars | filter:searchText">
+      <td>{{seminar.name}}</td>
+      <td>{{seminar.teacherName}}</td>
+      <td>{{seminar.groupName}}</td>
+      <td>{{seminar.className}}</td>
+      <td><button class="btn btn-info">Sterge Seminar</button></td>
+      <td><button class="btn btn-info" (click)="updateCourse(seminar)">Modifica Seminar</button></td>
+    </tr>
+  </table>
+</div>

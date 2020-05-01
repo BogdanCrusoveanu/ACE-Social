@@ -1,0 +1,22 @@
+<div class="search-user mt-2 mb-2">
+  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Cauta o clasa dupa denumire sau id">
+</div>
+
+<button class="btn btn-info mt-2 mb-2" (click)="insertClass()">Adauga Clasa</button>
+
+<div class="row" *appHasRole="['Admin']">
+  <table class="table">
+    <tr>
+      <th style="width: 25%"> ID Clasa</th>
+      <th style="width: 25%"> Denumire Clasa</th>
+      <th style="width: 25%"> Sterge Clasa</th>
+      <th style="width: 25%"> Modifica Clasa</th>
+    </tr>
+    <tr *ngFor="let class of classes | filter:searchText">
+      <td>{{class.id}}</td>
+      <td>{{class.name}}</td>
+      <td><button class="btn btn-info">Sterge Clasa</button></td>
+      <td><button class="btn btn-info" (click)="updateClass(class)">Modifica Clasa</button></td>
+    </tr>
+  </table>
+</div>

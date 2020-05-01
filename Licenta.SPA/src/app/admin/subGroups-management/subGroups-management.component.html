@@ -1,0 +1,24 @@
+<div class="search-user mt-2 mb-2">
+  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Cauta sub-grupa dupa nume, grupa sau ID">
+</div>
+
+<button class="btn btn-info mt-2 mb-2" (click)="insertSubGroups()">Adaugare Grup</button>
+
+<div class="row" *appHasRole="['Admin']">
+  <table class="table">
+    <tr>
+      <th style="width: 10%"> ID Sub-Grupa</th>
+      <th style="width: 25%"> Denumire</th>
+      <th style="width: 25%"> Denumire Grupa</th>
+      <th style="width: 20%"> Sterge Sub-Grupa</th>
+      <th style="width: 20%"> Modifica Sub-Grupa</th>
+    </tr>
+    <tr *ngFor="let subGroup of subGroups | filter:searchText">
+      <td>{{subGroup.id}}</td>
+      <td>{{subGroup.name}}</td>
+      <td>{{subGroup.groupName}}</td>
+      <td><button class="btn btn-info">Sterge Sub-Grupa</button></td>
+      <td><button class="btn btn-info" (click)="updateSubGroup(subGroup, groups)">Modifica Sub-Grupa</button></td>
+    </tr>
+  </table>
+</div>

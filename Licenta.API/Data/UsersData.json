@@ -1,0 +1,359 @@
+[
+  {
+    "Username": "Tina",
+    "FirstName": "Karina",
+    "LastName": "Krista",
+    "DateOfBirth": "1951-10-24",
+    "Year": 4,
+    "Specialization": "Calculatoare Romana",
+    "Group": "CR4",
+    "SemiGroup": "CR4.1",
+    "SubGroup": "CR4.1 A",
+    "Password": "parola",
+    "Created": "2017-08-01",
+    "LastActive": "2017-08-01",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/54.jpg",
+        "isMain": true,
+        "description": "Ipsum occaecat occaecat mollit aliquip dolor fugiat qui tempor elit ullamco aliquip voluptate commodo elit."
+      }
+    ]
+  },
+  {
+    "Username": "Sybil",
+    "FirstName": "Alexandria",
+    "LastName": "Amie",
+    "DateOfBirth": "1984-03-11",
+    "Year": 4,
+    "Specialization": "Calculatoare Romana",
+    "Group": "CR4",
+    "SemiGroup": "CR4.1",
+    "SubGroup": "CR4.1 A",
+    "Password": "parola",
+    "Created": "2017-04-10",
+    "LastActive": "2017-04-10",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/20.jpg",
+        "isMain": true,
+        "description": "Ipsum Lorem consequat aliqua et in enim culpa esse."
+      }
+    ]
+  },
+  {
+    "Username": "Erica",
+    "FirstName": "Myrna",
+    "LastName": "Tanisha",
+    "DateOfBirth": "1967-03-19",
+    "Year": 4,
+    "Specialization": "Calculatoare Romana",
+    "Group": "CR4",
+    "SemiGroup": "CR4.1",
+    "SubGroup": "CR4.1 A",
+    "Password": "parola",
+    "Created": "2017-06-30",
+    "LastActive": "2017-06-30",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/84.jpg",
+        "isMain": true,
+        "description": "Duis quis esse nisi sit elit mollit."
+      }
+    ]
+  },
+  {
+    "Username": "Elva",
+    "FirstName": "Leticia",
+    "LastName": "Lauren",
+    "DateOfBirth": "1956-08-10",
+    "Year": 4,
+    "Specialization": "Calculatoare Romana",
+    "Group": "CR4",
+    "SemiGroup": "CR4.1",
+    "SubGroup": "CR4.1 A",
+    "Password": "parola",
+    "Created": "2017-05-24",
+    "LastActive": "2017-05-24",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/11.jpg",
+        "isMain": true,
+        "description": "Fugiat incididunt proident commodo deserunt magna aute ea occaecat quis aliqua sit quis fugiat Lorem."
+      }
+    ]
+  },
+  {
+    "Username": "Faith",
+    "FirstName": "Marietta",
+    "LastName": "Vera",
+    "DateOfBirth": "1955-09-26",
+    "Year": 4,
+    "Specialization": "Calculatoare Romana",
+    "Group": "CR4",
+    "SemiGroup": "CR4.1",
+    "SubGroup": "CR4.1 A",
+    "Password": "parola",
+    "Created": "2017-05-15",
+    "LastActive": "2017-05-15",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/46.jpg",
+        "isMain": true,
+        "description": "Id elit consequat dolore cillum sunt."
+      }
+    ]
+  },
+  {
+    "Username": "Deidre",
+    "FirstName": "Julianne",
+    "LastName": "Brittney",
+    "DateOfBirth": "1969-05-01",
+    "Year": 4,
+    "Specialization": "Calculatoare Romana",
+    "Group": "CR4",
+    "SemiGroup": "CR4.1",
+    "SubGroup": "CR4.1 A",
+    "Password": "parola",
+    "Created": "2017-05-18",
+    "LastActive": "2017-05-18",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/74.jpg",
+        "isMain": true,
+        "description": "Ea proident ea ut nostrud ullamco veniam occaecat elit sint laboris esse do."
+      }
+    ]
+  },
+  {
+    "Username": "Hubbard",
+    "FirstName": "Rich",
+    "LastName": "Andrews",
+    "DateOfBirth": "1994-06-25",
+    "Year": 4,
+    "Specialization": "Calculatoare Romana",
+    "Group": "CR4",
+    "SemiGroup": "CR4.1",
+    "SubGroup": "CR4.1 A",
+    "Password": "parola",
+    "Created": "2017-04-05",
+    "LastActive": "2017-04-05",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/98.jpg",
+        "isMain": true,
+        "description": "Fugiat exercitation qui dolor anim."
+      }
+    ]
+  },
+  {
+    "Username": "Sanchez",
+    "FirstName": "Fletcher",
+    "LastName": "Guzman",
+    "DateOfBirth": "1975-02-08",
+    "Year": 4,
+    "Specialization": "Calculatoare Romana",
+    "Group": "CR4",
+    "SemiGroup": "CR4.1",
+    "SubGroup": "CR4.1 A",
+    "Password": "parola",
+    "Created": "2017-07-11",
+    "LastActive": "2017-07-11",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/49.jpg",
+        "isMain": true,
+        "description": "Sunt qui irure cupidatat sit aliqua ut culpa nostrud cupidatat ex deserunt."
+      }
+    ]
+  },
+  {
+    "Username": "Chavez",
+    "FirstName": "Callahan",
+    "LastName": "Nelson",
+    "DateOfBirth": "1979-01-07",
+    "Year": 4,
+    "Specialization": "Calculatoare Romana",
+    "Group": "CR4",
+    "SemiGroup": "CR4.1",
+    "SubGroup": "CR4.1 A",
+    "Password": "parola",
+    "Created": "2017-05-14",
+    "LastActive": "2017-05-14",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/80.jpg",
+        "isMain": true,
+        "description": "Veniam esse incididunt dolore proident ea non do ut sit nulla."
+      }
+    ]
+  },
+  {
+    "Username": "Forbes",
+    "FirstName": "Langley",
+    "LastName": "Barber",
+    "DateOfBirth": "1996-02-21",
+    "Year": 4,
+    "Specialization": "Calculatoare Romana",
+    "Group": "CR4",
+    "SemiGroup": "CR4.1",
+    "SubGroup": "CR4.1 A",
+    "Password": "parola",
+    "Created": "2017-08-15",
+    "LastActive": "2017-08-15",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/74.jpg",
+        "isMain": true,
+        "description": "Laborum in minim ex sit adipisicing aliqua sint."
+      }
+    ]
+  },
+  {
+    "Username": "Williamson",
+    "FirstName": "Huff",
+    "LastName": "Holman",
+    "DateOfBirth": "1998-08-26",
+    "Year": 4,
+    "Specialization": "Calculatoare Romana",
+    "Group": "CR4",
+    "SemiGroup": "CR4.1",
+    "SubGroup": "CR4.1 A",
+    "Password": "parola",
+    "Created": "2017-08-11",
+    "LastActive": "2017-08-11",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/65.jpg",
+        "isMain": true,
+        "description": "Culpa est velit esse esse occaecat consequat fugiat ad voluptate."
+      }
+    ]
+  },
+  {
+    "Username": "Cameron",
+    "FirstName": "Warner",
+    "LastName": "Vasquez",
+    "DateOfBirth": "1968-08-11",
+    "Year": 0,
+    "Specialization": "",
+    "Group": "",
+    "SemiGroup": "",
+    "SubGroup": "",
+    "Password": "",
+    "Created": "2017-02-22",
+    "LastActive": "2017-02-22",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/66.jpg",
+        "isMain": true,
+        "description": "Voluptate voluptate incididunt ex voluptate labore velit aliqua laboris ex id pariatur et eu."
+      }
+    ]
+  },
+  {
+    "Username": "Sweeney",
+    "FirstName": "Lane",
+    "LastName": "Peterson",
+    "DateOfBirth": "1964-03-03",
+    "Year": 0,
+    "Specialization": "",
+    "Group": "",
+    "SemiGroup": "",
+    "SubGroup": "",
+    "Password": "",
+    "Created": "2017-06-30",
+    "LastActive": "2017-06-30",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/48.jpg",
+        "isMain": true,
+        "description": "Lorem adipisicing do minim et est minim ipsum."
+      }
+    ]
+  },
+  {
+    "Username": "Wade",
+    "FirstName": "Espinoza",
+    "LastName": "Henry",
+    "DateOfBirth": "1966-06-19",
+    "Year": 0,
+    "Specialization": "",
+    "Group": "",
+    "SemiGroup": "",
+    "SubGroup": "",
+    "Password": "",
+    "Created": "2017-07-05",
+    "LastActive": "2017-07-05",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/24.jpg",
+        "isMain": true,
+        "description": "Enim ad quis veniam duis officia commodo qui anim laborum sunt sunt in ad fugiat."
+      }
+    ]
+  },
+  {
+    "Username": "Vicky",
+    "FirstName": "Gabrielle",
+    "LastName": "Geraldine",
+    "DateOfBirth": "1961-07-09",
+    "Year": 0,
+    "Specialization": "",
+    "Group": "",
+    "SemiGroup": "",
+    "SubGroup": "",
+    "Password": "",
+    "Created": "2017-05-19",
+    "LastActive": "2017-05-19",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/66.jpg",
+        "isMain": true,
+        "description": "Culpa consectetur Lorem incididunt commodo aute cupidatat non non labore."
+      }
+    ]
+  },
+  {
+    "Username": "Tamika",
+    "FirstName": "Lourdes",
+    "LastName": "Allison",
+    "DateOfBirth": "1954-10-31",
+    "Year": 0,
+    "Specialization": "",
+    "Group": "",
+    "SemiGroup": "",
+    "SubGroup": "",
+    "Password": "",
+    "Created": "2017-03-02",
+    "LastActive": "2017-03-02",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/69.jpg",
+        "isMain": true,
+        "description": "Ea labore laboris ipsum ullamco."
+      }
+    ]
+  },
+  {
+    "Username": "Irma",
+    "FirstName": "Rachael",
+    "LastName": "Roberta",
+    "DateOfBirth": "1984-07-03",
+    "Year": 0,
+    "Specialization": "",
+    "Group": "",
+    "SemiGroup": "",
+    "SubGroup": "",
+    "Password": "",
+    "Created": "2017-08-23",
+    "LastActive": "2017-08-23",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/36.jpg",
+        "isMain": true,
+        "description": "Eiusmod nostrud culpa aliquip deserunt adipisicing Lorem enim ipsum adipisicing aliqua in non incididunt."
+      }
+    ]
+  }
+]

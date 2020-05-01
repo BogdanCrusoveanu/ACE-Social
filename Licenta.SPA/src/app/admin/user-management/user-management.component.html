@@ -1,0 +1,52 @@
+<div class="search-user mt-2 mb-2">
+  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442; Cauta un utilizator dupa nume sau tip">
+</div>
+
+<div class="d-flex justify-content-center">
+  <pagination
+    [boundaryLinks]="true"
+    [totalItems]="pagination.totalItems"
+    [itemsPerPage]="pagination.itemsPerPage"
+    [(ngModel)]="pagination.currentPage"
+    (pageChanged)="pageChanged($event)"
+    previousText="&lsaquo;"
+    nextText="&rsaquo;"
+    firstText="&laquo;"
+    lastText="&raquo;"
+  >
+  </pagination>
+</div>
+
+<div class="row" *appHasRole="['Admin']">
+  <table class="table">
+    <tr>
+      <th style="width: 10%"> User ID</th>
+      <th style="width: 25%"> Username</th>
+      <th style="width: 20%"> Tip Utilizator</th>
+      <th style="width: 15%"> Modificare roluri</th>
+      <th style="width: 15%"> Sterge utilizator</th>
+    </tr>
+    <tr *ngFor="let user of users | filter:searchText">
+      <td>{{user.id}}</td>
+      <td>{{user.userName}}</td>
+      <td>{{user.roles}}</td>
+      <td><button class="btn btn-info" (click)="editRolesModal(user)">Modificare roluri</button></td>
+      <td><button class="btn btn-info">Sterge utilizator</button></td>
+    </tr>
+  </table>
+</div>
+
+<div class="d-flex justify-content-center">
+  <pagination
+    [boundaryLinks]="true"
+    [totalItems]="pagination.totalItems"
+    [itemsPerPage]="pagination.itemsPerPage"
+    [(ngModel)]="pagination.currentPage"
+    (pageChanged)="pageChanged($event)"
+    previousText="&lsaquo;"
+    nextText="&rsaquo;"
+    firstText="&laquo;"
+    lastText="&raquo;"
+  >
+  </pagination>
+</div>
