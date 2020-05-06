@@ -24,6 +24,8 @@ namespace Licenta.API.Services
 
         public void AddSeminar(Seminar seminar)
         {
+            seminar.StartDate = seminar.StartDate.LocalDateTime;
+            seminar.EndDate = seminar.EndDate.LocalDateTime;
             _genericsRepo.Add(seminar);
         }
 
@@ -59,8 +61,8 @@ namespace Licenta.API.Services
             var currentCourse = await _seminarsRepo.GetSeminarById(seminar.Id);
 
             currentCourse.Name = seminar.Name;
-            currentCourse.StartDate = seminar.StartDate;
-            currentCourse.EndDate = seminar.EndDate;
+            currentCourse.StartDate = seminar.StartDate.LocalDateTime;
+            currentCourse.EndDate = seminar.EndDate.LocalDateTime;
             currentCourse.TeacherId = seminar.TeacherId;
             currentCourse.GroupId = seminar.GroupId;
             currentCourse.ClassId = seminar.ClassId;

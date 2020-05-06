@@ -1,3 +1,98 @@
-<p>
-  groups-modal works!
-</p>
+<div class="modal-header">
+  <h4 class="modal-title pull-left" *ngIf="insert">Adauga numele grupei</h4>
+  <h4 class="modal-title pull-left" *ngIf="!insert">Modifica numele grupei</h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form #classesForm="ngForm" id="classesForm" [formGroup]="groupForm">
+    <div class="form-group">
+      <input
+        [ngClass]="{
+          'is-invalid':
+            groupForm.get('name').errors && groupForm.get('name').touched
+        }"
+        type="text"
+        class="form-control mt-3 mb-3"
+        formControlName="name"
+        placeholder="Numele Grupei"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+          groupForm.get('name').touched &&
+          groupForm.get('name').hasError('required')
+        "
+      >
+        O Specializare trebuie introdusa
+      </div>
+
+      <input
+        matInput
+        placeholder="Alege o specializare"
+        aria-label="Specializari"
+        [matAutocomplete]="auto"
+        formControlName="specializationName"
+        [(ngModel)]="searchSpecialization"
+      />
+      <mat-autocomplete
+        autoActiveFirstOption
+        #auto="matAutocomplete"
+        (optionSelected)="onSelectionChanged($event)"
+      >
+        <mat-option
+          *ngFor="
+            let specialization of specializations | filter: searchSpecialization
+          "
+          [value]="specialization.name"
+          [id]="specialization.id"
+        >
+          <span>{{ specialization.name }}</span>
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <div class="container h-100">
+    <div class="d-flex h-100">
+      <div class="align-self-center mx-auto">
+        <button
+          type="button"
+          class="btn btn-success"
+          form="classesForm"
+          (click)="addSpecialization()"
+          [hidden]="!insert"
+          [disabled]="!groupForm.valid"
+        >
+          Insert
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-success"
+          form="classesForm"
+          (click)="updateSpecialization()"
+          [hidden]="insert"
+          [disabled]="!groupForm.valid"
+        >
+          Update
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="bsModalRef.hide()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

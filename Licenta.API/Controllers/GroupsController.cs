@@ -1,4 +1,5 @@
-﻿using Licenta.API.Models;
+﻿using Licenta.API.Data;
+using Licenta.API.Models;
 using Licenta.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -10,10 +11,12 @@ namespace Licenta.API.Controllers
     public class GroupsController : ControllerBase
     {
         private readonly IGroupsService _groupsService;
+        private readonly IGenericsRepository _genericsRepo;
 
-        public GroupsController(IGroupsService groupsService)
+        public GroupsController(IGroupsService groupsService, IGenericsRepository genericsRepo)
         {
             _groupsService = groupsService;
+            _genericsRepo = genericsRepo;
         }
 
         [HttpGet("get")]
@@ -55,6 +58,18 @@ namespace Licenta.API.Controllers
                 return Ok(updatedGroup);
             }
             return BadRequest("Update Failed or the same group was sent");
+        }
+
+        [HttpPost("delete")]
+        public async Task<IActionResult> DeleteGrouop(Group group)
+        {
+            _genericsRepo.Delete(group);
+
+            if (await _genericsRepo.SaveAll())
+            {
+                return NoContent();
+            }
+            return BadRequest("Delete Failed!");
         }
 
     }

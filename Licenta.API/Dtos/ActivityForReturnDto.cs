@@ -10,8 +10,8 @@ namespace Licenta.API.Dtos
         public int Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTimeOffset StartDate { get; set; }
+        public DateTimeOffset EndDate { get; set; }
         public int Duration { get; set; }
         public string Teacher { get; set; }
         public string CategoryName { get; set; }

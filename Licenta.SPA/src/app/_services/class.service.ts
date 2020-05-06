@@ -7,7 +7,6 @@ import { environment } from "src/environments/environment.prod";
   providedIn: "root",
 })
 export class ClassService {
-
   baseUrl = environment.apiUrl;
   constructor(private http: HttpClient) {}
 
@@ -16,10 +15,14 @@ export class ClassService {
   }
 
   addClass(insertedClass: Class) {
-    return this.http.post(this.baseUrl + 'admin/addClass', insertedClass);
- }
+    return this.http.post(this.baseUrl + "admin/addClass", insertedClass);
+  }
 
   updateClass(updatedClass: Class) {
-  return this.http.post(this.baseUrl + 'admin/updateClass', updatedClass);
-}
+    return this.http.post(this.baseUrl + "admin/updateClass", updatedClass);
+  }
+
+  deleteClass(id: number) {
+    return this.http.delete(this.baseUrl + "admin/DeleteClass/" + id);
+  }
 }

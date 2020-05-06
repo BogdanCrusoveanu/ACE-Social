@@ -1,3 +1,5 @@
+import { GroupService } from './../../_services/group-service.service';
+import { AlertifyService } from './../../_services/alertify.service';
 import { GroupsModalComponent } from './../groups-modal/groups-modal.component';
 import { Specialization } from './../../_models/specialization';
 import { Group } from './../../_models/group';
@@ -20,7 +22,9 @@ export class GroupManagementComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private alertify: AlertifyService,
+    private groupService: GroupService
   ) {}
 
   ngOnInit() {
@@ -36,15 +40,16 @@ export class GroupManagementComponent implements OnInit {
     });
   }
 
-  insertGroups() {
+  insertGroups(specializations) {
     let insert = true;
     const initialState = {
       insert,
+      specializations
     };
     this.bsModalRef = this.modalService.show(GroupsModalComponent, {
       initialState,
     });
-    this.bsModalRef.content.sendClasses.subscribe((values) => {
+    this.bsModalRef.content.sendGroup.subscribe((values) => {
       this.groups = values;
     });
   }
@@ -61,4 +66,21 @@ export class GroupManagementComponent implements OnInit {
     });
   }
 
+  deleteGroup(group: Group) {
+    this.alertify.confirm(
+      "Sunteti sigur ca doriti sa stergeti aceasta grupa? Toate sub-grupele si seminarele aferente acestei grupe vor fi sterse!",
+      () => {
+        this.groupService.deleteGroup(group).subscribe(
+          () => {
+            this.alertify.success("Grupa a fost stearsa!");
+            const index: number = this.groups.indexOf(group);
+            this.groups.splice(index, 1);
+          },
+          (error) => {
+            this.alertify.error(error);
+          }
+        );
+      }
+    );
+  }
 }

@@ -1,0 +1,19 @@
+<div class="search-user mt-2 mb-2">
+  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Incepeti sa cautati un semestru dupa numar sau data de inceput sau final!">
+</div>
+<div class="row" *appHasRole="['Admin']">
+  <table class="table">
+    <tr>
+      <th style="width: 25%"> Numar Semestru</th>
+      <th style="width: 25%"> Data Inceput</th>
+      <th style="width: 25%"> Data Final</th>
+      <th style="width: 25%"> Modifica Semestru</th>
+    </tr>
+    <tr *ngFor="let semester of semesters | filter:searchText">
+      <td>{{semester.id}}</td>
+      <td>{{semester.startDate | date: 'd MMM y'}}</td>
+      <td>{{semester.endDate | date: 'd MMM y'}}</td>
+      <td><button class="btn btn-info" (click)="updateSemester(semester)">Modifica Semestru</button></td>
+    </tr>
+  </table>
+</div>

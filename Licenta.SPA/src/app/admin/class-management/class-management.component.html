@@ -15,7 +15,7 @@
     <tr *ngFor="let class of classes | filter:searchText">
       <td>{{class.id}}</td>
       <td>{{class.name}}</td>
-      <td><button class="btn btn-info">Sterge Clasa</button></td>
+      <td><button class="btn btn-info" (click) ="deleteClass(class)">Sterge Clasa</button></td>
       <td><button class="btn btn-info" (click)="updateClass(class)">Modifica Clasa</button></td>
     </tr>
   </table>

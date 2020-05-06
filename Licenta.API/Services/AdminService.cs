@@ -53,6 +53,12 @@ namespace Licenta.API.Services
             return false;
         }
 
+        public void DeleteClass(int id)
+        {
+            var classToDelete =  _classesRepo.GetClassById(id).Result;
+            _genericsRepo.Delete(classToDelete);
+        }
+
         public async Task<Class> GetClassById(int id)
         {
             return await _classesRepo.GetClassById(id);
@@ -73,9 +79,9 @@ namespace Licenta.API.Services
             return await _semestersRepo.GetSemesters();
         }
 
-        public async Task<PagedList<User>> GetTeachers(UserParams userParams)
+        public async Task<List<User>> GetTeachers()
         {
-            return await _usersRepo.GetTeachers(userParams);
+            return await _usersRepo.GetTeachers();
         }
 
         public List<TeacherDto> MapTeachersForReturn(List<User> teachers)

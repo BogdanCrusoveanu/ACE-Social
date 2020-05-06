@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ export class HomeComponent implements OnInit {
   registerMode = false;
 
   constructor(private http: HttpClient) { }
-
+  value;
   ngOnInit() {
   }
 
@@ -21,5 +22,7 @@ export class HomeComponent implements OnInit {
   cancelRegisterMode(registerMode: boolean) {
     this.registerMode = registerMode;
   }
+
+  refresh: Subject<any> = new Subject();
 
 }

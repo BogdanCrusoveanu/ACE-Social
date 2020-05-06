@@ -11,7 +11,7 @@ namespace Licenta.API.Services
 {
     public interface IAdminService
     {
-        Task<PagedList<User>> GetTeachers(UserParams userParams);
+        Task<List<User>> GetTeachers();
         List<TeacherDto> MapTeachersForReturn(List<User> teachers);
         Task<List<Semester>> GetSemesters();
         Task<Semester> GetSemester(int id);
@@ -21,5 +21,6 @@ namespace Licenta.API.Services
         Task<Class> GetClassById(int id);
         Class AddClass(ClassForCreateDto newClass);
         bool ClassExists(ClassForCreateDto newClass);
+        void DeleteClass(int id);
     }
 }

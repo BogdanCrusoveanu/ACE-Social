@@ -24,14 +24,9 @@ namespace Licenta.Data
                 u => u.LikerId == userId && u.LikeeId == recipientId);
         }
 
-        public async Task<PagedList<User>> GetTeachers(UserParams userParams)
+        public async Task<List<User>> GetTeachers()
         {
-            var users = _context.Users.OrderBy(u => u.FirstName).AsQueryable();
-
-            users = users.Where(u => u.Year == 0);
-
-            return await PagedList<User>.CreateAsync(users,
-                userParams.PageNumber, userParams.PageSize);
+            return await _context.Users.OrderBy(u => u.FirstName).Where(u => u.Year == 0).Where(u => u.UserName != "Admin").ToListAsync();
         }
 
         public async Task<User> GetUser(int userId)

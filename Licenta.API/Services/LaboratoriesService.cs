@@ -22,6 +22,8 @@ namespace Licenta.API.Services
 
         public void AddLaboratory(Laboratory laboratory)
         {
+            laboratory.StartDate = laboratory.StartDate.LocalDateTime;
+            laboratory.EndDate = laboratory.EndDate.LocalDateTime;
             _genericsRepo.Add(laboratory);
         }
 
@@ -57,8 +59,8 @@ namespace Licenta.API.Services
             var currentLaboratory = await _laboratoriesRepo.GetLaboratoryById(laboratory.Id);
 
             currentLaboratory.Name = laboratory.Name;
-            currentLaboratory.StartDate = laboratory.StartDate;
-            currentLaboratory.EndDate = laboratory.EndDate;
+            currentLaboratory.StartDate = laboratory.StartDate.LocalDateTime;
+            currentLaboratory.EndDate = laboratory.EndDate.LocalDateTime;
             currentLaboratory.TeacherId = laboratory.TeacherId;
             currentLaboratory.SubGroupId = laboratory.SubGroupId;
             currentLaboratory.ClassId = laboratory.ClassId;

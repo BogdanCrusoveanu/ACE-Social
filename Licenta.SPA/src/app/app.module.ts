@@ -1,3 +1,12 @@
+import { TeachersResolver } from './_resolvers/teachers.resolver';
+import { AngularMaterialModule } from './angular-material.module';
+import { SemesterModalComponent } from './admin/semester-modal/semester-modal.component';
+import { SemesterManagementComponent } from './admin/semester-management/semester-management.component';
+import { SemesterResolver } from './_resolvers/semester.resolver';
+import { PresentationModalComponent } from './admin/presentation-modal/presentation-modal.component';
+import { PresentationManagementComponent } from './admin/presentation-management/presentation-management.component';
+import { PresentationResolver } from './_resolvers/presentation.resolver';
+import { PresentationService } from './_services/presentation.service';
 import { LaboratoryModalComponent } from './admin/laboratory-modal/laboratory-modal.component';
 import { SeminarModalComponent } from './admin/seminar-modal/seminar-modal.component';
 import { CourseModalComponent } from './admin/course-modal/course-modal.component';
@@ -10,6 +19,7 @@ import { LaboratoryResolver } from './_resolvers/laboratory.resolver';
 import { SubGroupsModalComponent } from './admin/subGroups-modal/subGroups-modal.component';
 import { SubGroupsManagementComponent } from './admin/subGroups-management/subGroups-management.component';
 import { GroupManagementComponent } from './admin/group-management/group-management.component';
+import 'flatpickr/dist/flatpickr.css';
 
 import { GroupsModalComponent } from './admin/groups-modal/groups-modal.component';
 import { SubGroupResolver } from './_resolvers/subGroup.resolver';
@@ -40,6 +50,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { FlatpickrModule } from 'angularx-flatpickr';
 
 import { MessagesResolver } from './_resolvers/messages.resolver';
 import { ListsResolver } from './_resolvers/lists.resolver';
@@ -66,7 +77,6 @@ import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { FileUploadModule } from 'ng2-file-upload';
-
 export function tokenGetter() {
    return localStorage.getItem('token');
 }
@@ -102,6 +112,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       HomeComponent,
       ClassModalComponent,
       CourseModalComponent,
+      PresentationManagementComponent,
+      PresentationModalComponent,
       SeminarModalComponent,
       LaboratoryModalComponent,
       SpecializationModalComponent,
@@ -114,6 +126,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberDetailComponent,
       MemberEditComponent,
       PhotoEditorComponent,
+      SemesterManagementComponent,
+      SemesterModalComponent,
       TimeAgoExtendsPipe,
       MemberMessagesComponent,
       AdminPanelComponent,
@@ -129,7 +143,9 @@ export class CustomHammerConfig extends HammerGestureConfig  {
    ],
    imports: [
       BrowserModule,
+      AngularMaterialModule,
       Ng2SearchPipeModule,
+      FlatpickrModule.forRoot(),
       HttpClientModule,
       ButtonsModule.forRoot(),
       FormsModule,
@@ -164,12 +180,16 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberEditResolver,
       GroupResolver,
       CourseResolver,
+      SemesterResolver,
       SeminarResolver,
       LaboratoryResolver,
       UserService,
       MessagesResolver,
       PreventUnsavedChanges,
       SubGroupResolver,
+      PresentationService,
+      PresentationResolver,
+      TeachersResolver,
       MemberDetailResolver,
       SpecializationResolver,
       MemberListResolver,

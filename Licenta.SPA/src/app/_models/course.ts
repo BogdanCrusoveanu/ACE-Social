@@ -9,6 +9,6 @@ export interface Course {
     specializationId: number;
     specializationName?: string;
     classId: number;
-    className: string;
+    className?: string;
     semesterId: number;
 }

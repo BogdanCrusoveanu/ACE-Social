@@ -1,3 +1,243 @@
-<p>
-  seminar-modal works!
-</p>
+<div class="modal-header">
+  <h4 class="modal-title pull-left" *ngIf="insert">Adauga numele seminarului</h4>
+  <h4 class="modal-title pull-left" *ngIf="!insert">
+    Modifica numele seminarului
+  </h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form #classesForm="ngForm" id="classesForm" [formGroup]="seminarForm">
+    <div class="form-group">
+      <input
+        [ngClass]="{
+          'is-invalid':
+          seminarForm.get('name').errors && seminarForm.get('name').touched
+        }"
+        type="text"
+        class="form-control mt-3 mb-3"
+        formControlName="name"
+        placeholder="Denumire Seminar"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+        seminarForm.get('name').touched &&
+        seminarForm.get('name').hasError('required')
+        "
+      >
+        Seminarul trebuie sa aiba o denumire
+      </div>
+
+      <input
+        matInput
+        placeholder="Alege o grupa"
+        aria-label="Grupe"
+        [matAutocomplete]="autoGroup"
+        formControlName="groupName"
+        [(ngModel)]="searchGroup"
+      />
+      <mat-autocomplete
+        autoActiveFirstOption
+        #autoGroup="matAutocomplete"
+        (optionSelected)="onSelectionChangedGroup($event)"
+      >
+        <mat-option
+          *ngFor="
+            let group of groups | filter: searchGroup
+          "
+          [value]="group.name"
+          [id]="group.id"
+        >
+          <span>{{ group.name }}</span>
+        </mat-option>
+      </mat-autocomplete>
+
+      <input
+        matInput
+        placeholder="Alege un profesor"
+        aria-label="Profesori"
+        [matAutocomplete]="autoTeachers"
+        formControlName="teacherName"
+        [(ngModel)]="searchTeacher"
+      />
+      <mat-autocomplete
+        autoActiveFirstOption
+        #autoTeachers="matAutocomplete"
+        (optionSelected)="onSelectionChangedTeacher($event)"
+      >
+        <mat-option
+          *ngFor="let teacher of teachers | filter: searchTeacher"
+          [value]="getTeacherFullName(teacher.firstName, teacher.lastName)"
+          [id]="teacher.id"
+        >
+          <span>{{getTeacherFullName(teacher.firstName, teacher.lastName)}}</span>
+        </mat-option>
+      </mat-autocomplete>
+
+      <input
+        matInput
+        placeholder="Alege o sala de curs"
+        aria-label="Sala de curs"
+        [matAutocomplete]="autoClasses"
+        formControlName="className"
+        [(ngModel)]="searchClass"
+      />
+      <mat-autocomplete
+        autoActiveFirstOption
+        #autoClasses="matAutocomplete"
+        (optionSelected)="onSelectionChangedClass($event)"
+      >
+        <mat-option
+          *ngFor="let class of classes | filter: searchClass"
+          [value]="class.name"
+          [id]="class.id"
+        >
+          <span>{{ class.name }}</span>
+        </mat-option>
+      </mat-autocomplete>
+
+      <input
+      matInput
+      placeholder="Alege cursul de care apartine seminarul"
+      aria-label="Sala de curs"
+      [matAutocomplete]="autoCourse"
+      formControlName="courseName"
+      [(ngModel)]="searchCourse"
+    />
+    <mat-autocomplete
+      autoActiveFirstOption
+      #autoCourse="matAutocomplete"
+      (optionSelected)="onSelectionChangedCourse($event)"
+    >
+      <mat-option
+        *ngFor="let course of courses | filter: searchCourse"
+        [value]="course.name"
+        [id]="course.id"
+      >
+        <span>{{ course.name }}</span>
+      </mat-option>
+    </mat-autocomplete>
+
+      <input
+        [ngClass]="{
+          'is-invalid':
+            seminarForm.get('startDate').errors &&
+            seminarForm.get('startDate').touched
+        }"
+        class="form-control"
+        type="text"
+        mwlFlatpickr
+        (ngModelChange)="refresh.next()"
+        formControlName="startDate"
+        [altInput]="true"
+        [convertModelValue]="true"
+        [enableTime]="true"
+        dateFormat="Y-m-dTH:i"
+        altFormat="F j, Y H:i"
+        placeholder="Ora la care incepe seminarul"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+        seminarForm.get('startDate').touched &&
+        seminarForm.get('startDate').hasError('required')
+        "
+      >
+        Introduce ora la care incepe seminarul
+      </div>
+
+      <input
+        [ngClass]="{
+          'is-invalid':
+            seminarForm.get('endDate').errors &&
+            seminarForm.get('endDate').touched
+        }"
+        class="form-control"
+        type="text"
+        mwlFlatpickr
+        (ngModelChange)="refresh.next()"
+        formControlName="endDate"
+        [altInput]="true"
+        [convertModelValue]="true"
+        [enableTime]="true"
+        dateFormat="Y-m-dTH:i"
+        altFormat="F j, Y H:i"
+        placeholder="Ora la care se termina seminarul"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+        seminarForm.get('endDate').touched &&
+        seminarForm.get('endDate').hasError('required')
+        "
+      >
+        Introduce ora la care se termina seminarul
+      </div>
+
+      <input
+        [ngClass]="{
+          'is-invalid':
+          seminarForm.get('semesterId').errors &&
+          seminarForm.get('semesterId').touched
+        }"
+        type="text"
+        class="form-control mt-3 mb-3"
+        formControlName="semesterId"
+        placeholder="Numar Semestru: 1 sau 2"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+        seminarForm.get('semesterId').touched &&
+        seminarForm.get('semesterId').hasError('required')
+        "
+      >
+        Un Semestru trebuie ales(1 sau 2);
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <div class="container h-100">
+    <div class="d-flex h-100">
+      <div class="align-self-center mx-auto">
+        <button
+          type="button"
+          class="btn btn-success"
+          form="classesForm"
+          (click)="addSeminar()"
+          [hidden]="!insert"
+          [disabled]="!seminarForm.valid"
+        >
+          Insert
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-success"
+          form="classesForm"
+          (click)="updateSeminar()"
+          [hidden]="insert"
+          [disabled]="!seminarForm.valid"
+        >
+          Update
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="bsModalRef.hide()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

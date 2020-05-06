@@ -23,4 +23,8 @@ export class GroupService {
     return this.http.post(this.baseUrl + "groups/update", group);
   }
 
+  deleteGroup(group: Group) {
+    return this.http.post(this.baseUrl + "groups/delete", group);
+  }
+
 }

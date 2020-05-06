@@ -9,6 +9,8 @@ export interface Seminar {
     groupId: number;
     groupName?: string;
     classId: number;
-    className: string;
+    className?: string;
     semesterId: number;
+    courseId: number;
+    courseName?: string;
 }

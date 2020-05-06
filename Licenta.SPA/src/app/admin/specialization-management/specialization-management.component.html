@@ -1,5 +1,5 @@
 <div class="search-user mt-2 mb-2">
-  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for a user by userName or id or role">
+  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Incepeti sa cautati o specializare dupa denumire">
 </div>
 
 <button class="btn btn-info mt-2 mb-2" (click)="insertSpecialization()">Adaugare Specializare</button>
@@ -15,7 +15,7 @@
     <tr *ngFor="let specialization of specializations | filter:searchText">
       <td>{{specialization.id}}</td>
       <td>{{specialization.name}}</td>
-      <td><button class="btn btn-info">Sterge Specializare</button></td>
+      <td><button class="btn btn-info" (click)="deleteSpecialization(specialization)">Sterge Specializare</button></td>
       <td><button class="btn btn-info" (click)="updateSpecialization(specialization)">Modifica Specializare</button></td>
     </tr>
   </table>

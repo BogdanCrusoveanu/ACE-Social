@@ -1,3 +1,100 @@
-<p>
-  subGroups-modal works!
-</p>
+<div class="modal-header">
+  <h4 class="modal-title pull-left" *ngIf="insert">Adauga numele Sub-grupei</h4>
+  <h4 class="modal-title pull-left" *ngIf="!insert">
+    Modifica numele Sub-grupei
+  </h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form #classesForm="ngForm" id="classesForm" [formGroup]="subGroupForm">
+    <div class="form-group">
+      <input
+        [ngClass]="{
+          'is-invalid':
+            subGroupForm.get('name').errors && subGroupForm.get('name').touched
+        }"
+        type="text"
+        class="form-control mt-3 mb-3"
+        formControlName="name"
+        placeholder="Numele Specializarii"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+          subGroupForm.get('name').touched &&
+          subGroupForm.get('name').hasError('required')
+        "
+      >
+        O Specializare trebuie introdusa
+      </div>
+
+      <input
+        matInput
+        placeholder="Alege o specializare"
+        aria-label="Specializari"
+        [matAutocomplete]="auto"
+        formControlName="specializationName"
+        [(ngModel)]="searchgroup"
+      />
+      <mat-autocomplete
+        autoActiveFirstOption
+        #auto="matAutocomplete"
+        (optionSelected)="onSelectionChanged($event)"
+      >
+        <mat-option
+          *ngFor="
+            let group of groups | filter: searchgroup
+          "
+          [value]="group.name"
+          [id]="group.id"
+        >
+          <span>{{ group.name }}</span>
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <div class="container h-100">
+    <div class="d-flex h-100">
+      <div class="align-self-center mx-auto">
+        <button
+          type="button"
+          class="btn btn-success"
+          form="classesForm"
+          (click)="addSubGroup()"
+          [hidden]="!insert"
+          [disabled]="!subGroupForm.valid"
+        >
+          Insert
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-success"
+          form="classesForm"
+          (click)="updateSubGroup()"
+          [hidden]="insert"
+          [disabled]="!subGroupForm.valid"
+        >
+          Update
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="bsModalRef.hide()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

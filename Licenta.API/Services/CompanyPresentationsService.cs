@@ -25,6 +25,8 @@ namespace Licenta.API.Services
 
         public void AddCompanyPresentation(CompanyPresentation companyPresentation)
         {
+            companyPresentation.StartDate = companyPresentation.StartDate.LocalDateTime;
+            companyPresentation.EndDate = companyPresentation.EndDate.LocalDateTime;
             _genericsRepo.Add(companyPresentation);
         }
 
@@ -60,8 +62,8 @@ namespace Licenta.API.Services
             var currentPresentation = await _companyPresentationsRepo.GetPresentationById(presentation.Id);
 
             currentPresentation.Name = presentation.Name;
-            currentPresentation.StartDate = presentation.StartDate;
-            currentPresentation.EndDate = presentation.EndDate;
+            currentPresentation.StartDate = presentation.StartDate.LocalDateTime;
+            currentPresentation.EndDate = presentation.EndDate.LocalDateTime;
             currentPresentation.ClassId = presentation.ClassId;
 
             var mappedCourse = _mapper.Map<PresentationForUpdateDto>(currentPresentation);

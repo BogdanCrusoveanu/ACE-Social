@@ -2,7 +2,7 @@
   <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Cauta sub-grupa dupa nume, grupa sau ID">
 </div>
 
-<button class="btn btn-info mt-2 mb-2" (click)="insertSubGroups()">Adaugare Grup</button>
+<button class="btn btn-info mt-2 mb-2" (click)="insertSubGroups(groups)">Adaugare Grup</button>
 
 <div class="row" *appHasRole="['Admin']">
   <table class="table">
@@ -17,7 +17,7 @@
       <td>{{subGroup.id}}</td>
       <td>{{subGroup.name}}</td>
       <td>{{subGroup.groupName}}</td>
-      <td><button class="btn btn-info">Sterge Sub-Grupa</button></td>
+      <td><button class="btn btn-info" (click)="deleteSubGroup(subGroup)">Sterge Sub-Grupa</button></td>
       <td><button class="btn btn-info" (click)="updateSubGroup(subGroup, groups)">Modifica Sub-Grupa</button></td>
     </tr>
   </table>

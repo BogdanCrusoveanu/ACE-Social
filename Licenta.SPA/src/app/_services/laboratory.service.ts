@@ -23,4 +23,8 @@ export class LaboratoryService {
     return this.http.post(this.baseUrl + "laboratories/update", laboratory);
   }
 
+  deleteLaboratory(laboratory: Laboratory) {
+    return this.http.post(this.baseUrl + "laboratories/delete", laboratory);
+  }
+
 }

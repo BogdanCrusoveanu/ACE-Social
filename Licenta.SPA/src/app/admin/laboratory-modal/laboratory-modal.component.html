@@ -1,3 +1,243 @@
-<p>
-  laboratory-modal works!
-</p>
+<div class="modal-header">
+  <h4 class="modal-title pull-left" *ngIf="insert">Adauga numele laboratorului</h4>
+  <h4 class="modal-title pull-left" *ngIf="!insert">
+    Modifica numele laboratorului
+  </h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form #classesForm="ngForm" id="classesForm" [formGroup]="laboratoryForm">
+    <div class="form-group">
+      <input
+        [ngClass]="{
+          'is-invalid':
+          laboratoryForm.get('name').errors && laboratoryForm.get('name').touched
+        }"
+        type="text"
+        class="form-control mt-3 mb-3"
+        formControlName="name"
+        placeholder="Denumire Laborator"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+        laboratoryForm.get('name').touched &&
+        laboratoryForm.get('name').hasError('required')
+        "
+      >
+        Laboratorul trebuie sa aiba o denumire
+      </div>
+
+      <input
+        matInput
+        placeholder="Alege o sub-grupa"
+        aria-label="Sub-grupe"
+        [matAutocomplete]="autoSubGroup"
+        formControlName="subGroupName"
+        [(ngModel)]="searchSubGroup"
+      />
+      <mat-autocomplete
+        autoActiveFirstOption
+        #autoSubGroup="matAutocomplete"
+        (optionSelected)="onSelectionChangedSubGroup($event)"
+      >
+        <mat-option
+          *ngFor="
+            let subGroup of subGroups | filter: searchSubGroup
+          "
+          [value]="subGroup.name"
+          [id]="subGroup.id"
+        >
+          <span>{{ subGroup.name }}</span>
+        </mat-option>
+      </mat-autocomplete>
+
+      <input
+        matInput
+        placeholder="Alege un profesor"
+        aria-label="Profesori"
+        [matAutocomplete]="autoTeachers"
+        formControlName="teacherName"
+        [(ngModel)]="searchTeacher"
+      />
+      <mat-autocomplete
+        autoActiveFirstOption
+        #autoTeachers="matAutocomplete"
+        (optionSelected)="onSelectionChangedTeacher($event)"
+      >
+        <mat-option
+          *ngFor="let teacher of teachers | filter: searchTeacher"
+          [value]="getTeacherFullName(teacher.firstName, teacher.lastName)"
+          [id]="teacher.id"
+        >
+          <span>{{getTeacherFullName(teacher.firstName, teacher.lastName)}}</span>
+        </mat-option>
+      </mat-autocomplete>
+
+      <input
+        matInput
+        placeholder="Alege o sala pentru laborator"
+        aria-label="Sala de curs"
+        [matAutocomplete]="autoClasses"
+        formControlName="className"
+        [(ngModel)]="searchClass"
+      />
+      <mat-autocomplete
+        autoActiveFirstOption
+        #autoClasses="matAutocomplete"
+        (optionSelected)="onSelectionChangedClass($event)"
+      >
+        <mat-option
+          *ngFor="let class of classes | filter: searchClass"
+          [value]="class.name"
+          [id]="class.id"
+        >
+          <span>{{ class.name }}</span>
+        </mat-option>
+      </mat-autocomplete>
+
+      <input
+      matInput
+      placeholder="Alege cursul de care apartine laboratorul"
+      aria-label="Curs"
+      [matAutocomplete]="autoCourse"
+      formControlName="courseName"
+      [(ngModel)]="searchCourse"
+    />
+    <mat-autocomplete
+      autoActiveFirstOption
+      #autoCourse="matAutocomplete"
+      (optionSelected)="onSelectionChangedCourse($event)"
+    >
+      <mat-option
+        *ngFor="let course of courses | filter: searchCourse"
+        [value]="course.name"
+        [id]="course.id"
+      >
+        <span>{{ course.name }}</span>
+      </mat-option>
+    </mat-autocomplete>
+
+      <input
+        [ngClass]="{
+          'is-invalid':
+            laboratoryForm.get('startDate').errors &&
+            laboratoryForm.get('startDate').touched
+        }"
+        class="form-control"
+        type="text"
+        mwlFlatpickr
+        (ngModelChange)="refresh.next()"
+        formControlName="startDate"
+        [altInput]="true"
+        [convertModelValue]="true"
+        [enableTime]="true"
+        dateFormat="Y-m-dTH:i"
+        altFormat="F j, Y H:i"
+        placeholder="Ora la care incepe laboratorul"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+        laboratoryForm.get('startDate').touched &&
+        laboratoryForm.get('startDate').hasError('required')
+        "
+      >
+        Introdu ora la care incepe laboratorul
+      </div>
+
+      <input
+        [ngClass]="{
+          'is-invalid':
+          laboratoryForm.get('endDate').errors &&
+          laboratoryForm.get('endDate').touched
+        }"
+        class="form-control"
+        type="text"
+        mwlFlatpickr
+        (ngModelChange)="refresh.next()"
+        formControlName="endDate"
+        [altInput]="true"
+        [convertModelValue]="true"
+        [enableTime]="true"
+        dateFormat="Y-m-dTH:i"
+        altFormat="F j, Y H:i"
+        placeholder="Ora la care se termina laboratorul"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+        laboratoryForm.get('endDate').touched &&
+        laboratoryForm.get('endDate').hasError('required')
+        "
+      >
+        Introdu ora la care se termina laboratorul
+      </div>
+
+      <input
+        [ngClass]="{
+          'is-invalid':
+          laboratoryForm.get('semesterId').errors &&
+          laboratoryForm.get('semesterId').touched
+        }"
+        type="text"
+        class="form-control mt-3 mb-3"
+        formControlName="semesterId"
+        placeholder="Numar Semestru: 1 sau 2"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+        laboratoryForm.get('semesterId').touched &&
+        laboratoryForm.get('semesterId').hasError('required')
+        "
+      >
+        Un Semestru trebuie ales(1 sau 2);
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <div class="container h-100">
+    <div class="d-flex h-100">
+      <div class="align-self-center mx-auto">
+        <button
+          type="button"
+          class="btn btn-success"
+          form="classesForm"
+          (click)="addLaboratory()"
+          [hidden]="!insert"
+          [disabled]="!laboratoryForm.valid"
+        >
+          Insert
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-success"
+          form="classesForm"
+          (click)="updateLaboratory()"
+          [hidden]="insert"
+          [disabled]="!laboratoryForm.valid"
+        >
+          Update
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="bsModalRef.hide()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

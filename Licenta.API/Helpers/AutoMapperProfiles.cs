@@ -65,7 +65,9 @@ namespace Licenta.Helpers
                 .ForMember(dest => dest.GroupName, opt => opt.MapFrom(src =>
                    src.Group.Name))
                 .ForMember(dest => dest.ClassName, opt => opt.MapFrom(src =>
-                   src.Class.Name));
+                   src.Class.Name))
+                .ForMember(dest => dest.CourseName, opt => opt.MapFrom(src =>
+                   src.Course.Name));
 
             CreateMap<Laboratory, LaboratoryForUpdateDto>()
                 .ForMember(dest => dest.TeacherName, opt => opt.MapFrom(src =>
@@ -73,7 +75,9 @@ namespace Licenta.Helpers
                 .ForMember(dest => dest.SubGroupName, opt => opt.MapFrom(src =>
                     src.SubGroup.Name))
                 .ForMember(dest => dest.ClassName, opt => opt.MapFrom(src =>
-                    src.Class.Name));
+                    src.Class.Name))
+                .ForMember(dest => dest.CourseName, opt => opt.MapFrom(src =>
+                   src.Course.Name));
 
             CreateMap<CompanyPresentation, PresentationForUpdateDto>()
                 .ForMember(dest => dest.ClassName, opt => opt.MapFrom(src =>

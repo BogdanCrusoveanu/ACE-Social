@@ -22,4 +22,8 @@ export class SubGroupService {
   updateSubGroups(subGroup: SubGroup) {
     return this.http.post(this.baseUrl + "subGroups/update", subGroup);
   }
+  
+  deteleSubGroup(subGroup: SubGroup) {
+    return this.http.post(this.baseUrl + "subgroups/delete", subGroup);
+  }
 }

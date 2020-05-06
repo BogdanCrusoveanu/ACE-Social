@@ -1,4 +1,5 @@
-﻿using Licenta.API.Dtos;
+﻿using Licenta.API.Data;
+using Licenta.API.Dtos;
 using Licenta.API.Models;
 using Licenta.API.Services;
 using Licenta.Data;
@@ -25,12 +26,14 @@ namespace Licenta.Controllers
         private readonly DataContext _context;
         private readonly UserManager<User> _userManager;
         private readonly IAdminService _adminService;
+        private readonly IGenericsRepository _genericsRepo;
 
-        public AdminController(DataContext context, UserManager<User> userManager, IAdminService adminService)
+        public AdminController(DataContext context, UserManager<User> userManager, IAdminService adminService, IGenericsRepository genericsRepo)
         {
             _context = context;
             _userManager = userManager;
             _adminService = adminService;
+            _genericsRepo = genericsRepo;
         }
 
         //[Authorize(Policy = "RequireAdminRole")]
@@ -111,18 +114,13 @@ namespace Licenta.Controllers
         }
 
         [HttpGet("GetTeachers")]
-        public async Task<IActionResult> GetTeachers([FromQuery]UserParams userParams)
+        public async Task<IActionResult> GetTeachers()
         {
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
-            userParams.UserId = currentUserId;
-
-            var teachers = await _adminService.GetTeachers(userParams);
+            var teachers = await _adminService.GetTeachers();
 
             var teachersToReturn = _adminService.MapTeachersForReturn(teachers);
-
-            Response.AddPagination(teachers.CurrentPage, teachers.PageSize,
-                teachers.TotalCount, teachers.TotalPages);
 
             return Ok(teachersToReturn);
         }
@@ -201,17 +199,17 @@ namespace Licenta.Controllers
             return BadRequest("Something went wrong!");
         }
 
-        //[HttpGet("DeleteClass/{id}")]
-        //public async Task<IActionResult> DeleteClass(int id)
-        //{
-        //    _adminService.DeleteClass(id);
+        [HttpDelete("DeleteClass/{id}")]
+        public async Task<IActionResult> DeleteClass(int id)
+        {
+            _adminService.DeleteClass(id);
 
-        //    if (await _adminService.SaveChangesInContext())
-        //    {
-        //        return NoContent();
-        //    }
+            if (await _genericsRepo.SaveAll())
+            {
+                return NoContent();
+            }
 
-        //    throw new Exception("Error deleting the class!");
-        //}
+            throw new Exception("Error deleting the class!");
+        }
     }
 }

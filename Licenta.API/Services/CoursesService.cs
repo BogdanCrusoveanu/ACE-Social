@@ -22,6 +22,8 @@ namespace Licenta.API.Services
 
         public void AddCourse(Course course)
         {
+            course.StartDate = course.StartDate.LocalDateTime;
+            course.EndDate = course.EndDate.LocalDateTime;
             _genericsRepo.Add(course);
         }
 
@@ -69,8 +71,8 @@ namespace Licenta.API.Services
             var currentCourse = await _coursesRepo.GetCourseById(course.Id);
 
             currentCourse.Name = course.Name;
-            currentCourse.StartDate = course.StartDate;
-            currentCourse.EndDate = course.EndDate;
+            currentCourse.StartDate = course.StartDate.LocalDateTime;
+            currentCourse.EndDate = course.EndDate.LocalDateTime;
             currentCourse.TeacherId = course.TeacherId;
             currentCourse.SpecializationId = course.SpecializationId;
             currentCourse.ClassId = course.ClassId;

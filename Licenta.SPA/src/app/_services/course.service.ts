@@ -1,7 +1,7 @@
+import { Course } from './../_models/course';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
-import { Course } from '../_models/course';
 
 @Injectable({
   providedIn: 'root'
@@ -23,4 +23,7 @@ export class CourseService {
     return this.http.post(this.baseUrl + "courses/update", course);
   }
 
+  deleteCourse(course: Course) {
+    return this.http.post(this.baseUrl + "courses/delete", course);
+  }
 }

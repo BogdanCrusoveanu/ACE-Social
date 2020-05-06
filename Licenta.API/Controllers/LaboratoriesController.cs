@@ -47,7 +47,7 @@ namespace Licenta.API.Controllers
 
             if (await _genericsRepo.SaveAll())
             {
-                return Ok("Laboratory was added!");
+                return NoContent();
             }
 
             return BadRequest("Something went wrong!");
@@ -65,6 +65,18 @@ namespace Licenta.API.Controllers
             }
 
             return BadRequest("You entered the same class name or something went wrong!");
+        }
+
+        [HttpPost("delete")]
+        public async Task<IActionResult> DeleteLaboratory(Laboratory laboratory)
+        {
+            _genericsRepo.Delete(laboratory);
+
+            if (await _genericsRepo.SaveAll())
+            {
+                return NoContent();
+            }
+            return BadRequest("Delete Failed!");
         }
     }
 }

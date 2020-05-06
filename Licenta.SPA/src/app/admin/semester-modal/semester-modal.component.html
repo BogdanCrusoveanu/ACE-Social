@@ -1,0 +1,98 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">
+    Modifica data la care incepe sau cea la care se termina semestrul
+  </h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form #classesForm="ngForm" id="classesForm" [formGroup]="semesterForm">
+
+      <input
+        [ngClass]="{
+          'is-invalid':
+          semesterForm.get('startDate').errors &&
+          semesterForm.get('startDate').touched
+        }"
+        class="form-control"
+        type="text"
+        mwlFlatpickr
+        (ngModelChange)="refresh.next()"
+        formControlName="startDate"
+        [altInput]="true"
+        [convertModelValue]="true"
+        [enableTime]="false"
+        dateFormat="Y-m-dTH:i"
+        altFormat="F j, Y H:i"
+        placeholder="Data la care incepe semestrul"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+        semesterForm.get('startDate').touched &&
+        semesterForm.get('startDate').hasError('required')
+        "
+      >
+        Introdu data la care incepe Semestrul
+      </div>
+
+      <input
+        [ngClass]="{
+          'is-invalid':
+          semesterForm.get('endDate').errors &&
+          semesterForm.get('endDate').touched
+        }"
+        class="form-control"
+        type="text"
+        mwlFlatpickr
+        (ngModelChange)="refresh.next()"
+        formControlName="endDate"
+        [altInput]="true"
+        [convertModelValue]="true"
+        [enableTime]="false"
+        dateFormat="Y-m-dTH:i"
+        altFormat="F j, Y H:i"
+        placeholder="Data la care se termina semestrul"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+        semesterForm.get('endDate').touched &&
+        semesterForm.get('endDate').hasError('required')
+        "
+      >
+        Introdu data la care se termina Semestrul
+      </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <div class="container h-100">
+    <div class="d-flex h-100">
+      <div class="align-self-center mx-auto">
+        <button
+          type="button"
+          class="btn btn-success"
+          form="semesterForm"
+          (click)="updateSemester()"
+          [disabled]="!semesterForm.valid"
+        >
+          Update
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="bsModalRef.hide()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,154 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left" *ngIf="insert">Adauga numele prezentarii</h4>
+  <h4 class="modal-title pull-left" *ngIf="!insert">
+    Modifica numele prezentarii
+  </h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form #classesForm="ngForm" id="classesForm" [formGroup]="presentationForm">
+    <div class="form-group">
+      <input
+        [ngClass]="{
+          'is-invalid':
+          presentationForm.get('name').errors && presentationForm.get('name').touched
+        }"
+        type="text"
+        class="form-control mt-3 mb-3"
+        formControlName="name"
+        placeholder="Denumire prezentare"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+        presentationForm.get('name').touched &&
+        presentationForm.get('name').hasError('required')
+        "
+      >
+        Prezentarea trebuie sa aiba o denumire
+      </div>
+
+      <input
+        matInput
+        placeholder="Alege o sala de curs"
+        aria-label="Sala de curs"
+        [matAutocomplete]="autoClasses"
+        formControlName="className"
+        [(ngModel)]="searchClass"
+      />
+      <mat-autocomplete
+        autoActiveFirstOption
+        #autoClasses="matAutocomplete"
+        (optionSelected)="onSelectionChangedClass($event)"
+      >
+        <mat-option
+          *ngFor="let class of classes | filter: searchClass"
+          [value]="class.name"
+          [id]="class.id"
+        >
+          <span>{{ class.name }}</span>
+        </mat-option>
+      </mat-autocomplete>
+
+      <input
+        [ngClass]="{
+          'is-invalid':
+          presentationForm.get('startDate').errors &&
+          presentationForm.get('startDate').touched
+        }"
+        class="form-control"
+        type="text"
+        mwlFlatpickr
+        (ngModelChange)="refresh.next()"
+        formControlName="startDate"
+        [altInput]="true"
+        [convertModelValue]="true"
+        [enableTime]="true"
+        dateFormat="Y-m-dTH:i"
+        altFormat="F j, Y H:i"
+        placeholder="Ora la care incepe prezentarea"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+        presentationForm.get('startDate').touched &&
+        presentationForm.get('startDate').hasError('required')
+        "
+      >
+        Introdu ora la care incepe prezentarea
+      </div>
+
+      <input
+        [ngClass]="{
+          'is-invalid':
+          presentationForm.get('endDate').errors &&
+          presentationForm.get('endDate').touched
+        }"
+        class="form-control"
+        type="text"
+        mwlFlatpickr
+        (ngModelChange)="refresh.next()"
+        formControlName="endDate"
+        [altInput]="true"
+        [convertModelValue]="true"
+        [enableTime]="true"
+        dateFormat="Y-m-dTH:i"
+        altFormat="F j, Y H:i"
+        placeholder="Ora la care se termina prezentarea"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+        presentationForm.get('endDate').touched &&
+        presentationForm.get('endDate').hasError('required')
+        "
+      >
+        Introdu ora la care se termina prezentarea
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <div class="container h-100">
+    <div class="d-flex h-100">
+      <div class="align-self-center mx-auto">
+        <button
+          type="button"
+          class="btn btn-success"
+          form="classesForm"
+          (click)="addPresentation()"
+          [hidden]="!insert"
+          [disabled]="!presentationForm.valid"
+        >
+          Insert
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-success"
+          form="classesForm"
+          (click)="updatepresentation()"
+          [hidden]="insert"
+          [disabled]="!presentationForm.valid"
+        >
+          Update
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="bsModalRef.hide()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

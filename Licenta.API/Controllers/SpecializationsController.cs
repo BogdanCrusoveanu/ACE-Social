@@ -1,4 +1,5 @@
-﻿using Licenta.API.Models;
+﻿using Licenta.API.Data;
+using Licenta.API.Models;
 using Licenta.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -10,10 +11,12 @@ namespace Licenta.API.Controllers
     public class SpecializationsController : ControllerBase
     {
         private readonly ISpecializationsService _specializationsService;
+        private readonly IGenericsRepository _genericsRepo;
 
-        public SpecializationsController(ISpecializationsService specializationsService)
+        public SpecializationsController(ISpecializationsService specializationsService, IGenericsRepository genericsRepo)
         {
             _specializationsService = specializationsService;
+            _genericsRepo = genericsRepo;
         }
 
         [HttpGet("get")]
@@ -55,6 +58,18 @@ namespace Licenta.API.Controllers
                 return Ok(updatedSpecialization);
             }
             return BadRequest("Update Failed or the same specialization was sent");
+        }
+
+        [HttpPost("delete")]
+        public async Task<IActionResult> DeleteSpecialization(Specialization specialization)
+        {
+            _genericsRepo.Delete(specialization);
+
+            if (await _genericsRepo.SaveAll())
+            {
+                return NoContent();
+            }
+            return BadRequest("Delete Failed!");
         }
     }
 }

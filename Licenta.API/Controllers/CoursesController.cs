@@ -36,7 +36,7 @@ namespace Licenta.API.Controllers
 
             if (await _genericsRepo.SaveAll())
             {
-                return Ok("Course was added!");
+                return NoContent();
             }
 
             return BadRequest("Something went wrong!");
@@ -56,14 +56,26 @@ namespace Licenta.API.Controllers
         [HttpPost("update")]
         public async Task<IActionResult> UpdateCourse(Course course)
         {
-            var updatedCourse = await _coursesService.UpdateCourse(course);
+            await _coursesService.UpdateCourse(course);
 
             if (await _genericsRepo.SaveAll())
             {
-                return Ok(updatedCourse);
+                return NoContent();
             }
 
             return BadRequest("You entered the same course name or something went wrong!");
+        }
+
+        [HttpPost("delete")]
+        public async Task<IActionResult> DeleteCourse(Course course)
+        {
+            _genericsRepo.Delete(course);
+
+            if (await _genericsRepo.SaveAll())
+            {
+                return NoContent();
+            }
+            return BadRequest("Delete Failed!");
         }
     }
 }

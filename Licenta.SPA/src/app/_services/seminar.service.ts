@@ -23,4 +23,8 @@ export class SeminarService {
     return this.http.post(this.baseUrl + "seminars/update", seminar);
   }
 
+  deleteSeminar(seminar: Seminar) {
+    return this.http.post(this.baseUrl + "seminars/delete", seminar);
+  }
+
 }

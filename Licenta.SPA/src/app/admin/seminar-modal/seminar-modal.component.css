@@ -1,0 +1,34 @@
+.form-group {
+    width: 50%;
+    margin-left: 20%;
+    margin-right: 20%
+}
+
+.btn {
+    margin-right: 10px;
+}
+
+.modal-title {
+    margin-left: 30%;
+}
+
+.form-control {
+    width: 120%;
+}
+
+input.mat-input-element {
+    margin-top: -0.0625em;
+    width: 280px;
+    height: 40px;
+}
+
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    padding: .375rem .75rem;
+    font-size: inherit;
+    line-height: inherit;
+    border: 1px solid #ced4da;
+    color: #495057;
+    border-radius: .25rem;
+}

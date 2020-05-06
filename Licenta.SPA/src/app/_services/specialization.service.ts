@@ -22,4 +22,8 @@ export class SpecializationService {
   UpdateSpecialization(specialization: Specialization) {
     return this.http.post(this.baseUrl + "specializations/update", specialization);
   }
+
+  deleteSpecialization(specialization: Specialization) {
+    return this.http.post(this.baseUrl + "specializations/delete", specialization);
+  }
 }

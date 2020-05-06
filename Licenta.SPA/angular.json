@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "node_modules/angular-calendar/css/angular-calendar.css",
               "src/styles.css"
             ],

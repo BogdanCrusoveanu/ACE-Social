@@ -1,3 +1,5 @@
+import { SubGroupService } from './../../_services/subGroup-service.service';
+import { AlertifyService } from './../../_services/alertify.service';
 import { Component, OnInit } from '@angular/core';
 import { SubGroup } from 'src/app/_models/subGroup';
 import { Group } from 'src/app/_models/group';
@@ -20,13 +22,13 @@ export class SubGroupsManagementComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private alertify: AlertifyService,
+    private subgroupService: SubGroupService
   ) {}
 
   ngOnInit() {
     this.getSubGroups();
-    console.log(this.groups);
-    console.log(this.subGroups);
   }
 
   getSubGroups() {
@@ -36,28 +38,47 @@ export class SubGroupsManagementComponent implements OnInit {
     });
   }
 
-  insertSubGroups() {
+  insertSubGroups(groups: Group[]) {
     let insert = true;
     const initialState = {
       insert,
+      groups
     };
     this.bsModalRef = this.modalService.show(SubGroupsModalComponent, {
       initialState,
     });
-    this.bsModalRef.content.sendClasses.subscribe((values) => {
-      this.groups = values;
+    this.bsModalRef.content.sendSubGroup.subscribe((values) => {
+      this.subGroups = values;
     });
   }
 
-  updateSubGroup(subgroupForUpdate: SubGroup, groups: Group[]) {
+  updateSubGroup(subGroupForUpdate: SubGroup, groups: Group[]) {
     let insert = false;
     const initialState = {
       insert,
-      subgroupForUpdate,
+      subGroupForUpdate,
       groups,
     };
     this.bsModalRef = this.modalService.show(SubGroupsModalComponent, {
       initialState,
     });
+  }
+
+  deleteSubGroup(subGroup: SubGroup) {
+    this.alertify.confirm(
+      "Sunteti sigur ca doriti sa stergeti aceasta Sub-grupa? Toate laboratoarele aferente acestei subgrupe vor fi sterse!",
+      () => {
+        this.subgroupService.deteleSubGroup(subGroup).subscribe(
+          () => {
+            this.alertify.success("Subgrupa a fost stearsa!");
+            const index: number = this.subGroups.indexOf(subGroup);
+            this.subGroups.splice(index, 1);
+          },
+          (error) => {
+            this.alertify.error(error);
+          }
+        );
+      }
+    );
   }
 }

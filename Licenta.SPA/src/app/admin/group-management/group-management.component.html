@@ -2,7 +2,7 @@
   <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Cauta grup dupa nume, specializare sau ID">
 </div>
 
-<button class="btn btn-info mt-2 mb-2" (click)="insertGroups()">Adaugare Grup</button>
+<button class="btn btn-info mt-2 mb-2" (click)="insertGroups(specializations)">Adaugare Grup</button>
 
 <div class="row" *appHasRole="['Admin']">
   <table class="table">
@@ -17,7 +17,7 @@
       <td>{{group.id}}</td>
       <td>{{group.name}}</td>
       <td>{{group.specializationName}}</td>
-      <td><button class="btn btn-info">Sterge Grup</button></td>
+      <td><button class="btn btn-info" (click)="deleteGroup(group)">Sterge Grupa</button></td>
       <td><button class="btn btn-info" (click)="updateGroup(group, specializations)">Modifica Grupa</button></td>
     </tr>
   </table>

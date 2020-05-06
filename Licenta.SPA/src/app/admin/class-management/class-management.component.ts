@@ -1,6 +1,7 @@
+import { Class } from "src/app/_models/class";
+import { AlertifyService } from "src/app/_services/alertify.service";
 import { ClassService } from "./../../_services/class.service";
 import { ClassModalComponent } from "./../class-modal/class-modal.component";
-import { Class } from "./../../_models/class";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { BsModalRef, BsModalService } from "ngx-bootstrap";
@@ -19,7 +20,9 @@ export class ClassManagementComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private classService: ClassService,
+    private alertify: AlertifyService
   ) {}
 
   ngOnInit() {
@@ -29,8 +32,6 @@ export class ClassManagementComponent implements OnInit {
   getClasses() {
     this.route.data.subscribe((data) => {
       this.classes = data["classes"];
-      //this.pagination = data['users'].pagination;
-      // console.log(this.pagination);
     });
   }
 
@@ -56,18 +57,23 @@ export class ClassManagementComponent implements OnInit {
     this.bsModalRef = this.modalService.show(ClassModalComponent, {
       initialState,
     });
+  }
 
-    // this.bsModalRef.content.updateSelectedRoles.subscribe((values) => {
-    //   const rolesToUpdate = {
-    //     roleNames: [...values.filter(el => el.checked === true).map(el => el.name)]
-    //   };
-    //   if(rolesToUpdate) {
-    //     this.adminService.updateUserRoles(user, rolesToUpdate).subscribe(() => {
-    //       user.roles = [...rolesToUpdate.roleNames]
-    //     }, error => {
-    //       this.alertifyService.error(error);
-    //     });
-    //   }
-    // });
+  deleteClass(classToDelete: Class) {
+    this.alertify.confirm(
+      "Sunteti sigur ca doriti sa stergeti aceasta clasa? Toate cursurile care se tin in aceasta sala vor fi sterse!",
+      () => {
+        this.classService.deleteClass(classToDelete.id).subscribe(
+          (data) => {
+            console.log("Clasa a fost adaugata cu succes!");
+            const index: number = this.classes.indexOf(classToDelete);
+            if (index != -1) this.classes.splice(index, 1);
+          },
+          (error) => {
+            this.alertify.error(error);
+          }
+        );
+      }
+    );
   }
 }

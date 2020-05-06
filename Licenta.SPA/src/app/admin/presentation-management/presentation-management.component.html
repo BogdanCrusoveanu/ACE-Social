@@ -1,0 +1,22 @@
+<div class="search-user mt-2 mb-2">
+  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Incepeti sa cautati o prezentare a unei companii dupa denumire sau sala in care se desfasoara ">
+</div>
+
+<button class="btn btn-info mt-2 mb-2" (click)="insertPresentation(classes)">Adaugare Prezentare</button>
+
+<div class="row" *appHasRole="['Admin']">
+  <table class="table">
+    <tr>
+      <th style="width: 15%"> Denumire Prezentare</th>
+      <th style="width: 30%"> Sala de curs</th>
+      <th style="width: 20%"> Sterge Prezentarea</th>
+      <th style="width: 20%"> Modifica Prezentarea</th>
+    </tr>
+    <tr *ngFor="let presentation of presentations | filter:searchText">
+      <td>{{presentation.name}}</td>
+      <td>{{presentation.className}}</td>
+      <td><button class="btn btn-info" (click)="deleteSpecialization(presentation)">Sterge Prezentarea</button></td>
+      <td><button class="btn btn-info" (click)="updateSpecialization(presentation, classes)">Modifica Prezentarea</button></td>
+    </tr>
+  </table>
+</div>

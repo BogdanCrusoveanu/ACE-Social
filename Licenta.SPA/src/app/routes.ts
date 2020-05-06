@@ -1,3 +1,6 @@
+import { TeachersResolver } from './_resolvers/teachers.resolver';
+import { SemesterResolver } from './_resolvers/semester.resolver';
+import { PresentationResolver } from './_resolvers/presentation.resolver';
 import { LaboratoryResolver } from './_resolvers/laboratory.resolver';
 import { SeminarResolver } from './_resolvers/seminar.resolver';
 import { CourseResolver } from './_resolvers/course.resolver';
@@ -70,7 +73,10 @@ export const appRoutes: Routes = [
           subGroups: SubGroupResolver,
           courses: CourseResolver,
           seminars: SeminarResolver,
-          laboratories: LaboratoryResolver
+          laboratories: LaboratoryResolver,
+          presentations: PresentationResolver,
+          semesters: SemesterResolver,
+          teachers: TeachersResolver
         },
       },
       {

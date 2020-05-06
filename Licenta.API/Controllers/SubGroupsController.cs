@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Licenta.API.Data;
 using Licenta.API.Models;
 using Licenta.API.Services;
 using Microsoft.AspNetCore.Http;
@@ -14,10 +15,12 @@ namespace Licenta.API.Controllers
     public class SubGroupsController : ControllerBase
     {
         private readonly ISubGroupsService _subGroupsService;
+        private readonly IGenericsRepository _genericsRepo;
 
-        public SubGroupsController(ISubGroupsService subGroupsService)
+        public SubGroupsController(ISubGroupsService subGroupsService, IGenericsRepository genericsRepo)
         {
             _subGroupsService = subGroupsService;
+            _genericsRepo = genericsRepo;
         }
 
         [HttpGet("get")]
@@ -58,6 +61,19 @@ namespace Licenta.API.Controllers
                 return Ok(updatedSubGroup);
             }
             return BadRequest("Update Failed or the same subgroup was sent");
+        }
+
+
+        [HttpPost("delete")]
+        public async Task<IActionResult> DeleteSubGroup(SubGroup subGroup)
+        {
+            _genericsRepo.Delete(subGroup);
+
+            if (await _genericsRepo.SaveAll())
+            {
+                return NoContent();
+            }
+            return BadRequest("Delete Failed!");
         }
     }
 }

@@ -42,6 +42,16 @@
           <app-laboratory-management></app-laboratory-management>
         </div>
       </tab>
+      <tab heading="Prezentari" *appHasRole="['Admin']">
+        <div class="container">
+          <app-presentation-management></app-presentation-management>
+        </div>
+      </tab>
+      <tab heading="Semestre" *appHasRole="['Admin']">
+        <div class="container">
+          <app-semester-management></app-semester-management>
+        </div>
+      </tab>
     </tabset>
   </div>
 </div>

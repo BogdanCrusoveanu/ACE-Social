@@ -12,7 +12,7 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
   styleUrls: ['./specialization-modal.component.css']
 })
 export class SpecializationModalComponent implements OnInit {
-  @Output() sendClasses = new EventEmitter();
+  @Output() sendSpecialization = new EventEmitter();
   specializationToAdd: Specialization;
   specializationForm: FormGroup;
   specializations: Specialization[];
@@ -74,7 +74,7 @@ export class SpecializationModalComponent implements OnInit {
 
   loadSpecializations() {
     this.specializationService.getSpecializations().subscribe((data) => {
-      this.sendClasses.emit(data);
+      this.sendSpecialization.emit(data);
       this.specializations = data;
     });
   }

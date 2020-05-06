@@ -9,6 +9,8 @@ export interface Laboratory {
     subGroupId: number;
     subGroupName?: string;
     classId: number;
-    className: string;
+    className?: string;
     semesterId: number;
+    courseId: number;
+    courseName?: string
 }

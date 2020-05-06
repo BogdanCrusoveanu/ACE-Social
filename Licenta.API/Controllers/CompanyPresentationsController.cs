@@ -25,7 +25,7 @@ namespace Licenta.API.Controllers
         }
 
         [Authorize(Policy = "RequireAdminRole")]
-        [HttpPost("AddPresentation")]
+        [HttpPost("add")]
         public async Task<IActionResult> AddPresentation(CompanyPresentation presentation)
         {
             if (await _companyPresentationsService.CompanyPresentationExists(presentation))
@@ -37,14 +37,14 @@ namespace Licenta.API.Controllers
 
             if (await _genericsRepo.SaveAll())
             {
-                return Ok("Presentation was added!");
+                return NoContent();
             }
 
             return BadRequest("Something went wrong!");
         }
 
         [Authorize(Policy = "RequireAdminRole")]
-        [HttpGet("getPresentations/{id}")]
+        [HttpGet("get/{id}")]
         public async Task<IActionResult> GetCompanyPresentationsForAdmin(int id)
         {
             var presentations = await _companyPresentationsService.GetCompanyPresentationsForUser();
@@ -64,6 +64,18 @@ namespace Licenta.API.Controllers
                 return Ok(updatedPresentation);
             }
             return BadRequest("Update Failed or the same presentation was sent");
+        }
+
+        [HttpPost("delete")]
+        public async Task<IActionResult> DeletePresentation(CompanyPresentation presentation)
+        {
+            _genericsRepo.Delete(presentation);
+
+            if (await _genericsRepo.SaveAll())
+            {
+                return NoContent();
+            }
+            return BadRequest("Delete Failed!");
         }
     }
 }
