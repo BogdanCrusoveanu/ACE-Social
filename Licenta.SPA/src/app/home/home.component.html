@@ -1,10 +1,10 @@
-<div class="container mt-5">
+<div class="container mt-5 mb-3" *appHasRole="['Admin']">
   <div *ngIf="!registerMode" style="text-align: center">
-    <h1>Find your match</h1>
-    <p class="lead">Come on in to view your matches... All you need to do is sign up!</p>
+    <h1>Ești logat ca admin</h1>
+    <p class="lead">Apasă pe butonul "Înregistrează" pentru a adăuga utilizatori!</p>
+    <p class="lead">Pentru a administra orarul accesează secțiunea "Admin" din bara de navigație!</p>
     <div class="text-center">
-      <button class="btn btn-primary btn-lg mr-2" (click)="registerToggle()">Register</button>
-      <button class="btn btn-info btn-lg">Learn more</button>
+      <button class="btn btn-primary btn-lg mr-2" (click)="registerToggle()">Înregistrează</button>
     </div>
   </div>
 
@@ -16,3 +16,80 @@
     </div>
   </div>
 </div>
+
+  <carousel>
+    <slide>
+      <img src="assets/images/communism.jpg" alt="first slide" style="display: block; width: 100%;height: 500px;">
+      <div class="carousel-caption d-none d-md-block">
+        <h3>Facultatea de Automatică, Calculatoare și Electronică</h3>
+        <p>Construită pe vremea când Iliescu nu avea încă buletin.</p>
+      </div>
+    </slide>
+    <slide>
+      <img src="assets/images/communism.jpg" alt="second slide" style="display: block; width: 100%;height: 500px;">
+      <div class="carousel-caption d-none d-md-block">
+        <h3>Pregătim studenți încă din neolitic</h3>
+        <p>Cu mândrie putem spune ca cel mai în vârstă om de pe planetă, Ion Iliescu</p>
+        <p>a absolvit la facultatea noastră în epoca bronzului</p>
+      </div>
+    </slide>
+    <slide>
+      <img src="assets/images/communism.jpg" alt="third slide" style="display: block; width: 100%;height: 500px;">
+      <div class="carousel-caption d-none d-md-block">
+        <h3>Turnul</h3>
+        <p>Construit de Apollodor din Damasc după ce a facut podul romanilor peste Dunăre</p>
+        <p>Nu a căzul până acum, nu o să cadă niciodata</p>
+      </div>
+    </slide>
+  </carousel>
+
+ <!-- Site footer -->
+ <footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <h6>Despre această aplicație</h6>
+        <p class="text-justify">UCV Social este o aplicație web destinată studenților Facultății de Automatică, Calculatoare și Electronică pentru a crea o comunitate mai unită. Pentru comunicarea directă este prezent sistemul de mesagerie, iar pentru discuții în grup despre diverse topice este destintă secțiunea de postări. Dacă ziua următoare te gandești dacă să mergi sau nu la cursul acela de 3 ore de la 8 dimineața, mai poti arunca o privire în secțiunea orar să te iei o decizie :P .</p>
+      </div>
+
+      <div class="col-xs-6 col-md-3">
+        <h6>Util pentru studenți</h6>
+        <ul class="footer-links">
+          <li><a href="http://ace.ucv.ro/">Facultatea de Automaică</a></li>
+          <li><a href="http://ace.ucv.ro/media/">Anunțuri ACE</a></li>
+          <li><a href="https://www.facebook.com/FacultateaACE">Facebook ACE</a></li>
+          <li><a href="http://ace.ucv.ro/admitere/master/">Informații Master ACE</a></li>
+          <li><a href="https://www.ucv.ro/">Universitatea din Craiova</a></li>
+          <li><a href="http://dcti.ucv.ro/">Departamentul de Calculatoare</a></li>
+        </ul>
+      </div>
+
+      <div class="col-xs-6 col-md-3">
+        <h6> Tehnologii folosite pentru această aplicație </h6>
+        <ul class="footer-links">
+          <li><a href="https://angular.io/">Angular</a></li>
+          <li><a href="https://docs.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-3.1">ASP.Net Core</a></li>
+          <li><a href="https://docs.microsoft.com/en-us/ef/core/">Entity Framework Core</a></li>
+          <li><a href="https://jwt.io/">JWT</a></li>
+          <li><a href="https://cloudinary.com/">Cloudinary</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-6 col-xs-12">
+        <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by 
+     <a href="#">Crușoveanu Bogdan</a>.
+        </p>
+      </div>
+
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <ul class="social-icons">
+          <li><a class="facebook" href="https://www.facebook.com/bogdan.crusoveanu"><i class="fa fa-facebook"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -48,7 +48,6 @@ export class ClassModalComponent implements OnInit {
     this.classToAdd = Object.assign({}, this.classForm.value);
     this.classService.addClass(this.classToAdd).subscribe(
       () => {
-        debugger;
         this.alertify.success("Registration successful");
         this.loadClasses();
       },

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Licenta.Data
 {
     public class DataContext : IdentityDbContext<User, Role, int,
-        IdentityUserClaim<int>,UserRole, IdentityUserLogin<int>,
+        IdentityUserClaim<int>, UserRole, IdentityUserLogin<int>,
         IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
@@ -27,6 +27,9 @@ namespace Licenta.Data
         public DbSet<Class> Classes { get; set; }
         public DbSet<Semester> Semesters { get; set; }
         public DbSet<CompanyPresentation> CompaniesPresentations { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<PostLike> PostLikes { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -104,6 +107,21 @@ namespace Licenta.Data
                 .HasOne(u => u.Liker)
                 .WithMany(u => u.Likees)
                 .HasForeignKey(u => u.LikerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<PostLike>()
+                .HasKey(k => new { k.PostId, k.UserId });
+
+            builder.Entity<PostLike>()
+                .HasOne(pl => pl.Post)
+                .WithMany(u => u.PostLikes)
+                .HasForeignKey(pl => pl.PostId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<PostLike>()
+                .HasOne(pl => pl.User)
+                .WithMany(p => p.PostLikes)
+                .HasForeignKey(pl => pl.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<Message>()

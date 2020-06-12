@@ -9,7 +9,7 @@ import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
 @Injectable()
 export class MemberListResolver implements Resolve<User[]> {
     pageNumber = 1;
-    pageSize = 5;
+    pageSize = 18;
 
     constructor(private UserService: UserService,
         private router: Router,

@@ -1,3 +1,6 @@
+import { CommentedPostsResolver } from './_resolvers/posts.commented.resolver';
+
+import { UserPostsResolver } from './_resolvers/posts.user.resolver';
 import { TeachersResolver } from './_resolvers/teachers.resolver';
 import { SemesterResolver } from './_resolvers/semester.resolver';
 import { PresentationResolver } from './_resolvers/presentation.resolver';
@@ -27,6 +30,8 @@ import { MemberListResolver } from "./_resolvers/member-list.resolver";
 import { ActivitiesResolver } from "./_resolvers/calendar.resolver";
 import { UserRolesResolver } from "./_resolvers/users.roles.resolver";
 import { ClassManagementComponent } from "./admin/class-management/class-management.component";
+import { PostsResolver } from './_resolvers/posts.resolver';
+import { PostPanelComponent } from './posts/post-panel/post-panel.component';
 
 export const appRoutes: Routes = [
   { path: "", component: HomeComponent },
@@ -88,6 +93,15 @@ export const appRoutes: Routes = [
         path: "classes",
         component: ClassManagementComponent,
         resolve: { classes: ClassesResolver },
+      },
+      {
+        path: "posts",
+        component: PostPanelComponent,
+        resolve: { 
+                   posts: PostsResolver,
+                   userPosts: UserPostsResolver,
+                   commentedPosts: CommentedPostsResolver
+        },
       },
     ],
   },

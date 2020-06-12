@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-@import '../node_modules/bootswatch/dist/united/bootstrap.min.css';
+@import '../node_modules/bootswatch/dist/lux/bootstrap.min.css';
 @import '../node_modules/font-awesome/css/font-awesome.min.css';
 @import '../node_modules/alertifyjs/build/css/alertify.min.css';
 @import '../node_modules//alertifyjs/build/css/themes/bootstrap.min.css';
@@ -13,7 +13,7 @@
     padding: 10px;
     border-radius: 4px;
   }
-  
+
   .nav-tabs > li.open, .member-tabset > .nav-tabs > li:hover {
     border-bottom: 4px solid #fbcdcf;
   }

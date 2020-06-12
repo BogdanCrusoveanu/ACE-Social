@@ -2,6 +2,7 @@ import { User } from './_models/user';
 import { AuthService } from './_services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,8 +10,11 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AppComponent implements OnInit {
   jwtHelper = new JwtHelperService();
-
-  constructor(private authService: AuthService) {}
+  title = "ACE Social"
+  constructor(private authService: AuthService,
+    private titleService:Title) {
+      titleService.setTitle("ACE Social");
+    }
 
   ngOnInit() {
     const token = localStorage.getItem('token');

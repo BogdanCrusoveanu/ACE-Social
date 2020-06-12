@@ -66,7 +66,7 @@ namespace Licenta.Controllers
             var like = await _usersService.GetLike(userId, recipientId);
 
             if (like != null)
-                return BadRequest("You already like this user!");
+                return BadRequest("Sunteți deja prieten cu acest utilizator!");
 
             if (await _usersService.GetUser(recipientId) == null)
                 return NotFound();

@@ -1,7 +1,7 @@
 <div class="text-center mt-3">
   <h2>
     {{
-      likesParam === "Likers" ? "Members who like me" : "Members who I\'ve Liked"
+      likesParam === "Likers" ? "Utilizatori care te-au adăugat" : "Prieteni în listă"
     }}
     : {{ pagination.totalItems }}
   </h2>
@@ -16,7 +16,7 @@
         btnRadio="Likers"
         (click)="loadUsers()"
       >
-        Members who like me
+        Adăugat de
       </button>
       <button
         class="btn btn-primary"
@@ -24,7 +24,7 @@
         btnRadio="Likees"
         (click)="loadUsers()"
       >
-        Members who I like
+        Prietenii tăi
       </button>
     </div>
   </div>

@@ -1,7 +1,7 @@
 
 <div class="modal-header">
-  <h4 class="modal-title pull-left" *ngIf="insert">Insert class name</h4>
-  <h4 class="modal-title pull-left" *ngIf="!insert">Edit class name</h4>
+  <h4 class="modal-title pull-left" *ngIf="insert"><strong>Adaugă sală</strong></h4>
+  <h4 class="modal-title pull-left" *ngIf="!insert"><strong>Modifică sală</strong></h4>
   <button
     type="button"
     class="close pull-right"
@@ -23,7 +23,7 @@
       type="text"
       class="form-control mt-3 mb-3"
       formControlName="name"
-      placeholder="Class Name"
+      placeholder="Nume sală"
     />
     <div
       class="invalid-feedback"
@@ -32,7 +32,7 @@
         classForm.get('name').hasError('required')
       "
     >
-      First Name as is required
+      Numele sălii este obligatoriu
       </div>
     </div>
 </form>
@@ -45,7 +45,7 @@
       (click) = "insertClass()"
       [hidden]="!insert"
     >
-      Insert
+      Inserare
     </button>
     <button
       type="button"
@@ -54,10 +54,10 @@
       (click) = "updateClass()"
       [hidden]="insert"
     >
-      Update
+      Modificare
     </button>
     <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">
-      Cancel
+      Renunță
     </button>
   </div>
 

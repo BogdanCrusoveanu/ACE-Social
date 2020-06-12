@@ -25,9 +25,13 @@
   </div>
   <div class="card-body p-1">
     <h6 class="card-title text-center mb-1">
-      <i class="fa fa-user">
-        {{ user.userName }} ,
-        {{ user.age }}
+      <i class="fa fa-user" *ngIf="user.year === 0">
+        {{ user.firstName }} {{ user.lastName }},
+        {{ user.age }}, profesor
+      </i>
+      <i class="fa fa-user" *ngIf="user.year !== 0">
+        {{ user.firstName }} {{ user.lastName }},
+        {{ user.age }}, student în anul {{user.year}}
       </i>
       <!-- <p class="card-text text-muted text-center">{{ user.city }}</p> -->
     </h6>

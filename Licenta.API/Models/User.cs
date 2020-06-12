@@ -22,6 +22,9 @@ namespace Licenta.Models
         public virtual ICollection<UserSpecialization> UserSpecialization { get; set; }
         public virtual ICollection<UserGroup> UserGroups { get; set; }
         public virtual ICollection<UserSubGroup> UserSubGroups { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<PostLike> PostLikes { get; set; }
     }
 
 }

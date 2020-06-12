@@ -1,12 +1,12 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-sm-4">
-      <h1>Your Profile</h1>
+      <h1>Profilul tău</h1>
     </div>
     <div class="col-sm-8">
       <div *ngIf="editForm.dirty" class="alert alert-info">
-          <strong>Information:</strong> You have made changes. Any unsaved
-          changes will be lost!
+          <strong>Atenție:</strong> Ai făcut schimbări care nu au fost
+          salvate și vor fi pierdute!
       </div>
     </div>
   </div>
@@ -24,50 +24,48 @@
             <p>{{ user.city }} , {{ user.country }}</p>
           </div> -->
           <div>
-            <strong>Age:</strong>
+            <strong>Vârstă:</strong>
             <p>{{ user.age }}</p>
           </div>
           <div>
-            <strong>Last Active:</strong>
+            <strong>Ultima dată activ:</strong>
             <p>{{ user.lastActive.toString() | timeAgo }}</p>
           </div>
           <div>
-            <strong>Member since:</strong>
+            <strong>Membru de pe:</strong>
             <p>{{ user.created | date: 'mediumDate' }}</p>
           </div>
         </div>
         <div class="card-footer">
-          <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Save Changes</button>
+          <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Salvare Schimbări</button>
         </div>
       </div>
     </div>
     <div class="col-sm-8">
       <div class="tab-panel">
         <tabset class="member-tabset">
-          <tab heading="Edit Profile">
+          <tab heading="Administrare Profil">
             <form #editForm="ngForm" id="editForm" (ngSubmit)= "updateUser()">
-              <!-- <h4>Description</h4>
+               <h4>Descriere</h4>
               <textarea
                 name="introduction"
                 rows="6"
                 class="form-control"
-                [(ngModel)]="user.introduction"
               ></textarea>
-              <h4>Looking For</h4>
+              <!-- <h4>Looking For</h4>
               <textarea
                 name="lookingForText"
                 rows="6"
                 class="form-control"
                 [(ngModel)]="user.lookingForText"
-              ></textarea>
-              <h4>Interests</h4>
+              ></textarea> -->
+              <h4>Interese</h4>
               <textarea
                 name="interests"
                 rows="6"
                 class="form-control"
-                [(ngModel)]="user.interests"
               ></textarea>
-              <h4>Location Details</h4>
+              <!-- <h4>Location Details</h4>
               <div class="form-inline">
                 <label for="city">City</label>
                 <input
@@ -83,10 +81,10 @@
                   name="country"
                   [(ngModel)]="user.country"
                 />
-              </div> -->
+              </div>  -->
             </form>
           </tab>
-          <tab heading="Edit Photos">
+          <tab heading="Administrare fotografii">
             <app-photo-editor [photos]="user.photos" 
               (getMemberPhotoChange)="updateMainPhoto($event)"></app-photo-editor>
           </tab>

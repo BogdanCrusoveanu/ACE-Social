@@ -1,15 +1,15 @@
 <div class="text-center mt-3">
-  <h2>Your matches - {{ pagination.totalItems }} found</h2>
+  <h2>Utilizatori găsiți - {{ pagination.totalItems }}</h2>
 </div>
 
 <div class="container mt-3">
   <form class="form-inline" #form="ngForm" (ngSubmit)="loadUsers()" novalidate>
     <div class="form-group">
-      <label for="minAge">Age From</label>
+      <label for="minAge">Vârsta de la:</label>
       <input
         type="number"
         class="form-control ml-1"
-        style="width: 70px"
+        style="width: 70px;"
         id="minAge"
         [(ngModel)]="userParams.minAge"
         name="minAge"
@@ -17,11 +17,11 @@
     </div>
 
     <div class="form-group px-2">
-      <label for="maxAge">Age To</label>
+      <label for="maxAge">Până la:</label>
       <input
         type="number"
         class="form-control ml-1"
-        style="width: 70px"
+        style="width: 70px;"
         id="maxAge"
         name="maxAge"
         [(ngModel)]="userParams.maxAge"
@@ -29,29 +29,29 @@
     </div>
 
     <div class="form-group px-2">
-      <label for="gender">Show: </label>
+      <label for="role">Tip utilizator: </label>
       <select
         class="form-control ml-1"
-        style="width: 130px"
-        id="gender"
-        name="gender"
-        [(ngModel)]="userParams.gender"
+        style="width: 130px;"
+        id="role"
+        name="role"
+        [(ngModel)]="userParams.role"
       >
-        <option *ngFor="let gender of genderList" [value]="gender.value">
-          {{ gender.display }}
+        <option *ngFor="let role of rolesList" [value]="role.value">
+          {{ role.display }}
         </option>
       </select>
     </div>
-    <button type="submit" class="btn btn-primary" style="margin-left:10px">
-      Apply Filters
+    <button type="submit" class="btn btn-primary" style="margin-left: 10px;">
+      Aplică filtrele
     </button>
     <button
       type="button"
       (click)="resetFilters()"
       class="btn btn-info"
-      style="margin-left:10px"
+      style="margin-left: 10px;"
     >
-      Reset Filter
+      Resetează filtrele
     </button>
 
     <div class="col">
@@ -61,28 +61,65 @@
           name="orderBy"
           class="btn btn-primary"
           [(ngModel)]="userParams.orderBy"
-          (click) = "loadUsers()"
+          (click)="loadUsers()"
           btnRadio="lastActive"
         >
-          Last Active
+          Activi recent
         </button>
         <button
           type="button"
           name="orderBy"
           class="btn btn-primary"
           [(ngModel)]="userParams.orderBy"
-          (click) = "loadUsers()"
+          (click)="loadUsers()"
           btnRadio="created"
         >
-          Newest Members
+          Membri noi
+        </button>
+        <button
+          type="button"
+          name="orderBy"
+          class="btn btn-primary"
+          [(ngModel)]="userParams.orderBy"
+          (click)="loadUsers()"
+          btnRadio="name"
+        >
+          Alfabetic
         </button>
       </div>
     </div>
   </form>
   <br />
 
+  <div class="search-user mt-2 mb-2r">
+    <input
+      class="form-control"
+      type="text"
+      name="search"
+      [(ngModel)]="searchText"
+      autocomplete="off"
+      [formControl]="search"
+      placeholder="&#61442; Caută un utilizator după nume, prenume, vârstă sau anul de studii"
+    />
+  </div>
+
+  <div class="d-flex justify-content-center mt-2">
+    <pagination
+      [boundaryLinks]="true"
+      [totalItems]="pagination.totalItems"
+      [itemsPerPage]="pagination.itemsPerPage"
+      [(ngModel)]="pagination.currentPage"
+      (pageChanged)="pageChanged($event)"
+      previousText="&lsaquo;"
+      nextText="&rsaquo;"
+      firstText="&laquo;"
+      lastText="&raquo;"
+    >
+    </pagination>
+  </div>
+
   <div class="row">
-    <div *ngFor="let user of users" class="col-lg-2 col-md-3 col-sm-6">
+    <div *ngFor="let user of users | filter: searchText" class="col-lg-2 col-md-3 col-sm-6">
       <app-member-card [user]="user"></app-member-card>
     </div>
   </div>

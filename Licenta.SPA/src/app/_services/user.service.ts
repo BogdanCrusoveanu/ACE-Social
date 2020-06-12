@@ -28,6 +28,7 @@ export class UserService {
       params = params.append('minAge', userParams.minAge);
       params = params.append('maxAge', userParams.maxAge);
       params = params.append('orderBy', userParams.orderBy);
+      params = params.append('role', userParams.role);
     }
 
     if(likesParam === 'Likers') {

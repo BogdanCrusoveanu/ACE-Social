@@ -1,3 +1,8 @@
+import { CommentedPostsResolver } from './_resolvers/posts.commented.resolver';
+import { AddPostComponent } from './posts/add-post/add-post.component';
+import { UserPostsResolver } from './_resolvers/posts.user.resolver';
+import { EditPostsModalComponent } from './posts/edit-posts-modal/edit-posts-modal.component';
+import { PostsListComponent } from './posts/posts-list/posts-list.component';
 import { TeachersResolver } from './_resolvers/teachers.resolver';
 import { AngularMaterialModule } from './angular-material.module';
 import { SemesterModalComponent } from './admin/semester-modal/semester-modal.component';
@@ -45,7 +50,7 @@ import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angu
 import { NgModule, Pipe } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BsDropdownModule, TabsModule, PaginationModule, ButtonsModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, PaginationModule, ButtonsModule, CarouselModule } from 'ngx-bootstrap';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -86,6 +91,8 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { ClassManagementComponent } from './admin/class-management/class-management.component';
 import { ClassModalComponent } from './admin/class-modal/class-modal.component';
+import { PostsResolver } from './_resolvers/posts.resolver';
+import { PostPanelComponent } from './posts/post-panel/post-panel.component';
 
 @Pipe({
     name: 'timeAgo',
@@ -116,6 +123,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       PresentationModalComponent,
       SeminarModalComponent,
       LaboratoryModalComponent,
+      PostsListComponent,
       SpecializationModalComponent,
       RegisterComponent,
       SpecializationManagementComponent,
@@ -123,14 +131,17 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       ListsComponent,
       MessagesComponent,
       MemberCardComponent,
+      EditPostsModalComponent,
       MemberDetailComponent,
       MemberEditComponent,
       PhotoEditorComponent,
+      AddPostComponent,
       SemesterManagementComponent,
       SemesterModalComponent,
       TimeAgoExtendsPipe,
       MemberMessagesComponent,
       AdminPanelComponent,
+      PostPanelComponent,
       HasRoleDirective,
       GroupManagementComponent,
       GroupsModalComponent,
@@ -148,6 +159,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       FlatpickrModule.forRoot(),
       HttpClientModule,
       ButtonsModule.forRoot(),
+      CarouselModule.forRoot(),
       FormsModule,
       PaginationModule.forRoot(),
       BsDatepickerModule.forRoot(),
@@ -185,6 +197,9 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       LaboratoryResolver,
       UserService,
       MessagesResolver,
+      CommentedPostsResolver,
+      PostsResolver,
+      UserPostsResolver,
       PreventUnsavedChanges,
       SubGroupResolver,
       PresentationService,

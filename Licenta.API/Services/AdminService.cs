@@ -98,9 +98,9 @@ namespace Licenta.API.Services
         {
             var semester = await GetSemester(updatedSemester.Id);
 
-            semester.StartDate = updatedSemester.StartDate;
+            semester.StartDate = updatedSemester.StartDate.LocalDateTime;
 
-            semester.EndDate = updatedSemester.EndDate;
+            semester.EndDate = updatedSemester.EndDate.LocalDateTime;
 
             return semester;
         }

@@ -41,5 +41,6 @@ export class NavbarComponent implements OnInit {
     this.authService.currentUser = null;
     this.alertify.message('Logged Out!');
     this.router.navigate(['/home']);
+    window.location.reload();
   }
 }

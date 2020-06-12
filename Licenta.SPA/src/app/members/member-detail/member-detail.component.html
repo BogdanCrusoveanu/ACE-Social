@@ -1,6 +1,6 @@
 <div class="container mt-4">
   <div class="row">
-    <h1>{{ user.userName }}'s Profile</h1>
+    <h1>{{ user.firstName }} {{user.lastName}}</h1>
   </div>
   <div class="row">
     <div class="col-sm-4">
@@ -16,22 +16,22 @@
             <p>{{ user.city }} , {{ user.country }}</p>
           </div> -->
           <div>
-            <strong>Age:</strong>
+            <strong>Vârstă:</strong>
             <p>{{ user.age }}</p>
           </div>
           <div>
-            <strong>Last Active:</strong>
+            <strong>Ultima dată activ:</strong>
             <p>{{ user.lastActive.toString() | timeAgo }}</p>
           </div>
           <div>
-            <strong>Member since:</strong>
+            <strong>Menbru de pe:</strong>
             <p>{{ user.created | date: 'mediumDate' }}</p>
           </div>
         </div>
         <div class="card-footer">
           <div class="brn-group d-flex">
-            <button class="btn btn-primary w-100">Like</button>
-            <button class="btn btn-danger w-100" (click)="selectTab(1)">Message</button>
+            <button class="btn btn-primary w-100" (click)="sendLike(user.id)">Adaugă</button>
+            <button class="btn btn-danger w-100" (click)="selectTab(1)">Mesaj</button>
           </div>
         </div>
       </div>

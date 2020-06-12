@@ -49,15 +49,6 @@ export class CalendarComponent implements OnInit{
    console.log(this.activities);
   }
 
-  // getActivitiesForUser() {
-  //   this.activityService.getActivitiesForUser(this.authService.decodedToken.nameid).subscribe(data => {
-  //     this.activities = data;
-  //     this.mapEvents(this.activities);
-  //   }, error => {
-  //     this.alertifyService.error(error);
-  //   })
-  // }
-
   getActivitiesForUser() {
     this.route.data.subscribe((data => {
       this.activities = data.activities;
@@ -68,16 +59,6 @@ export class CalendarComponent implements OnInit{
   mapEvents(activities) {
     activities.forEach(element => 
      {
-        // this.event.title = element.type + ' ' + element.name + ' "\n" Teacher: ' + element.teacher +  ' "\n" '+ element.categoryName 
-        // this.event.start = new Date(element.startDate)
-        // this.event.end = new Date(element.endDate)
-        // this.event = new CalendarEvent();
-        // this.event = {
-        //   title: element.name,
-        //   start: new Date(element.startDate),
-        //   end: new Date(element.endDate)
-        // }
-        // this.events.push(this.event);
         let calEvent: CalendarEvent = {
           title: element.type + '  ' + element.name + '   \nTeacher  -' + 
                  element.teacher + '-   ' + element.duration + 'h   -' + element.className + '-', 
@@ -86,7 +67,6 @@ export class CalendarComponent implements OnInit{
         }
         this.events.push(calEvent);
     });
-    //this.events.push(this.event);
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -103,38 +83,5 @@ export class CalendarComponent implements OnInit{
     }
   }
 
-  events: CalendarEvent[] = [
-    {
-      title: 'Editable event',
-      color: colors.yellow,
-      start: new Date(),
-      actions: [
-        {
-          label: '<i class="fa fa-fw fa-pencil"></i>',
-          onClick: ({ event }: { event: CalendarEvent }): void => {
-            console.log('Edit event', event);
-          },
-        },
-      ],
-    },
-    {
-      title: 'Deletable event',
-      color: colors.blue,
-      start: new Date(),
-      actions: [
-        {
-          label: '<i class="fa fa-fw fa-times"></i>',
-          onClick: ({ event }: { event: CalendarEvent }): void => {
-            this.events = this.events.filter((iEvent) => iEvent !== event);
-            console.log('Event deleted', event);
-          },
-        },
-      ],
-    },
-    {
-      title: 'Non editable and deletable event',
-      color: colors.red,
-      start: new Date(),
-    },
-  ];
+  events: CalendarEvent[] = [];
 }

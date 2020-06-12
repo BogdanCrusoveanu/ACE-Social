@@ -6,6 +6,7 @@ using Licenta.API.Data;
 using Licenta.Helpers;
 using Licenta.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Licenta.Data
 {
@@ -62,12 +63,20 @@ namespace Licenta.Data
                 users = users.Where(u => u.DateOfBirth >= minDob && u.DateOfBirth <= maxDob);
             }
 
+            if (userParams.Role != null && userParams.Role != "undefined")
+            {
+                users = users.Where(u => u.UserRoles.Any(ur => ur.Role.Name == userParams.Role));
+            }
+
             if (!string.IsNullOrEmpty(userParams.OrderBy))
             {
                 switch (userParams.OrderBy)
                 {
                     case "created":
                         users = users.OrderByDescending(u => u.Created);
+                        break;
+                    case "name":
+                        users = users.OrderBy(u => u.FirstName);
                         break;
                     default:
                         users = users.OrderByDescending(u => u.LastActive);

@@ -21,7 +21,9 @@ namespace Licenta.Helpers
                 .ForMember(dest => dest.PhotoUrl, opt => opt.MapFrom(src =>
                     src.Photos.FirstOrDefault(p => p.IsMain).Url))
                 .ForMember(dest => dest.Age, opt =>
-                    opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
+                    opt.MapFrom(src => src.DateOfBirth.CalculateAge()))
+                .ForMember(dest => dest.FullName, opt =>
+                    opt.MapFrom(src => src.FirstName + " " + src.LastName));
 
             CreateMap<Course, ActivityForReturnDto>()
                 .ForMember(dest => dest.Teacher, opt => opt.MapFrom(src =>
@@ -91,8 +93,25 @@ namespace Licenta.Helpers
                 .ForMember(dest => dest.GroupName, opt => opt.MapFrom(src =>
                    src.Group.Name));
 
+            CreateMap<Comment, CommentForPostDto>()
+                .ForMember(dest => dest.UserName, opt => opt.MapFrom(src =>
+                   src.User.FirstName + " " + src.User.LastName))
+                .ForMember(dest => dest.MainPhotoUrl, opt => opt.MapFrom(src =>
+                  src.User.Photos.Where(p => p.IsMain).FirstOrDefault().Url))
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src =>
+                  src.User.Id));
+
+            CreateMap<Post, PostForDetailedDto>()
+               .ForMember(dest => dest.UserName, opt => opt.MapFrom(src =>
+                  src.User.FirstName + " " + src.User.LastName))
+                .ForMember(dest => dest.MainPhotoUrl, opt => opt.MapFrom(src =>
+                  src.User.Photos.Where(p => p.IsMain).FirstOrDefault().Url))
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src =>
+                  src.User.Id));
+
             //CreateMap<UserForUpdateDto, User>();
             CreateMap<Photo, PhotoForDetailedDto>();
+            CreateMap<Post, PostToAddDto>();
             CreateMap<User, TeacherDto>();
             CreateMap<User, UserForUpdateDto>();
             CreateMap<User, UserFromCategoryDto>();

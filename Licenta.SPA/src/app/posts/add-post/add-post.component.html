@@ -1,0 +1,21 @@
+<div class="comment">
+  <div class="media">
+    <div class="media-body">
+      <br />
+      <textarea
+        cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"
+        placeholder="Scrie o postare.."
+        cols="30"
+        rows="5"
+        name="comment"
+        class="post-box"
+        [formControl]="addedText"
+        #postContent
+      ></textarea>
+    </div>
+  </div>
+  <button class="btn btn-success" (click)="addPost(postContent.value)">
+    Adaugă postarea
+  </button>
+</div>

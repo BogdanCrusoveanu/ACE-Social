@@ -1,3 +1,4 @@
+import { AuthService } from './../../_services/auth.service';
 import { AlertifyService } from './../../_services/alertify.service';
 import { UserService } from './../../_services/user.service';
 import { User } from './../../_models/user';
@@ -21,7 +22,8 @@ export class MemberDetailComponent implements OnInit {
 
   constructor(private userService: UserService,
               private alertify: AlertifyService,
-              private route: ActivatedRoute ) { }
+              private route: ActivatedRoute,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -44,6 +46,14 @@ export class MemberDetailComponent implements OnInit {
       }
     ];
     this.galleryImages = this.getImages();
+  }
+
+  sendLike(id: number) {
+    this.userService.sendLike(this.authService.decodedToken.nameid, id).subscribe(data => {
+      this.alertify.success('Ești prieten cu ' + this.user.firstName + ' ' + this.user.lastName + '!');
+    }, error => {
+      this.alertify.error(error)
+    })
   }
 
   getImages() {

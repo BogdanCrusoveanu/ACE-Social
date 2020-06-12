@@ -1,0 +1,27 @@
+<div class="container mt-5">
+  <h2> Postări </h2>
+  <div class="tab-panel">
+    <tabset class="member-tabset">
+      <tab heading="Toate postările">
+        <div class="container">
+          <app-posts-list [posts]="posts" [allPosts]="allPosts"></app-posts-list>
+        </div>
+      </tab>
+      <tab heading="Postări propii">
+        <div class="container">
+          <app-posts-list [posts]="userPosts" [allPosts]="!allPosts"></app-posts-list>
+        </div>
+      </tab>
+      <tab heading="Postări la care ai comentat">
+        <div class="container">
+          <app-posts-list [posts]="commentedPosts" [allPosts]="!allPosts"></app-posts-list>
+        </div>
+      </tab>
+      <tab heading="Adaugă o postare">
+        <div class="container">
+          <app-add-post></app-add-post>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+</div>

@@ -74,6 +74,10 @@ namespace Licenta
             services.AddScoped<IUserService, UsersService>();
             services.AddScoped<IPhotosRepository, PhotosRepository>();
             services.AddScoped<IClassesRepository, ClassesRepository>();
+            services.AddScoped<IPostsRepository, PostsRepository>();
+            services.AddScoped<ICommentsRepository, CommentsRepository>();
+            services.AddScoped<IPostsService, PostsService>();
+            services.AddScoped<ICommentsService, CommentsService>();
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IClassesService, ClassesService>();
             services.AddScoped<ISpecializationsRepository, SpecializationsRepository>();

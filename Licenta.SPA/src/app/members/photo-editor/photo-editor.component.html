@@ -9,7 +9,7 @@
         [ngClass]="photo.isMain ? 'btn-success active' : 'btn-secondary'"
         [disabled]="photo.isMain"
       >
-        Main
+        Principală
       </button>
       <button
         type="button"
@@ -25,7 +25,7 @@
 
 <div class="row mt-3">
   <div class="col-md-3">
-    <h3>Add Photos</h3>
+    <h3>Adaugă Fotografii</h3>
 
     <div
       ng2FileDrop
@@ -35,13 +35,13 @@
       class="card bg-faded p-3 text-center mb-3 my-drop-zone"
     >
       <i class="fa fa-upload fa-3x"></i>
-      Drop Photos Here
+      Trage fotografiile aici
     </div>
 
-    Multiple
+    Fotografii
     <input type="file" ng2FileSelect [uploader]="uploader" multiple /><br />
 
-    Single
+    Fotografie
     <input type="file" ng2FileSelect [uploader]="uploader" />
   </div>
 
@@ -50,14 +50,14 @@
     style="margin-bottom: 40px"
     *ngIf="uploader?.queue?.length"
   >
-    <h3>Upload queue</h3>
-    <p>Queue length: {{ uploader?.queue?.length }}</p>
+    <h3>Lista de încărcat</h3>
+    <p>Număr fotografii: {{ uploader?.queue?.length }}</p>
 
     <table class="table">
       <thead>
         <tr>
-          <th width="50%">Name</th>
-          <th>Size</th>
+          <th width="50%">Nume</th>
+          <th>Dimensiune</th>
         </tr>
       </thead>
       <tbody>
@@ -74,7 +74,7 @@
 
     <div>
       <div>
-        Queue progress:
+        Proces încărcare:
         <div class="progress mb-4">
           <div
             class="progress-bar"

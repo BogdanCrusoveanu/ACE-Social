@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-body">
     <div *ngIf="messages?.length === 0">
-      <p>No messages yet... say hi by using the message box bellow.</p>
+      <p>Nici un mesaj încă... spune hei și vezi ce se întâmplă :P.</p>
     </div>
 
     <ul class="chat">
@@ -10,7 +10,7 @@
         <div *ngIf="message.senderId == recipientId">
           <span class="chat-img float-left">
             <img
-              src="{{ message.senderPhotoUrl }}"
+              src="{{ message.senderPhotoUrl || '../../../../../assets/user.png' }}"
               alt="{{ message.senderUserName }}"
               class="rounded-circle"
             />
@@ -32,7 +32,7 @@
         <div *ngIf="message.senderId != recipientId">
           <span class="chat-img float-right">
             <img
-              src="{{ message.senderPhotoUrl }}"
+              src="{{ message.senderPhotoUrl || '../../../../../assets/user.png' }}"
               alt="{{ message.senderUserName }}"
               class="rounded-circle"
             />
@@ -69,11 +69,11 @@
           name="content"
           required
           class="form-control input-sm"
-          placeholder="send a private message"
+          placeholder="trimite un mesaj"
         />
         <div class="input-group-appdend">
           <button class="btn btn-primary" [disabled] = "!messageForm.valid">
-            Send
+            Trimite
           </button>
         </div>
       </div>

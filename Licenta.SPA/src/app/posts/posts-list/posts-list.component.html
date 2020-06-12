@@ -1,0 +1,175 @@
+<link
+  href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<div class="container">
+  <div class="posts col-md-5">
+    <div *ngFor="let post of posts">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <section class="post-heading">
+            <div class="row">
+              <div class="col-md-11">
+                <div class="media">
+                  <div class="media-left">
+                    <a
+                      [routerLink]="['/members/', post.userId]"
+                      [queryParams]="{ tab: 1 }"
+                    >
+                      <img
+                        class="media-object photo-profile"
+                        src="{{
+                          post.mainPhotoUrl || '../../../../../assets/user.png'
+                        }}"
+                        width="40"
+                        height="40"
+                        alt="..."
+                      />
+                    </a>
+                    <a class="anchor-username"
+                      ><h4 class="time-media-heading-bottom ml-1">
+                        {{ post.createdAt | timeAgo }}
+                      </h4></a
+                    >
+                  </div>
+                  <div class="media-body mt-2">
+                    <a
+                      class="anchor-username"
+                      [routerLink]="['/members/', post.userId]"
+                      [queryParams]="{ tab: 1 }"
+                      ><h4
+                        style="margin-top: 9px; margin-bottom: 19px;"
+                        class="media-heading-top"
+                      >
+                        {{ post.userName }}
+                      </h4></a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="post-body">
+            <p>
+              {{ post.content }}
+            </p>
+          </section>
+          <section class="post-footer">
+            <hr />
+            <div class="post-footer-option container">
+              <ul class="list-unstyled">
+                <li>
+                  <a><i class="glyphicon glyphicon-thumbs-up"></i> Like</a>
+                </li>
+                <li>
+                  <a (click)="toggleComments(post)"
+                    ><i class="glyphicon glyphicon-comment"></i> Comments
+                  </a>
+                </li>
+                <li>
+                  <a><i class="glyphicon glyphicon-share-alt"></i> Share</a>
+                </li>
+                <li *ngIf="post.userId == authService.decodedToken.nameid && allPosts">
+                  <a (click)="deletePost(post)"> Delete Post</a>
+                </li>
+              </ul>
+            </div>
+            <div class="comment">
+              <div class="media">
+                <div class="media-body">
+                  <br />
+                  <textarea
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    placeholder="Scrie un comentariu.."
+                    cols="30"
+                    rows="5"
+                    name="comment"
+                    class="add-comment-box"
+                    [formControl]="addedText"
+                    #postContent
+                  ></textarea>
+                  <button
+                  class="btn btn-success ml-5"
+                  (click)="addComment(postContent.value, post.id)"
+                >
+                  Add Comment
+                </button>
+                </div>
+              </div>
+            </div>
+          </section>
+          <div *ngIf="post.showComments">
+            <div *ngFor="let comment of post.comments">
+              <section class="post-footer">
+                <hr />
+                <div class="comment">
+                  <div class="media">
+                    <div class="media-left">
+                      <a
+                        [routerLink]="['/members/', comment.userId]"
+                        [queryParams]="{ tab: 1 }"
+                      >
+                        <img
+                          class="comment-profile"
+                          src="{{
+                            comment.mainPhotoUrl ||
+                              '../../../../../assets/user.png'
+                          }}"
+                          width="32"
+                          height="32"
+                          alt="..."
+                        />
+                      </a>
+                    </div>
+
+                    <div class="media-body">
+                      <br />
+                      <textarea
+                        disabled
+                        cdkTextareaAutosize
+                        #autosize="cdkTextareaAutosize"
+                        placeholder="Scrie un comentariu.."
+                        cols="30"
+                        rows="5"
+                        name="comment"
+                        class="comment-box"
+                        >{{ comment.userName }} ({{ comment.createdAt | timeAgo }})
+
+{{ comment.content }}
+                        </textarea>
+                      <!-- <a
+                        class="anchor-username"
+                        [routerLink]="['/members/', comment.userId]"
+                        [queryParams]="{ tab: 1 }"
+                      >
+                        <h4 class="media-heading-bottom">
+                          {{ comment.userName }}
+                        </h4></a
+                      >
+                      <a class="anchor-username"
+                        ><h4 class="time-media-heading-bottom">
+                          {{ comment.createdAt | timeAgo }}
+                        </h4></a
+                      > -->
+                      <button
+                        *ngIf="comment.userId == authService.decodedToken.nameid && allPosts"
+                        class="btn btn-success ml-4"
+                        (click)="deleteComment(comment)"
+                      >
+                        Delete Comment
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
