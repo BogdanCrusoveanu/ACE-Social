@@ -1,22 +1,46 @@
 <div class="search-user mt-2 mb-2">
-  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Incepeti sa cautati o specializare dupa denumire">
+  <input
+    style="border: 1px solid #ced4da !important; border-radius: 5px !important;"
+    class="form-control"
+    type="text"
+    name="search"
+    [(ngModel)]="searchText"
+    autocomplete="off"
+    placeholder="&#61442;  Caută o specializare dupa denumire sau id"
+  />
 </div>
 
-<button class="btn btn-info mt-2 mb-2" (click)="insertSpecialization()">Adaugare Specializare</button>
+<button class="btn btn-info mt-2 mb-2" (click)="insertSpecialization()">
+  Adaugă Specializare
+</button>
 
 <div class="row" *appHasRole="['Admin']">
   <table class="table">
     <tr>
-      <th style="width: 15%"> ID Specializare</th>
-      <th style="width: 30%"> Denumire</th>
-      <th style="width: 20%"> Sterge Specializare</th>
-      <th style="width: 20%"> Modifica Specializare</th>
+      <th style="width: 15%;">ID Specializare</th>
+      <th style="width: 30%;">Denumire</th>
+      <th style="width: 20%;">Ștergere</th>
+      <th style="width: 20%;">Modificare</th>
     </tr>
-    <tr *ngFor="let specialization of specializations | filter:searchText">
-      <td>{{specialization.id}}</td>
-      <td>{{specialization.name}}</td>
-      <td><button class="btn btn-info" (click)="deleteSpecialization(specialization)">Sterge Specializare</button></td>
-      <td><button class="btn btn-info" (click)="updateSpecialization(specialization)">Modifica Specializare</button></td>
+    <tr *ngFor="let specialization of specializations | filter: searchText">
+      <td>{{ specialization.id }}</td>
+      <td>{{ specialization.name }}</td>
+      <td>
+        <button
+          class="btn btn-info"
+          (click)="deleteSpecialization(specialization)"
+        >
+          Șterge Specializarea
+        </button>
+      </td>
+      <td>
+        <button
+          class="btn btn-info"
+          (click)="updateSpecialization(specialization)"
+        >
+          Modifică Specializarea
+        </button>
+      </td>
     </tr>
   </table>
 </div>

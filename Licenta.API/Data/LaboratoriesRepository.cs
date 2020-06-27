@@ -30,12 +30,12 @@ namespace Licenta.API.Data
 
             if (role.Name == "Admin")
             {
-                return await _context.Laboratories.ToListAsync();
+                return await _context.Laboratories.OrderBy(s => s.SubGroup.Name).ToListAsync();
             }
             else
                 if (role.Name == "Profesor")
             {
-                var laboratories = await _context.Laboratories.Where(a => a.TeacherId == userId).ToListAsync();
+                var laboratories = await _context.Laboratories.Where(a => a.TeacherId == userId).OrderBy(s => s.SubGroup.Name).ToListAsync();
                 return laboratories;
             }
             else
@@ -45,7 +45,7 @@ namespace Licenta.API.Data
                                       join u in _context.Users on usg.UserId equals u.Id
                                       select sg.Id).FirstOrDefaultAsync();
 
-                return await _context.Laboratories.Where(l => l.SubGroupId == subGroupId).ToListAsync();
+                return await _context.Laboratories.Where(l => l.SubGroupId == subGroupId).OrderBy(s => s.SubGroup.Name).ToListAsync();
             }
         }
 

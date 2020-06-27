@@ -1,39 +1,48 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['/home']" >ACE Social</a>
+    <a class="navbar-brand" [routerLink]="['/home']">
+      <span class="mr-1">
+        <img src="{{'../../../../assets/AceSocial6.png" alt="" style="margin-top: -35px; margin-bottom: -50px; max-height: 120px;"/>
+      </span>
+      </a
+    >
 
     <ul class="navbar-nav mr-auto" *ngIf="loggedIn()">
-      <li class="nav-item"  routerLinkActive="active" >
+      <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/members']"> Membri </a>
       </li>
-      <li class="nav-item" routerLinkActive="active" >
+      <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/lists']">Prieteni</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/messages']" >Mesaje</a>
+        <a class="nav-link" [routerLink]="['/messages']">Mesaje</a>
       </li>
-      <li *appHasRole="['Admin', 'Moderator']" class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/admin']" >Admin</a>
+      <li
+        *appHasRole="['Admin', 'Moderator']"
+        class="nav-item"
+        routerLinkActive="active"
+      >
+        <a class="nav-link" [routerLink]="['/admin']">Admin</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/calendar']" >Orar</a>
+        <a class="nav-link" [routerLink]="['/calendar']">Orar</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/posts']" >Postări</a>
+        <a class="nav-link" [routerLink]="['/posts']">Postări</a>
       </li>
     </ul>
 
     <div *ngIf="loggedIn()" class="dropdown" dropdown>
       <span class="mr-1">
-        <img src="{{photoUrl || '../../assets/user.png'}}" alt="">
+        <img src="{{ photoUrl || '../../assets/user.png' }}" alt="" />
       </span>
       <a class="dropdown-toggle text-light" dropdownToggle>
-        Bun venit, {{ authService.decodedToken?.unique_name | titlecase }}
+        Bun venit, {{ authService.decodedToken?.given_name | titlecase }}
       </a>
 
       <div class="dropdown-menu mt-3" *dropdownMenu>
         <a class="dropdown-item" [routerLink]="['member/edit']"
-          ><i class="fa fa-user"></i>Modifică profil</a
+          ><i class="fa fa-user"></i>Modifică profilul</a
         >
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" (click)="logout()"

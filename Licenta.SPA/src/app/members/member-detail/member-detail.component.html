@@ -39,14 +39,14 @@
     <div class="col-sm-8">
       <div class="tab-panel">
         <tabset class="member-tabset" #memberTabs>
-          <tab heading="Photos">
+          <tab heading="Fotografii">
             <ngx-gallery
               [options]="galleryOptions"
               [images]="galleryImages"
               class="ngx-gallery"
             ></ngx-gallery>
           </tab>
-          <tab heading="Messages">
+          <tab heading="Mesaje">
             <app-member-messages [recipientId] = "user.id"></app-member-messages>
           </tab>
         </tabset>

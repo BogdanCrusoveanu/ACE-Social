@@ -2,8 +2,7 @@ import { SpecializationService } from './../../_services/specialization.service'
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Specialization } from 'src/app/_models/specialization';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Class } from 'src/app/_models/class';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef } from 'ngx-bootstrap/modal/';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({

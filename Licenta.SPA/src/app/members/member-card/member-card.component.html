@@ -12,12 +12,23 @@
         </button>
       </li>
       <li class="list-inline-item">
-        <button class="btn btn-primary" (click)="sendLike(user.id)">
+        <button
+          class="btn btn-primary"
+          (click)="sendLike(user.id)"
+          [ngStyle]="{
+            'background-color':
+              user.isFriend == authService.decodedToken.nameid ? 'red' : 'black'
+          }"
+        >
           <i class="fa fa-heart"></i>
         </button>
       </li>
       <li class="list-inline-item">
-        <button class="btn btn-primary" [routerLink]="['/members/', user.id]" [queryParams] = "{tab : 1}" >
+        <button
+          class="btn btn-primary"
+          [routerLink]="['/members/', user.id]"
+          [queryParams]="{ tab: 1 }"
+        >
           <i class="fa fa-envelope"></i>
         </button>
       </li>
@@ -26,12 +37,11 @@
   <div class="card-body p-1">
     <h6 class="card-title text-center mb-1">
       <i class="fa fa-user" *ngIf="user.year === 0">
-        {{ user.firstName }} {{ user.lastName }},
-        {{ user.age }}, profesor
+        {{ user.firstName }} {{ user.lastName }}, {{ user.age }}, profesor
       </i>
       <i class="fa fa-user" *ngIf="user.year !== 0">
-        {{ user.firstName }} {{ user.lastName }},
-        {{ user.age }}, student în anul {{user.year}}
+        {{ user.firstName }} {{ user.lastName }}, {{ user.age }}, student, grupa
+        {{ user.groupName }}
       </i>
       <!-- <p class="card-text text-muted text-center">{{ user.city }}</p> -->
     </h6>

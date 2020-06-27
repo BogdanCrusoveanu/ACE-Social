@@ -10,7 +10,7 @@ namespace Licenta.API.Services
     public interface IUserService
     {
         Task<PagedList<User>> GetUsers(UserParams userParams);
-        IEnumerable<UserForDetailedDto> MapUsersToReturn(PagedList<User> users);
+        IEnumerable<UserForDetailedDto> MapUsersToReturn(PagedList<User> users, int currentUserId);
         Task<User> GetUser(int id);
         Task<PagedList<User>> GetUsersFromSpecialization(int specialiationId ,UserParams userParams);
         Task<PagedList<User>> GetUsersFromGroup(int groupId, UserParams userParams);

@@ -53,7 +53,7 @@ namespace Licenta.Controllers
 
                 return Ok(new
                 {
-                    token = await _authService.GenerateJwtToken(user),
+                    token = await _authService.GenerateJWT(user),
                     user = appUser
                 });
             }

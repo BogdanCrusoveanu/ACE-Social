@@ -1,7 +1,8 @@
 import { SemesterModalComponent } from './../semester-modal/semester-modal.component';
 import { Component, OnInit } from '@angular/core';
 import { Semester } from 'src/app/_models/semester';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { BsModalService } from "ngx-bootstrap/modal/";
+import { BsModalRef } from "ngx-bootstrap/modal";
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

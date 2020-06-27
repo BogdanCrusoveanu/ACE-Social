@@ -6,13 +6,13 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <div class="container">
-  <div class="posts col-md-5">
+  <div class="posts">
     <div *ngFor="let post of posts">
       <div class="panel panel-default">
         <div class="panel-body">
           <section class="post-heading">
             <div class="row">
-              <div class="col-md-11">
+              <div>
                 <div class="media">
                   <div class="media-left">
                     <a
@@ -20,7 +20,7 @@
                       [queryParams]="{ tab: 1 }"
                     >
                       <img
-                        class="media-object photo-profile"
+                        class="media-object photo-profile ml-4"
                         src="{{
                           post.mainPhotoUrl || '../../../../../assets/user.png'
                         }}"
@@ -29,22 +29,22 @@
                         alt="..."
                       />
                     </a>
-                    <a class="anchor-username"
-                      ><h4 class="time-media-heading-bottom ml-1">
-                        {{ post.createdAt | timeAgo }}
-                      </h4></a
-                    >
                   </div>
                   <div class="media-body mt-2">
                     <a
                       class="anchor-username"
                       [routerLink]="['/members/', post.userId]"
                       [queryParams]="{ tab: 1 }"
-                      ><h4
-                        style="margin-top: 9px; margin-bottom: 19px;"
-                        class="media-heading-top"
-                      >
+                      ><h4 class="media-heading-top">
                         {{ post.userName }}
+                      </h4></a
+                    >
+                    <a class="anchor-username"
+                      ><h4
+                        class="time-media-heading-bottom ml-1"
+                        style="margin-bottom: 10px;"
+                      >
+                        {{ post.createdAt | timeAgo }}
                       </h4></a
                     >
                   </div>
@@ -62,42 +62,74 @@
             <div class="post-footer-option container">
               <ul class="list-unstyled">
                 <li>
-                  <a><i class="glyphicon glyphicon-thumbs-up"></i> Like</a>
+                  <a><i class="glyphicon glyphicon-thumbs-up"></i> Îmi place</a>
                 </li>
                 <li>
                   <a (click)="toggleComments(post)"
-                    ><i class="glyphicon glyphicon-comment"></i> Comments
+                    ><i class="glyphicon glyphicon-comment"></i> Comentarii
                   </a>
                 </li>
                 <li>
-                  <a><i class="glyphicon glyphicon-share-alt"></i> Share</a>
+                  <a
+                    ><i class="glyphicon glyphicon-share-alt"></i> Distribuie
+                  </a>
                 </li>
-                <li *ngIf="post.userId == authService.decodedToken.nameid && allPosts">
-                  <a (click)="deletePost(post)"> Delete Post</a>
+                <li
+                  *ngIf="
+                    post.userId == authService.decodedToken.nameid ||
+                    (authService.decodedToken.role == 'Admin' && allPosts)
+                  "
+                >
+                  <a (click)="deletePost(post)"
+                    ><i class="glyphicon glyphicon-trash"></i> Șterge postarea
+                  </a>
                 </li>
+                <!-- <li
+                *ngIf="
+                  post.userId == authService.decodedToken.nameid ||
+                  (authService.decodedToken.role == 'Admin' && allPosts)
+                "
+              >
+                <a (click)="updatePost(post)"
+                  ><i class="glyphicon glyphicon-trash"></i> Modifică postarea </a
+                >
+              </li> -->
               </ul>
             </div>
             <div class="comment">
               <div class="media">
+                <div class="media-left">
+                  <a>
+                    <img
+                      class="comment-profile"
+                      src="{{ photoUrl || '../../../../../assets/user.png' }}"
+                      width="32"
+                      height="32"
+                      alt="..."
+                    />
+                  </a>
+                </div>
                 <div class="media-body">
                   <br />
                   <textarea
+                    style="overflow: hidden;"
                     cdkTextareaAutosize
                     #autosize="cdkTextareaAutosize"
                     placeholder="Scrie un comentariu.."
-                    cols="30"
-                    rows="5"
+                    cols="50"
+                    rows="2"
                     name="comment"
                     class="add-comment-box"
                     [formControl]="addedText"
+                    (keydown.enter)="addComment(postContent.value, post.id)"
                     #postContent
                   ></textarea>
-                  <button
-                  class="btn btn-success ml-5"
-                  (click)="addComment(postContent.value, post.id)"
-                >
-                  Add Comment
-                </button>
+                  <!-- <button
+                    class="btn btn-success ml-5"
+                    (click)="addComment(postContent.value, post.id)"
+                  >
+                    Add Comment
+                  </button> -->
                 </div>
               </div>
             </div>
@@ -108,9 +140,32 @@
                 <hr />
                 <div class="comment">
                   <div class="media">
-                    <div class="media-left">
+                    <div
+                      class="media-left"
+                      *ngIf="comment.userId != authService.decodedToken.nameid"
+                    >
                       <a
                         [routerLink]="['/members/', comment.userId]"
+                        [queryParams]="{ tab: 1 }"
+                      >
+                        <img
+                          class="comment-profile"
+                          src="{{
+                            comment.mainPhotoUrl ||
+                              '../../../../../assets/user.png'
+                          }}"
+                          width="32"
+                          height="32"
+                          alt="..."
+                        />
+                      </a>
+                    </div>
+                    <div
+                      class="media-left"
+                      *ngIf="comment.userId == authService.decodedToken.nameid"
+                    >
+                      <a
+                        [routerLink]="['/member/edit']"
                         [queryParams]="{ tab: 1 }"
                       >
                         <img
@@ -128,7 +183,8 @@
 
                     <div class="media-body">
                       <br />
-                      <textarea
+                      <!-- <textarea
+                        style="overflow:hidden"
                         disabled
                         cdkTextareaAutosize
                         #autosize="cdkTextareaAutosize"
@@ -140,8 +196,54 @@
                         >{{ comment.userName }} ({{ comment.createdAt | timeAgo }})
 
 {{ comment.content }}
+                        </textarea> -->
+                      <div class="comment-box">
+                        <div
+                          *ngIf="
+                            comment.userId != authService.decodedToken.nameid
+                          "
+                        >
+                          <a
+                            [routerLink]="['/members/', comment.userId]"
+                            [queryParams]="{ tab: 1 }"
+                            ><h4 class="media-heading-top">
+                              {{ comment.userName }}
+                            </h4></a
+                          >
+                        </div>
+                        <div
+                          *ngIf="
+                            comment.userId == authService.decodedToken.nameid
+                          "
+                        >
+                          <a [routerLink]="['/member/edit']"
+                            ><h4 class="media-heading-top">
+                              {{ comment.userName }}
+                            </h4></a
+                          >
+                        </div>
+                        <a
+                          ><h4
+                            class="time-media-heading-bottom ml-1"
+                            style="margin-bottom: 30px; margin-top: -25px;"
+                          >
+                            {{ comment.createdAt | timeAgo }}
+                          </h4></a
+                        >
+                        <textarea
+                          style="overflow: hidden; margin-top: -35px;"
+                          cdkTextareaAutosize
+                          #autosize="cdkTextareaAutosize"
+                          disabled
+                          placeholder="Scrie un comentariu.."
+                          cols="70"
+                          rows="2"
+                          name="comment"
+                          class="comment-box"
+                          >{{ comment.content }}
                         </textarea>
-                      <!-- <a
+
+                        <!-- <a
                         class="anchor-username"
                         [routerLink]="['/members/', comment.userId]"
                         [queryParams]="{ tab: 1 }"
@@ -155,13 +257,43 @@
                           {{ comment.createdAt | timeAgo }}
                         </h4></a
                       > -->
-                      <button
-                        *ngIf="comment.userId == authService.decodedToken.nameid && allPosts"
-                        class="btn btn-success ml-4"
+                        <ul
+                          class="list-unstyled"
+                          style="
+                            margin-left: 15px;
+                            color: #385898;
+                            margin-top: -10px;
+                            margin-bottom: -12px;
+                          "
+                        >
+                          <li
+                            style="margin-top: 20px; margin-left: -15px;"
+                            *ngIf="
+                              (comment.userId ==
+                                authService.decodedToken.nameid &&
+                                allPosts) ||
+                              (authService.decodedToken.role == 'Admin' &&
+                                allPosts)
+                            "
+                          >
+                            <a (click)="deleteComment(comment)"
+                              ><i class="glyphicon glyphicon-trash"></i> Șterge
+                              Comentariul</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                      <!-- <button
+                        *ngIf="
+                          comment.userId == authService.decodedToken.nameid &&
+                          allPosts
+                        "
+                        class="btn btn-success"
+                        style="margin-top: 10px;"
                         (click)="deleteComment(comment)"
                       >
                         Delete Comment
-                      </button>
+                      </button> -->
                     </div>
                   </div>
                 </div>

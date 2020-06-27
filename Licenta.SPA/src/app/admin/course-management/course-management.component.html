@@ -5,6 +5,7 @@
     name="search"
     [(ngModel)]="searchText"
     autocomplete="off"
+    style="border: 1px solid #ced4da !important; border-radius: 5px !important;"
     placeholder="&#61442;  Cauta curs dupa denumire, Profesor sau sala de curs"
   />
 </div>
@@ -13,7 +14,7 @@
   class="btn btn-info mt-2 mb-2"
   (click)="insertCourses(classes, specializations, teachers)"
 >
-  Adaugare Curs
+  Adăugare Curs
 </button>
 
 <div class="row" *appHasRole="['Admin']">
@@ -21,10 +22,10 @@
     <tr>
       <th style="width: 18%;">Denumire Curs</th>
       <th style="width: 18%;">Profesor</th>
-      <th style="width: 20%;">Denumire Specializare</th>
-      <th style="width: 10%;">Sala de curs</th>
-      <th style="width: 20%;">Sterge Curs</th>
-      <th style="width: 24%;">Modifica Curs</th>
+      <th style="width: 18%;">Denumire Specializare</th>
+      <th style="width: 10%;">Sală de curs</th>
+      <th style="width: 19%;">Ștergere</th>
+      <th style="width: 27%;">Modificre</th>
     </tr>
     <tr *ngFor="let course of courses | filter: searchText">
       <td>{{ course.name }}</td>
@@ -33,7 +34,7 @@
       <td>{{ course.className }}</td>
       <td>
         <button class="btn btn-info" (click)="deleteCourse(course)">
-          Sterge Curs
+          Șterge Curs
         </button>
       </td>
       <td>
@@ -41,10 +42,9 @@
           class="btn btn-info"
           (click)="updateCourse(course, classes, specializations, teachers)"
         >
-          Modifica Curs
+          Modifică Curs
         </button>
       </td>
     </tr>
   </table>
-
 </div>

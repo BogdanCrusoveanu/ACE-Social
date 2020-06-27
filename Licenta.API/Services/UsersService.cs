@@ -117,9 +117,21 @@ namespace Licenta.API.Services
             return _mapper.Map<IEnumerable<UserFromCategoryDto>>(users);
         }
 
-        public IEnumerable<UserForDetailedDto> MapUsersToReturn(PagedList<User> users)
+        public IEnumerable<UserForDetailedDto> MapUsersToReturn(PagedList<User> users, int currentUser)
         {
-            return _mapper.Map<IEnumerable<UserForDetailedDto>>(users);
+            var usersToReturn = _mapper.Map<IEnumerable<UserForDetailedDto>>(users);
+            foreach (var user in usersToReturn)
+            {
+                foreach (var friend in user.Friends)
+                {
+                    if(friend.LikerId == currentUser)
+                    {
+                        user.IsFriend = currentUser;
+                        break;
+                    }
+                }
+            }
+            return usersToReturn;
         }
 
         public async Task<bool> SaveChangesInContext()

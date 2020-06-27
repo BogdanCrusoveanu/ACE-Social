@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { SubGroup } from 'src/app/_models/subGroup';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef } from 'ngx-bootstrap/modal/';
 import { SubGroupService } from 'src/app/_services/subGroup-service.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Group } from 'src/app/_models/group';

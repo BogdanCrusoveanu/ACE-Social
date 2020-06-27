@@ -2,7 +2,7 @@ import { AlertifyService } from "./../../_services/alertify.service";
 import { ClassService } from "./../../_services/class.service";
 import { Class } from "./../../_models/class";
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { BsModalRef } from "ngx-bootstrap";
+import { BsModalRef } from "ngx-bootstrap/modal/";
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 
 @Component({

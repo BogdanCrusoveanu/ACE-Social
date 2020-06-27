@@ -5,6 +5,8 @@
 @import '../node_modules/alertifyjs/build/css/alertify.min.css';
 @import '../node_modules//alertifyjs/build/css/themes/bootstrap.min.css';
 @import '../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css';
+@import '~animate.css/animate.min';
+@import './assets/animate.css';
 @import 'flatpickr/dist/flatpickr.css';
 .cdk-overlay-container {z-index: 999999 !important;}
 

@@ -1,6 +1,6 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left" *ngIf="insert">Adauga numele Cursului</h4>
-  <h4 class="modal-title pull-left" *ngIf="!insert">
+  <h4 class="modal-title" *ngIf="insert" style="margin-left: 28%;">Adauga numele Cursului</h4>
+  <h4 class="modal-title" *ngIf="!insert" style="margin-left: 28%;">
     Modifica numele Cursului
   </h4>
   <button
@@ -33,10 +33,11 @@
           courseForm.get('name').hasError('required')
         "
       >
-        Cursul trebuie sa aiba o denumire
+        Cursul trebuie sa aibă o denumire
       </div>
 
       <input
+      class="form-control"
         matInput
         placeholder="Alege o specializare"
         aria-label="Specializari"
@@ -62,6 +63,7 @@
 
       <input
         matInput
+        class="form-control"
         placeholder="Alege un profesor"
         aria-label="Profesori"
         [matAutocomplete]="autoTeachers"
@@ -84,7 +86,8 @@
 
       <input
         matInput
-        placeholder="Alege o sala de curs"
+        class="form-control"
+        placeholder="Alege o sală de curs"
         aria-label="Sala de curs"
         [matAutocomplete]="autoClasses"
         formControlName="className"
@@ -120,7 +123,7 @@
         [enableTime]="true"
         dateFormat="Y-m-dTH:i"
         altFormat="F j, Y H:i"
-        placeholder="Ora la care se termina cursul"
+        placeholder="Ora la care se începe cursul"
       />
       <div
         class="invalid-feedback"
@@ -129,7 +132,7 @@
           courseForm.get('startDate').hasError('required')
         "
       >
-        Introduce ora la care incepe cursul
+      Ora la care se începe cursul trebuie aleasă
       </div>
 
       <input
@@ -148,7 +151,7 @@
         [enableTime]="true"
         dateFormat="Y-m-dTH:i"
         altFormat="F j, Y H:i"
-        placeholder="Ora la care se termina cursul"
+        placeholder="Ora la care se termină cursul"
       />
       <div
         class="invalid-feedback"
@@ -157,7 +160,7 @@
           courseForm.get('endDate').hasError('required')
         "
       >
-        Introduce ora la care incepe cursul
+        Ora la care se termină cursul trebuie aleasă
       </div>
 
       <input

@@ -1,6 +1,6 @@
 .form-group {
     width: 50%;
-    margin-left: 20%;
+    margin-left: 25%;
     margin-right: 20%
 }
 
@@ -9,16 +9,28 @@
 }
 
 .modal-title {
-    margin-left: 30%;
+    margin-left: 28%;
 }
 
 .form-control {
-    width: 120%;
+    border-radius: 5px !important;
+    border: 1px solid #ced4da !important;
+    margin-bottom: 15px !important;
+    background-color: #f7f7f9;
+}
+
+.form-control:disabled, .form-control[readonly] {
+    border: 1px solid #f7f7f9;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    background-color: #f7f7f9;
+    opacity: 1;
 }
 
 input.mat-input-element {
     margin-top: -0.0625em;
-    width: 280px;
+    margin-bottom: 15px;
+    width: 233px;
     height: 40px;
 }
 

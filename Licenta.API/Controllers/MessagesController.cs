@@ -1,13 +1,8 @@
-﻿using AutoMapper;
-using Licenta.API.Data;
-using Licenta.API.Services;
-using Licenta.Data;
+﻿using Licenta.API.Services;
 using Licenta.Dtos;
 using Licenta.Helpers;
-using Licenta.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 

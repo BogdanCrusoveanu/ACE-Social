@@ -34,5 +34,14 @@ namespace Licenta.API.Data
         {
             return await _context.Posts.Where(p => p.Comments.Any(c => c.UserId == userId)).OrderByDescending(p => p.CreatedAt).ToListAsync();
         }
+
+        public async Task<List<Post>> GetTeachersPosts()
+        {
+            return await _context.Posts.Where(p => p.User.UserRoles.Any(ur => ur.Role.Name == "Profesor")).OrderByDescending(p => p.CreatedAt).ToListAsync();
+        }
+        public async Task<List<Post>> GetStudentsPosts()
+        {
+            return await _context.Posts.Where(p => p.User.UserRoles.Any(ur => ur.Role.Name == "Student")).OrderByDescending(p => p.CreatedAt).ToListAsync();
+        }
     }
 }

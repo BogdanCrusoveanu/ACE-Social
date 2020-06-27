@@ -4,7 +4,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Class } from 'src/app/_models/class';
 import { Subject } from 'rxjs';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef } from 'ngx-bootstrap/modal/';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { AuthService } from 'src/app/_services/auth.service';
 
@@ -64,7 +64,7 @@ export class PresentationModalComponent implements OnInit {
 
   addPresentation() {
     this.presentationToAdd = Object.assign({}, this.presentationForm.value);
-    this.presentationToAdd.type = "Presentation";
+    this.presentationToAdd.type = "Prezentare";
     this.presentationToAdd.classId = this.classId;
     this.presentationService.addPresentation(this.presentationToAdd).subscribe(
       () => {

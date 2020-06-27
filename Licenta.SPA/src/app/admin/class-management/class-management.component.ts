@@ -4,7 +4,8 @@ import { ClassService } from "./../../_services/class.service";
 import { ClassModalComponent } from "./../class-modal/class-modal.component";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { BsModalRef, BsModalService } from "ngx-bootstrap";
+import { BsModalService } from "ngx-bootstrap/modal/";
+import { BsModalRef } from "ngx-bootstrap/modal";
 
 @Component({
   selector: "app-class-management",

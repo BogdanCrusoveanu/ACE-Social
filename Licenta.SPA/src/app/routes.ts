@@ -1,3 +1,5 @@
+import { StudentsPostsResolver } from './_resolvers/posts.students.resolver';
+import { TeachersPostsResolver } from './_resolvers/posts.teacher.resolver';
 import { CommentedPostsResolver } from './_resolvers/posts.commented.resolver';
 
 import { UserPostsResolver } from './_resolvers/posts.user.resolver';
@@ -100,7 +102,9 @@ export const appRoutes: Routes = [
         resolve: { 
                    posts: PostsResolver,
                    userPosts: UserPostsResolver,
-                   commentedPosts: CommentedPostsResolver
+                   commentedPosts: CommentedPostsResolver,
+                   teachersPosts: TeachersPostsResolver,
+                   studentsPosts: StudentsPostsResolver
         },
       },
     ],

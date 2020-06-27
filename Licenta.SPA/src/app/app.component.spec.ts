@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'DatringApp-SPA'`, () => {
+  it(`should have as title 'UCV Social'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('DatringApp-SPA');
+    expect(app.title).toEqual('UCV Social');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('DatringApp-SPA app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('UCV Social app is running!');
   });
 });

@@ -2,7 +2,8 @@ import { AlertifyService } from "src/app/_services/alertify.service";
 import { SpecializationService } from "./../../_services/specialization.service";
 import { Specialization } from "src/app/_models/specialization";
 import { Component, OnInit } from "@angular/core";
-import { BsModalRef, BsModalService } from "ngx-bootstrap";
+import { BsModalService } from "ngx-bootstrap/modal/";
+import { BsModalRef } from "ngx-bootstrap/modal";
 import { ActivatedRoute } from "@angular/router";
 import { SpecializationModalComponent } from "../specialization-modal/specialization-modal.component";
 

@@ -1,0 +1,5 @@
+.form-control {
+    width: 400px;
+    border-radius: 5px !important;
+    border: 1px solid #ced4da !important;
+}

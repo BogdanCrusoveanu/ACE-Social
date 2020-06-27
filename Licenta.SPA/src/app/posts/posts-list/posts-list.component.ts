@@ -1,4 +1,4 @@
-import { element } from 'protractor';
+import { EditPostsModalComponent } from './../edit-posts-modal/edit-posts-modal.component';
 import { PostService } from './../../_services/post.service';
 import { CommentService } from "./../../_services/comment.service";
 import { AuthService } from "./../../_services/auth.service";
@@ -14,10 +14,8 @@ import {
 import { CdkTextareaAutosize } from "@angular/cdk/text-field";
 import { take } from "rxjs/operators";
 import { Post } from "src/app/_models/post";
-import { ActivatedRoute } from "@angular/router";
-import { BsModalService } from "ngx-bootstrap";
 import { AlertifyService } from "src/app/_services/alertify.service";
-import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: "app-posts-list",
@@ -26,6 +24,8 @@ import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 })
 export class PostsListComponent implements OnInit {
   @Input() posts: Post[];
+  @Input() photoUrl: string;
+  bsModalRef: BsModalRef;
   @Input() allPosts: boolean;
   addedText = new FormControl();
   comment: Comment = new Comment();
@@ -33,9 +33,9 @@ export class PostsListComponent implements OnInit {
 
   constructor(
     private _ngZone: NgZone,
-    private route: ActivatedRoute,
     private alertify: AlertifyService,
     public authService: AuthService,
+    private modalService: BsModalService,
     private commentService: CommentService,
     private postsService: PostService
   ) {}
@@ -67,6 +67,7 @@ export class PostsListComponent implements OnInit {
     this.commentService.addComment(this.comment).subscribe(
       () => {
         this.loadPosts();
+        this.addedText.reset();
         this.alertify.success("Comentariul a fost introdus cu succes!");
       },
       (error) => {
@@ -95,6 +96,15 @@ export class PostsListComponent implements OnInit {
     );
   }
 
+  updatePost(post: Post) {
+    const initialState = {
+      post
+    };
+    this.bsModalRef = this.modalService.show(EditPostsModalComponent, {
+      initialState,
+    });
+  }
+
   deleteComment(commentToDelete: Comment) {
     this.alertify.confirm(
       "Sunteti sigur ca doriti sa stergeti aceasta clasa? Toate cursurile care se tin in aceasta sala vor fi sterse!",
@@ -106,7 +116,6 @@ export class PostsListComponent implements OnInit {
             this.posts.forEach(element => {
               index = element.comments.indexOf(commentToDelete);
                 if (index != -1) element.comments.splice(index, 1);
-                this.loadPosts();
             });
           },
           (error) => {

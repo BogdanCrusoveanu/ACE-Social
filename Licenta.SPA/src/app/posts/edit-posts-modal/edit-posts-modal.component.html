@@ -1,3 +1,50 @@
-<p>
-  edit-posts-modal works!
-</p>
+<div class="modal-header">
+  <h4 class="modal-title pull-left"><strong>Modifică postare</strong></h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form #classesForm="ngForm" id="classesForm" [formGroup]="updateForm">
+    <div class="form-group">
+      <input
+        [ngClass]="{
+          'is-invalid':
+            updateForm.get('content').errors && updateForm.get('content').touched
+        }"
+        type="text"
+        class="form-control mt-3 mb-3"
+        formControlName="content"
+        placeholder="Scrie o postare..."
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+          updateForm.get('content').touched &&
+          updateForm.get('content').hasError('required')
+        "
+      >
+        Postarea nu poate fi goală
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-success"
+    form="classesForm"
+    (click)="updatePost()"
+  >
+    Modifică
+  </button>
+  <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">
+    Renunță
+  </button>
+</div>

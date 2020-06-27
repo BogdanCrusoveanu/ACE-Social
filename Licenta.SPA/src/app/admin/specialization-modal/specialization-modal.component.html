@@ -1,7 +1,7 @@
 
 <div class="modal-header">
-  <h4 class="modal-title pull-left" *ngIf="insert">Adauga numele specializarii</h4>
-  <h4 class="modal-title pull-left" *ngIf="!insert">Modifica numele specializarii</h4>
+  <h4 class="modal-title pull-left" *ngIf="insert">Adaugă numele specializarii</h4>
+  <h4 class="modal-title pull-left" *ngIf="!insert">Modifică numele specializarii</h4>
   <button
     type="button"
     class="close pull-right"
@@ -23,6 +23,10 @@
       type="text"
       class="form-control mt-3 mb-3"
       formControlName="name"
+      style="
+      border: 1px solid #ced4da !important;
+      border-radius: 5px !important;
+    "
       placeholder="Numele Specializarii"
     />
     <div
@@ -32,7 +36,7 @@
       specializationForm.get('name').hasError('required')
       "
     >
-      O Specializare trebuie introdusa
+      O Specializare trebuie introdusă
       </div>
     </div>
 </form>
@@ -46,7 +50,7 @@
       [hidden]="!insert"
       [disabled]="!specializationForm.valid"
     >
-      Insert
+      Inserare
     </button>
     <button
       type="button"
@@ -56,10 +60,10 @@
       [hidden]="insert"
       [disabled]="!specializationForm.valid"
     >
-      Update
+      Modificare
     </button>
     <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">
-      Cancel
+      Renunță
     </button>
   </div>
 

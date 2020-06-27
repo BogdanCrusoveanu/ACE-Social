@@ -34,6 +34,7 @@
         class="form-control ml-1"
         style="width: 130px;"
         id="role"
+        placeholder="Selectează rol"
         name="role"
         [(ngModel)]="userParams.role"
       >
@@ -93,13 +94,14 @@
 
   <div class="search-user mt-2 mb-2r">
     <input
+    style="border: 1px solid black;"
       class="form-control"
       type="text"
       name="search"
       [(ngModel)]="searchText"
       autocomplete="off"
       [formControl]="search"
-      placeholder="&#61442; Caută un utilizator după nume, prenume, vârstă sau anul de studii"
+      placeholder="&#61442; Caută un utilizator după nume, prenume, vârstă sau grupă"
     />
   </div>
 

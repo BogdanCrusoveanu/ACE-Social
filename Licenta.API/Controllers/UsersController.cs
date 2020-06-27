@@ -1,14 +1,8 @@
-﻿using AutoMapper;
-using Licenta.API.Data;
+﻿using Licenta.API.Data;
 using Licenta.API.Dtos;
 using Licenta.API.Services;
-using Licenta.Data;
-using Licenta.Dtos;
 using Licenta.Helpers;
-using Licenta.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -37,7 +31,7 @@ namespace Licenta.Controllers
 
             var users = await _usersService.GetUsers(userParams);
 
-            var usersToReturn = _usersService.MapUsersToReturn(users);
+            var usersToReturn = _usersService.MapUsersToReturn(users, currentUserId);
 
             usersToReturn = _usersService.AddCategories(usersToReturn);
 
@@ -66,7 +60,14 @@ namespace Licenta.Controllers
             var like = await _usersService.GetLike(userId, recipientId);
 
             if (like != null)
-                return BadRequest("Sunteți deja prieten cu acest utilizator!");
+            {
+                _genericsRepo.Delete(like);
+            }
+
+            if (await _genericsRepo.SaveAll())
+            {
+                return BadRequest("Ai șters utilizatorul din lista de prieteni!");
+            }
 
             if (await _usersService.GetUser(recipientId) == null)
                 return NotFound();

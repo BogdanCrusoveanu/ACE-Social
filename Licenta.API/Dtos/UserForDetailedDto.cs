@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Licenta.API.Dtos;
+using System;
 using System.Collections.Generic;
 
 namespace Licenta.Dtos
@@ -9,6 +10,8 @@ namespace Licenta.Dtos
         public string UserName { get; set; }
         public string FirstName { get; set; }
         public string FullName { get; set; }
+        public string GroupName { get; set; }
+        public int IsFriend { get; set; } 
         public string LastName { get; set; }
         public int Age { get; set; }
         public int Year { get; set; }
@@ -19,5 +22,6 @@ namespace Licenta.Dtos
         public DateTime LastActive { get; set; }
         public string PhotoUrl { get; set; }
         public ICollection<PhotoForDetailedDto> Photos { get; set; }
+        public ICollection<LikeDto> Friends { get; set; }
     }
 }

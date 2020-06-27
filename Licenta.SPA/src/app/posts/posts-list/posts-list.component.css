@@ -23,7 +23,6 @@
     margin-bottom: -10px;
 }
 
-
 .comment-time{
     color:#ADB2BB;
     font-size: 10px;
@@ -54,8 +53,7 @@ img {
 }
 
 .media-body textarea {
-    width: 367px;
-    height: 57px;
+    width: 80%;
     border-radius: 15px;
     background-color:#F6F7F8;
 }
@@ -79,14 +77,21 @@ img {
     background-color: #ffffff;
 }
 
+.comment-content {
+    margin-bottom: -10px;
+    padding: 8px 10px;
+    background-color: #e7e7e7;
+    border-radius: 25px;
+    display: inline-block
+}
+
 .add-comment-box{
     margin-top:-20px;
+    height: 30px;
+    display: inline-block
 }
 
 
 .posts {
-    position: absolute;
-    left: 50%;
-    margin-top: 50px;
-    margin-left: -300px;
+    margin-right: 80px;
 }

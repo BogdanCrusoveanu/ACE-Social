@@ -4,10 +4,12 @@ import { AlertifyService } from './../../_services/alertify.service';
 import { CourseModalComponent } from './../course-modal/course-modal.component';
 import { Course } from './../../_models/course';
 import { Component, OnInit } from '@angular/core';
-import { BsModalRef, BsModalService, BsDatepickerConfig } from 'ngx-bootstrap';
+import { BsModalService } from "ngx-bootstrap/modal/";
+import { BsModalRef } from "ngx-bootstrap/modal";
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/_models/user';
 import { Class } from 'src/app/_models/class';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-course-management',

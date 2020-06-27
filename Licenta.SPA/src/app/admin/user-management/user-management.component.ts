@@ -4,7 +4,8 @@ import { AlertifyService } from './../../_services/alertify.service';
 import { AdminService } from './../../_services/admin.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/_models/user';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { BsModalService } from "ngx-bootstrap/modal/";
+import { BsModalRef } from "ngx-bootstrap/modal";
 import { Pagination, PaginatedResult } from 'src/app/_models/Pagination';
 
 @Component({

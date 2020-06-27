@@ -34,4 +34,12 @@ export class PostService {
   getPostsWithCurrentUserComment(id: number) {
    return this.http.get<Post[]>(this.baseUrl + "posts/get/commented/" + id);
   }
+
+  getTeachersPosts() {
+    return this.http.get<Post[]>(this.baseUrl + "posts/get/teachers");
+   }
+
+   getStudentsPosts() {
+    return this.http.get<Post[]>(this.baseUrl + "posts/get/students");
+   }
 }

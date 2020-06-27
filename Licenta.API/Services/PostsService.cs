@@ -4,7 +4,6 @@ using Licenta.API.Dtos;
 using Licenta.API.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Licenta.API.Services
@@ -36,6 +35,16 @@ namespace Licenta.API.Services
         public async Task<List<Post>> GetPostsUserCommented(int userId)
         {
             return await _postsRepo.GetPostsUserCommented(userId);
+        }
+
+        public async Task<List<Post>> GetTeachersPosts()
+        {
+            return await _postsRepo.GetTeachersPosts();
+        }
+
+        public async Task<List<Post>> GetStudentsPosts()
+        {
+            return await _postsRepo.GetStudentsPosts();
         }
 
         public async Task<List<Post>> GetUserPosts(int userId)

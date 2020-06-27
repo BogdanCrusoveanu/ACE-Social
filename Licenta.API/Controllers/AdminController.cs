@@ -9,7 +9,6 @@ using Licenta.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,29 +34,6 @@ namespace Licenta.Controllers
             _adminService = adminService;
             _genericsRepo = genericsRepo;
         }
-
-        //[Authorize(Policy = "RequireAdminRole")]
-        //[HttpGet("usersWithRoles")]
-        //public async Task<IActionResult> GetUsersWithRoles()
-        //{
-        //    var userList = await _context.Users
-        //        .OrderBy(x => x.UserName)
-        //        .Select(user => new
-        //        {
-        //            user.Id,
-        //            user.UserName,
-        //            Roles = (from userRole in user.UserRoles
-        //                     join role in _context.Roles
-        //                     on userRole.RoleId
-        //                     equals role.Id
-        //                     select role.Name).ToList()
-        //        }).ToListAsync();
-
-        //    //Response.AddPagination(userList.CurrentPage, userList.PageSize,
-        //    //    userList.TotalCount, userList.TotalPages);
-
-        //    return Ok(userList);
-        //}
 
         [Authorize(Policy = "RequireAdminRole")]
         [HttpGet("pagedRoles")]

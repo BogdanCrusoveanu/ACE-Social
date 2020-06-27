@@ -3,7 +3,8 @@ import { AlertifyService } from './../../_services/alertify.service';
 import { Component, OnInit } from '@angular/core';
 import { SubGroup } from 'src/app/_models/subGroup';
 import { Group } from 'src/app/_models/group';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { BsModalService } from "ngx-bootstrap/modal/";
+import { BsModalRef } from "ngx-bootstrap/modal";
 import { ActivatedRoute } from '@angular/router';
 import { SubGroupsModalComponent } from '../subGroups-modal/subGroups-modal.component';
 

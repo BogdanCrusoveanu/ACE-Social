@@ -5,8 +5,8 @@
     </div>
     <div class="col-sm-8">
       <div *ngIf="editForm.dirty" class="alert alert-info">
-          <strong>Atenție:</strong> Ai făcut schimbări care nu au fost
-          salvate și vor fi pierdute!
+        <strong>Atenție:</strong> Ai făcut schimbări care nu au fost salvate și
+        vor fi pierdute!
       </div>
     </div>
   </div>
@@ -15,7 +15,7 @@
       <div class="card">
         <img
           class="card-img-top img-thumbnail"
-          src="{{ photoUrl || '../../assets/user.png'}}"
+          src="{{ photoUrl || '../../assets/user.png' }}"
           alt="{{ user.userName }}"
         />
         <div class="card-body">
@@ -33,11 +33,17 @@
           </div>
           <div>
             <strong>Membru de pe:</strong>
-            <p>{{ user.created | date: 'mediumDate' }}</p>
+            <p>{{ user.created | date: "mediumDate" }}</p>
           </div>
         </div>
         <div class="card-footer">
-          <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Salvare Schimbări</button>
+          <button
+            [disabled]="!editForm.dirty"
+            form="editForm"
+            class="btn btn-success btn-block"
+          >
+            Slavează Schimbările
+          </button>
         </div>
       </div>
     </div>
@@ -45,9 +51,14 @@
       <div class="tab-panel">
         <tabset class="member-tabset">
           <tab heading="Administrare Profil">
-            <form #editForm="ngForm" id="editForm" (ngSubmit)= "updateUser()">
-               <h4>Descriere</h4>
+            <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()">
+              <h4>Descriere</h4>
               <textarea
+                style="
+                  margin-bottom: 10px;
+                  border-radius: 5px !important;
+                  border: 1px solid #ced4da !important;
+                "
                 name="introduction"
                 rows="6"
                 class="form-control"
@@ -61,6 +72,11 @@
               ></textarea> -->
               <h4>Interese</h4>
               <textarea
+                style="
+                  margin-bottom: 10px;
+                  border-radius: 5px !important;
+                  border: 1px solid #ced4da !important;
+                "
                 name="interests"
                 rows="6"
                 class="form-control"
@@ -85,8 +101,10 @@
             </form>
           </tab>
           <tab heading="Administrare fotografii">
-            <app-photo-editor [photos]="user.photos" 
-              (getMemberPhotoChange)="updateMainPhoto($event)"></app-photo-editor>
+            <app-photo-editor
+              [photos]="user.photos"
+              (getMemberPhotoChange)="updateMainPhoto($event)"
+            ></app-photo-editor>
           </tab>
         </tabset>
       </div>

@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left">
+  <h4 class="modal-title" style="margin-left: -15px;">
     Modifica data la care incepe sau cea la care se termina semestrul
   </h4>
   <button
@@ -14,7 +14,9 @@
 
 <div class="modal-body">
   <form #classesForm="ngForm" id="classesForm" [formGroup]="semesterForm">
-
+    <div style="margin-bottom: 10px;
+    border-radius: 5px !important;
+    border: 1px solid #ced4da !important;">
       <input
         [ngClass]="{
           'is-invalid':
@@ -42,7 +44,10 @@
       >
         Introdu data la care incepe Semestrul
       </div>
-
+    </div>
+    <div style="margin-bottom: 10px;
+    border-radius: 5px !important;
+    border: 1px solid #ced4da !important;">
       <input
         [ngClass]="{
           'is-invalid':
@@ -70,6 +75,7 @@
       >
         Introdu data la care se termina Semestrul
       </div>
+    </div>
   </form>
 </div>
 <div class="modal-footer">

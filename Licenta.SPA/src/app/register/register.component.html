@@ -1,9 +1,10 @@
 <form [formGroup]="registerForm" (ngSubmit)="register()">
-  <h2 class="text-center text-primary">Înregistrare</h2>
-  <hr />
+  <h2 class="text-center text-primary" style="margin-left: 20px;">Înregistrare</h2>
 
-  <div class="form-group">
-    <label class="control-label" style="margin-right: 10px;">Tip utilizator: </label>
+  <div class="form-group" style="margin-left: 50px;">
+    <label class="control-label" style="margin-right: 10px;"
+      >Tip utilizator:
+    </label>
     <label class="radio-inline">
       <input
         class="mr-3"
@@ -218,7 +219,14 @@
     >
       Înregistrare
     </button>
-    <button class="btn btn-default" type="button" (click)="cancel()">
+    <button
+      class="btn btn-default"
+      type="button"
+      (click)="cancel()"
+      style="
+        border: 1px solid #ced4da !important;
+      "
+    >
       Renunță
     </button>
   </div>

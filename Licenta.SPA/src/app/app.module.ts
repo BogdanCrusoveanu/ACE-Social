@@ -1,3 +1,10 @@
+import { StudentsPostsResolver } from './_resolvers/posts.students.resolver';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { CommentedPostsResolver } from './_resolvers/posts.commented.resolver';
 import { AddPostComponent } from './posts/add-post/add-post.component';
 import { UserPostsResolver } from './_resolvers/posts.user.resolver';
@@ -50,14 +57,12 @@ import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angu
 import { NgModule, Pipe } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BsDropdownModule, TabsModule, PaginationModule, ButtonsModule, CarouselModule } from 'ngx-bootstrap';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
-import { ModalModule } from 'ngx-bootstrap/modal';
 import { FlatpickrModule } from 'angularx-flatpickr';
-
 import { MessagesResolver } from './_resolvers/messages.resolver';
+import { AnimateOnScrollModule } from 'ng2-animate-on-scroll';
 import { ListsResolver } from './_resolvers/lists.resolver';
 import { appRoutes } from './routes';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
@@ -93,6 +98,7 @@ import { ClassManagementComponent } from './admin/class-management/class-managem
 import { ClassModalComponent } from './admin/class-modal/class-modal.component';
 import { PostsResolver } from './_resolvers/posts.resolver';
 import { PostPanelComponent } from './posts/post-panel/post-panel.component';
+import { TeachersPostsResolver } from './_resolvers/posts.teacher.resolver';
 
 @Pipe({
     name: 'timeAgo',
@@ -161,6 +167,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       ButtonsModule.forRoot(),
       CarouselModule.forRoot(),
       FormsModule,
+      AnimateOnScrollModule.forRoot(),
       PaginationModule.forRoot(),
       BsDatepickerModule.forRoot(),
       ReactiveFormsModule,
@@ -193,6 +200,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       GroupResolver,
       CourseResolver,
       SemesterResolver,
+      StudentsPostsResolver,
       SeminarResolver,
       LaboratoryResolver,
       UserService,
@@ -201,10 +209,11 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       PostsResolver,
       UserPostsResolver,
       PreventUnsavedChanges,
+      TeachersResolver,
       SubGroupResolver,
       PresentationService,
       PresentationResolver,
-      TeachersResolver,
+      TeachersPostsResolver,
       MemberDetailResolver,
       SpecializationResolver,
       MemberListResolver,

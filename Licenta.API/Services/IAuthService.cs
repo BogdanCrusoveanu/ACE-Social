@@ -13,7 +13,7 @@ namespace Licenta.API.Services
         User FindUser(string username);
         Task<SignInResult> SignInUser(User user, string password);
         UserForListDto MapUserForLogin(User user);
-        Task<string> GenerateJwtToken(User user);
+        Task<string> GenerateJWT(User user);
         void AddUserToDivisions(UserForRegisterDto userForRegister, User user, UserForDetailedDto userForDetailed);
     }
 }

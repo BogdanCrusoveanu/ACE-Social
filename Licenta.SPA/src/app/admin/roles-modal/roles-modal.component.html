@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left">Edit roles for {{ user.userName }}</h4>
+  <h4 class="modal-title pull-left">Modifică rolurile pentru {{ user.userName }}</h4>
   <button
     type="button"
     class="close pull-right"
@@ -18,15 +18,22 @@
         value="{{ role.name }}"
         [checked]="role.checked"
         (change)="role.checked = !role.checked"
-        [disabled] = "role.name === 'Admin' && user.userName === 'Admin'"
+        [disabled]="role.name === 'Admin' && user.userName === 'Admin'"
       />
       <label> {{ role.name }} </label>
     </div>
   </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">
-    Cancel
+  <button type="button" style="border: 1px solid #ced4da !important;" class="btn btn-default" (click)="bsModalRef.hide()">
+    Renunță
   </button>
-  <button type="button" class="btn btn-success" (click)="updateRoles()" form="rolesForm">Submit</button>
+  <button
+    type="button"
+    class="btn btn-success"
+    (click)="updateRoles()"
+    form="rolesForm"
+  >
+    Salvează
+  </button>
 </div>

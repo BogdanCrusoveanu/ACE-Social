@@ -5,10 +5,11 @@ import { AlertifyService } from './../../_services/alertify.service';
 import { SeminarModalComponent } from './../seminar-modal/seminar-modal.component';
 import { Seminar } from './../../_models/seminar';
 import { Component, OnInit } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/_models/user';
 import { Class } from 'src/app/_models/class';
+import { BsModalService } from "ngx-bootstrap/modal/";
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-seminar-management',

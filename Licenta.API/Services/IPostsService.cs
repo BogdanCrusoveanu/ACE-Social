@@ -10,6 +10,8 @@ namespace Licenta.API.Services
         Task<List<Post>> GetPosts();
         Task<List<Post>> GetUserPosts(int userId);
         Task<List<Post>> GetPostsUserCommented(int userId);
+        Task<List<Post>> GetTeachersPosts();
+        Task<List<Post>> GetStudentsPosts();
         List<PostForDetailedDto> MapPosts(List<Post> posts);
         void AddPost(Post post);
         Task<Post> UpdatePost(Post post);

@@ -64,6 +64,27 @@ namespace Licenta.API.Controllers
             return Ok(mappedPosts);
         }
 
+
+        [HttpGet("get/teachers")]
+        public async Task<IActionResult> GetTeachersPosts()
+        {
+            var posts = await _postsService.GetTeachersPosts();
+
+            var mappedPosts = _postsService.MapPosts(posts);
+
+            return Ok(mappedPosts);
+        }
+
+        [HttpGet("get/students")]
+        public async Task<IActionResult> GetStudentsPosts()
+        {
+            var posts = await _postsService.GetStudentsPosts();
+
+            var mappedPosts = _postsService.MapPosts(posts);
+
+            return Ok(mappedPosts);
+        }
+
         [HttpPost("update")]
         public async Task<IActionResult> UpdatePost(Post post)
         {
@@ -80,7 +101,7 @@ namespace Licenta.API.Controllers
         [HttpPost("delete")]
         public async Task<IActionResult> DeletePost(Post post)
         {
-            if (post.UserId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            if (post.UserId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value) && User.FindFirst(ClaimTypes.Role).Value != "Admin")
             {
                 return Unauthorized();
             }

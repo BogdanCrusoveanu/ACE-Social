@@ -1,4 +1,5 @@
 import { Photo } from './photo';
+import { Like } from './like';
 
 export interface User {
     id: number;
@@ -6,6 +7,8 @@ export interface User {
     firstName: string;
     lastName: string;
     fullName?: string;
+    groupName?: string; 
+    isFriend?: number;
     age: number;
     year: number;
     specialization?: string;
@@ -16,4 +19,5 @@ export interface User {
     photoUrl: string;
     photos?: Photo[];
     roles?: string[];
+    friends?: Like[];
 }

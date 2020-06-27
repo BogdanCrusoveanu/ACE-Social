@@ -26,8 +26,10 @@
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "./node_modules/animate.css/animate.min.css",
               "src/custom-theme.scss",
               "node_modules/angular-calendar/css/angular-calendar.css",
+              "node_modules/animate.css/animate.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -95,6 +97,8 @@
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "node_modules/angular-calendar/css/angular-calendar.css",
+              "node_modules/animate.css/animate.css",
+              "node_modules/animate.css/animate.min.css",
               "src/styles.css"
             ],
             "scripts": []

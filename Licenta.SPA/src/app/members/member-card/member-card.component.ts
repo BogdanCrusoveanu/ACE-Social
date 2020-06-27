@@ -12,7 +12,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MemberCardComponent implements OnInit {
   @Input() user: User;
 
-  constructor(private authService: AuthService,
+  constructor(public authService: AuthService,
               private userService: UserService,
               private alertify: AlertifyService) { }
 
@@ -20,6 +20,12 @@ export class MemberCardComponent implements OnInit {
   }
 
   sendLike(id: number) {
+    if(this.user.isFriend == this.authService.decodedToken.nameid) {
+      this.user.isFriend = 0
+    } else {
+      this.user.isFriend = this.authService.decodedToken.nameid
+    }
+
     this.userService.sendLike(this.authService.decodedToken.nameid, id).subscribe(data => {
       this.alertify.success('Ai adăugat utilizatorul ' + this.user.firstName + " " + this.user.lastName + 'în lista de prieteni!');
     }, error => {

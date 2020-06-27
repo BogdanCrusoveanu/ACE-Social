@@ -6,7 +6,7 @@ import { Course } from 'src/app/_models/course';
 import { User } from 'src/app/_models/user';
 import { Class } from 'src/app/_models/class';
 import { Subject } from 'rxjs';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef } from 'ngx-bootstrap/modal/';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { AuthService } from 'src/app/_services/auth.service';

@@ -9,7 +9,6 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -80,12 +79,13 @@ namespace Licenta.API.Services
             return await _signInManager.CheckPasswordSignInAsync(user, password, false);
         }
 
-        public async Task<string> GenerateJwtToken(User user)
+        public async Task<string> GenerateJWT(User user)
         {
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier , user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.UserName)
+                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(ClaimTypes.GivenName, user.FirstName + " " + user.LastName)
             };
 
             var roles = await _userManager.GetRolesAsync(user);

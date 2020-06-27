@@ -1,7 +1,8 @@
 import { PresentationService } from "./../../_services/presentation.service";
 import { Component, OnInit } from "@angular/core";
 import { Presentation } from "src/app/_models/presentation";
-import { BsModalRef, BsModalService } from "ngx-bootstrap";
+import { BsModalService } from "ngx-bootstrap/modal/";
+import { BsModalRef } from "ngx-bootstrap/modal";
 import { ActivatedRoute } from "@angular/router";
 import { AlertifyService } from "src/app/_services/alertify.service";
 import { PresentationModalComponent } from "../presentation-modal/presentation-modal.component";

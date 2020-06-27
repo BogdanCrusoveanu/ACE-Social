@@ -3,7 +3,7 @@ import { Semester } from './../../_models/semester';
 import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef } from 'ngx-bootstrap/modal/';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({

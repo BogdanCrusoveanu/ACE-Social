@@ -4,7 +4,8 @@ import { GroupsModalComponent } from './../groups-modal/groups-modal.component';
 import { Specialization } from './../../_models/specialization';
 import { Group } from './../../_models/group';
 import { Component, OnInit } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { BsModalService } from "ngx-bootstrap/modal/";
+import { BsModalRef } from "ngx-bootstrap/modal";
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

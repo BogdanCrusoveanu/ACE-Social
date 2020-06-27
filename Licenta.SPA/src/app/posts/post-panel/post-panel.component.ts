@@ -1,3 +1,4 @@
+import { AuthService } from './../../_services/auth.service';
 import { Post } from "src/app/_models/post";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
@@ -8,13 +9,18 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./post-panel.component.css"],
 })
 export class PostPanelComponent implements OnInit {
+  photoUrl: string;
   posts: Post[];
   allPosts: boolean = true;
   userPosts: Post[];
   commentedPosts: Post[];
-  constructor(private route: ActivatedRoute) {}
+  teachersPosts: Post[];
+  studentsPosts: Post[];
+  constructor(private route: ActivatedRoute,
+              private authService: AuthService) {}
 
   ngOnInit() {
+    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
     this.getPosts();
   }
 
@@ -23,6 +29,8 @@ export class PostPanelComponent implements OnInit {
       this.posts = data["posts"];
       this.userPosts = data["userPosts"];
       this.commentedPosts = data["commentedPosts"];
+      this.teachersPosts = data["teachersPosts"]
+      this.studentsPosts = data["studentsPosts"];
     });
   }
 }

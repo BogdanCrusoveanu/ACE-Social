@@ -9,6 +9,8 @@ namespace Licenta.API.Data
         public Task<List<Post>> GetAllPosts();
         public Task<List<Post>> GetPostsByUser(int userId);
         public Task<List<Post>> GetPostsUserCommented(int userId);
+        public Task<List<Post>> GetTeachersPosts();
+        public Task<List<Post>> GetStudentsPosts();
         public Task<Post> GetPostById(int postId);
     }
 }

@@ -3,17 +3,18 @@ import { CourseService } from './../../_services/course.service';
 import { Class } from './../../_models/class';
 import { User } from './../../_models/user';
 import { Course } from './../../_models/course';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Specialization } from 'src/app/_models/specialization';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef } from 'ngx-bootstrap/modal/';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-course-modal',
   templateUrl: './course-modal.component.html',
-  styleUrls: ['./course-modal.component.css']
+  styleUrls: ['./course-modal.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CourseModalComponent implements OnInit {
 

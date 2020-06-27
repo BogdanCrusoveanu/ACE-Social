@@ -1,7 +1,10 @@
-
 <div class="modal-header">
-  <h4 class="modal-title pull-left" *ngIf="insert"><strong>Adaugă sală</strong></h4>
-  <h4 class="modal-title pull-left" *ngIf="!insert"><strong>Modifică sală</strong></h4>
+  <h4 class="modal-title pull-left" *ngIf="insert">
+    <strong>Adaugă sală</strong>
+  </h4>
+  <h4 class="modal-title pull-left" *ngIf="!insert">
+    <strong>Modifică sală</strong>
+  </h4>
   <button
     type="button"
     class="close pull-right"
@@ -13,54 +16,54 @@
 </div>
 
 <div class="modal-body">
-<form #classesForm="ngForm" id="classesForm" [formGroup]="classForm">
-  <div class="form-group">
-    <input
-      [ngClass]="{
-        'is-invalid':
-          classForm.get('name').errors && classForm.get('name').touched
-      }"
-      type="text"
-      class="form-control mt-3 mb-3"
-      formControlName="name"
-      placeholder="Nume sală"
-    />
-    <div
-      class="invalid-feedback"
-      *ngIf="
-        classForm.get('name').touched &&
-        classForm.get('name').hasError('required')
-      "
-    >
-      Numele sălii este obligatoriu
+  <form #classesForm="ngForm" id="classesForm" [formGroup]="classForm">
+    <div class="form-group">
+      <input
+        [ngClass]="{
+          'is-invalid':
+            classForm.get('name').errors && classForm.get('name').touched
+        }"
+        type="text"
+        class="form-control mt-3 mb-3"
+        style="
+          border: 1px solid #ced4da !important;
+          border-radius: 5px !important;
+        "
+        formControlName="name"
+        placeholder="Nume sală"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+          classForm.get('name').touched &&
+          classForm.get('name').hasError('required')
+        "
+      >
+        Numele sălii este obligatoriu
       </div>
     </div>
-</form>
+  </form>
 </div>
-  <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-success"
-      form="classesForm"
-      (click) = "insertClass()"
-      [hidden]="!insert"
-    >
-      Inserare
-    </button>
-    <button
-      type="button"
-      class="btn btn-success"
-      form="classesForm"
-      (click) = "updateClass()"
-      [hidden]="insert"
-    >
-      Modificare
-    </button>
-    <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">
-      Renunță
-    </button>
-  </div>
-
-
-
-
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-success"
+    form="classesForm"
+    (click)="insertClass()"
+    [hidden]="!insert"
+  >
+    Inserare
+  </button>
+  <button
+    type="button"
+    class="btn btn-success"
+    form="classesForm"
+    (click)="updateClass()"
+    [hidden]="insert"
+  >
+    Modificare
+  </button>
+  <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">
+    Renunță
+  </button>
+</div>
