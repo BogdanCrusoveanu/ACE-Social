@@ -1,8 +1,10 @@
-﻿using Licenta.API.Data;
+﻿using AutoMapper;
+using Licenta.API.Data;
 using Licenta.API.Dtos;
 using Licenta.API.Services;
 using Licenta.Helpers;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -15,15 +17,17 @@ namespace Licenta.Controllers
     {
         private readonly IUserService _usersService;
         private readonly IGenericsRepository _genericsRepo;
+        private readonly IMapper _mapper;
 
-        public UsersController(IUserService userService, IGenericsRepository genericsRepo)
+        public UsersController(IUserService userService, IGenericsRepository genericsRepo, IMapper mapper)
         {
             _usersService = userService;
             _genericsRepo = genericsRepo;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetUsers([FromQuery]UserParams userParams)
+        public async Task<IActionResult> GetUsers([FromQuery] UserParams userParams)
         {
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
@@ -37,6 +41,18 @@ namespace Licenta.Controllers
 
             Response.AddPagination(users.CurrentPage, users.PageSize,
                 users.TotalCount, users.TotalPages);
+
+            return Ok(usersToReturn);
+        }
+
+        [HttpGet("recommendation/{userId}")]
+        public async Task<IActionResult> GerRecommendedUsers(int userId)
+        {
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            var users = await _usersService.GetRecommendedUsers(userId);
+
+            var usersToReturn = _usersService.MapUsersForRecommendation(users, currentUserId);
 
             return Ok(usersToReturn);
         }
@@ -124,7 +140,7 @@ namespace Licenta.Controllers
             return Ok(usersToReturn);
         }
 
-        [HttpPost("UpdateUser/{id}")]
+        [HttpPost("{id}")]
         public async Task<IActionResult> UpdateUser(UserForUpdateDto userForUpdate, int id)
         {
             var updatedUser = await _usersService.UpdateUser(userForUpdate, id);
@@ -134,6 +150,22 @@ namespace Licenta.Controllers
                 return Ok(updatedUser);
             }
             return BadRequest("Update Failed or the same user informations were sent");
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userForUpdateDto)
+        {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var userFromRepo = await _usersService.GetUser(id);
+
+            _mapper.Map(userForUpdateDto, userFromRepo);
+
+            if (await _genericsRepo.SaveAll())
+                return NoContent();
+
+            throw new Exception($"Updating user {id} failed on save");
         }
     }
 }

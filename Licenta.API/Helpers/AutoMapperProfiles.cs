@@ -31,6 +31,20 @@ namespace Licenta.Helpers
                 .ForMember(dest => dest.Friends, opt =>
                     opt.MapFrom(src => src.Likers));
 
+            CreateMap<User, UserForRecommendationDto>()
+                .ForMember(dest => dest.PhotoUrl, opt => opt.MapFrom(src =>
+                    src.Photos.FirstOrDefault(p => p.IsMain).Url))
+                .ForMember(dest => dest.Age, opt =>
+                    opt.MapFrom(src => src.DateOfBirth.CalculateAge()))
+                .ForMember(dest => dest.FullName, opt =>
+                    opt.MapFrom(src => src.FirstName + " " + src.LastName))
+                .ForMember(dest => dest.GroupName, opt =>
+                    opt.MapFrom(src => src.UserGroups.Where(ug => ug.UserId == src.Id).FirstOrDefault().Group.Name))
+                .ForMember(dest => dest.IsFriend, opt =>
+                    opt.MapFrom(src => src.Likers.Where(ug => ug.LikerId == src.Id).FirstOrDefault().LikerId))
+                .ForMember(dest => dest.Friends, opt =>
+                    opt.MapFrom(src => src.Likers));
+
             CreateMap<Course, ActivityForReturnDto>()
                 .ForMember(dest => dest.Teacher, opt => opt.MapFrom(src =>
                     src.Teacher.FirstName + " " + src.Teacher.LastName))
@@ -115,7 +129,7 @@ namespace Licenta.Helpers
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src =>
                   src.User.Id));
 
-            //CreateMap<UserForUpdateDto, User>();
+            CreateMap<UserForUpdateDto, User>();
             CreateMap<Photo, PhotoForDetailedDto>();
             CreateMap<Post, PostToAddDto>();
             CreateMap<Like, LikeDto>();

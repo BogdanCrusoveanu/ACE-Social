@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Licenta.API.Data;
+﻿using Licenta.API.Data;
 using Licenta.API.Models;
 using Licenta.API.Services;
+using Licenta.Helpers;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Licenta.API.Controllers
 {
+    [ServiceFilter(typeof(LogUserActivity))]
     [Route("[controller]")]
     [ApiController]
     public class CompanyPresentationsController : ControllerBase

@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using Licenta.API.Data;
 using Licenta.API.Dtos;
+using Licenta.API.Helpers;
 using Licenta.Data;
 using Licenta.Dtos;
 using Licenta.Helpers;
 using Licenta.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Licenta.API.Services
@@ -68,6 +70,11 @@ namespace Licenta.API.Services
             return await _usersRepo.GetLike(userId, recipientId);
         }
 
+        public async Task<List<User>> GetRecommendedUsers(int userid)
+        {
+            return await _usersRepo.GetUsersToRecommend(userid);
+        }
+
         public async Task<User> GetUser(int id)
         {
             return await _usersRepo.GetUser(id);
@@ -112,6 +119,18 @@ namespace Licenta.API.Services
             return userForDetailed;
         }
 
+        public IEnumerable<UserForRecommendationDto> MapUsersForRecommendation(List<User> users, int currentUserId)
+        {
+            var usersToReturn = _mapper.Map<IEnumerable<UserForRecommendationDto>>(users);
+            var currentUser = GetUser(currentUserId).Result;
+            foreach (var user in usersToReturn)
+            {
+                user.Distance = LevenshteinDistance.Compute(user.Interests, currentUser.Interests);
+            }
+            usersToReturn = usersToReturn.OrderBy(u => u.Distance).Take(5);
+            return usersToReturn;
+        }
+
         public IEnumerable<UserFromCategoryDto> MapUsersFromCategory(PagedList<User> users)
         {
             return _mapper.Map<IEnumerable<UserFromCategoryDto>>(users);
@@ -145,9 +164,9 @@ namespace Licenta.API.Services
 
             user.FirstName = userForUpdate.FirstName;
             user.LastName = userForUpdate.LastName;
-            user.DateOfBirth = userForUpdate.DateOfBirth;
             user.Year = userForUpdate.Year;
-            user.UserName = userForUpdate.FirstName + userForUpdate.LastName + userForUpdate.DateOfBirth.Day;
+            user.Description = userForUpdate.Description;
+            user.Interests = userForUpdate.Interests;
 
             var mappedUser = _mapper.Map<UserForUpdateDto>(user);
 

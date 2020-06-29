@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Licenta.API.Data;
+﻿using Licenta.API.Data;
 using Licenta.API.Models;
 using Licenta.API.Services;
-using Microsoft.AspNetCore.Http;
+using Licenta.Helpers;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Licenta.API.Controllers
 {
+    [ServiceFilter(typeof(LogUserActivity))]
     [Route("[controller]")]
     [ApiController]
     public class SubGroupsController : ControllerBase

@@ -59,9 +59,10 @@
                   border-radius: 5px !important;
                   border: 1px solid #ced4da !important;
                 "
-                name="introduction"
+                name="description"
                 rows="6"
                 class="form-control"
+                [(ngModel)]="user.description"
               ></textarea>
               <!-- <h4>Looking For</h4>
               <textarea
@@ -80,6 +81,7 @@
                 name="interests"
                 rows="6"
                 class="form-control"
+                [(ngModel)]="user.interests"
               ></textarea>
               <!-- <h4>Location Details</h4>
               <div class="form-inline">

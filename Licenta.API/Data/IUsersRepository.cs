@@ -8,6 +8,7 @@ namespace Licenta.Data
     public interface IUsersRepository
     {
         Task<PagedList<User>> GetUsers(UserParams userParams);
+        Task<List<User>> GetUsersToRecommend(int userId);
         Task<User> GetUser(int userId);
         Task<Like> GetLike(int userId, int recipientId);
         Task<List<User>> GetTeachers();

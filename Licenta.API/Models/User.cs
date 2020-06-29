@@ -13,6 +13,8 @@ namespace Licenta.Models
         public int Year { get; set; }
         public DateTime Created { get; set; }
         public DateTime LastActive { get; set; }
+        public string Interests { get; set; }
+        public string Description { get; set; }
         public virtual ICollection<Photo> Photos { get; set; }
         public virtual ICollection<Like> Likers { get; set; }
         public virtual ICollection<Like> Likees { get; set; }

@@ -122,6 +122,13 @@ namespace Licenta.Data
                 userParams.PageNumber, userParams.PageSize);
         }
 
+        public async Task<List<User>> GetUsersToRecommend(int userId)
+        {
+            var users = await _context.Users.Where(u => u.Likers.Any(l => l.LikerId == userId) == false).Where(u => (u.Id != userId)).ToListAsync();
+
+            return users;
+        }
+
         private async Task<IEnumerable<int>> GetUserLikes(int id, bool likers)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);

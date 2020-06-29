@@ -11,10 +11,6 @@
           alt="{{ user.userName }}"
         />
         <div class="card-body">
-          <!-- <div>
-            <strong>Location:</strong>
-            <p>{{ user.city }} , {{ user.country }}</p>
-          </div> -->
           <div>
             <strong>Vârstă:</strong>
             <p>{{ user.age }}</p>
@@ -24,7 +20,7 @@
             <p>{{ user.lastActive.toString() | timeAgo }}</p>
           </div>
           <div>
-            <strong>Menbru de pe:</strong>
+            <strong>Membru de pe:</strong>
             <p>{{ user.created | date: 'mediumDate' }}</p>
           </div>
         </div>
@@ -48,6 +44,13 @@
           </tab>
           <tab heading="Mesaje">
             <app-member-messages [recipientId] = "user.id"></app-member-messages>
+          </tab>
+          <tab heading="Interese">
+            <h4>Interese:</h4>
+            <p>{{ user.interests }}</p>
+          <hr />
+            <h4>Descriere:</h4>
+            <p>{{ user.description }}</p>
           </tab>
         </tabset>
       </div>

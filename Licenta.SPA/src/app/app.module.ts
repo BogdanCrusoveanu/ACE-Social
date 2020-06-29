@@ -99,6 +99,7 @@ import { ClassModalComponent } from './admin/class-modal/class-modal.component';
 import { PostsResolver } from './_resolvers/posts.resolver';
 import { PostPanelComponent } from './posts/post-panel/post-panel.component';
 import { TeachersPostsResolver } from './_resolvers/posts.teacher.resolver';
+import { RecommendationResolver } from './_resolvers/recommendations.resolver';
 
 @Pipe({
     name: 'timeAgo',
@@ -214,6 +215,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       PresentationService,
       PresentationResolver,
       TeachersPostsResolver,
+      RecommendationResolver,
       MemberDetailResolver,
       SpecializationResolver,
       MemberListResolver,

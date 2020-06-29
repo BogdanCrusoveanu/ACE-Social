@@ -1,11 +1,13 @@
 ﻿using Licenta.API.Data;
 using Licenta.API.Models;
 using Licenta.API.Services;
+using Licenta.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Licenta.API.Controllers
 {
+    [ServiceFilter(typeof(LogUserActivity))]
     [Route("[controller]")]
     [ApiController]
     public class SpecializationsController : ControllerBase

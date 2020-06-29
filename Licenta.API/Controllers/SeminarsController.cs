@@ -1,6 +1,7 @@
 ﻿using Licenta.API.Data;
 using Licenta.API.Models;
 using Licenta.API.Services;
+using Licenta.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Licenta.API.Controllers
 {
+    [ServiceFilter(typeof(LogUserActivity))]
     [Route("[controller]")]
     [ApiController]
     public class SeminarsController : ControllerBase

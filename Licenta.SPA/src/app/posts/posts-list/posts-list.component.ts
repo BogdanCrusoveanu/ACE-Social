@@ -30,6 +30,7 @@ export class PostsListComponent implements OnInit {
   addedText = new FormControl();
   comment: Comment = new Comment();
   commentsShow: boolean = false;
+  post: Post = new Post();
 
   constructor(
     private _ngZone: NgZone,
@@ -125,6 +126,21 @@ export class PostsListComponent implements OnInit {
       }
     );
   }
+
+  sharePost(post: Post) {
+    this.post.content = post.content + " | => distribuită de la " + post.userName;
+    this.post.userId = this.authService.decodedToken.nameid;
+    this.postsService.addPost(this.post).subscribe(
+      () => {
+        this.alertify.success("Postarea a fost distribuită!");
+      },
+      (error) => {
+        this.alertify.error(error);
+      }
+    );
+    this.addedText.reset();
+  }
+
 
   loadPosts() {
     this.postsService.getAllPosts().subscribe((data) => {

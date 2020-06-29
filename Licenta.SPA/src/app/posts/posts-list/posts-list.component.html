@@ -70,7 +70,7 @@
                   </a>
                 </li>
                 <li>
-                  <a
+                  <a (click) = "sharePost(post)"
                     ><i class="glyphicon glyphicon-share-alt"></i> Distribuie
                   </a>
                 </li>
@@ -270,10 +270,10 @@
                             style="margin-top: 20px; margin-left: -15px;"
                             *ngIf="
                               (comment.userId ==
-                                authService.decodedToken.nameid &&
-                                allPosts) ||
-                              (authService.decodedToken.role == 'Admin' &&
-                                allPosts)
+                                authService.decodedToken.nameid 
+                                ) ||
+                              (authService.decodedToken.role == 'Admin' 
+                                )
                             "
                           >
                             <a (click)="deleteComment(comment)"

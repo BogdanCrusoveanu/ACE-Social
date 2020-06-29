@@ -11,7 +11,10 @@ export interface User {
     isFriend?: number;
     age: number;
     year: number;
+    interests: string;
+    description: string;
     specialization?: string;
+    distance?: number;
     group?: string;
     subGroup?: string;
     created: Date;

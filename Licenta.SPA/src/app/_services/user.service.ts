@@ -56,6 +56,10 @@ export class UserService {
     return this.http.get<User>(this.baseUrl + 'users/' + id);
   }
 
+  gerRecommendedUsers(id:number) {
+    return this.http.get<User[]>(this.baseUrl + "users/"+ "recommendation/" + id);
+  }
+
   updateUser (id: number, user: User) {
     return this.http.put(this.baseUrl + 'users/' + id, user);
   }
