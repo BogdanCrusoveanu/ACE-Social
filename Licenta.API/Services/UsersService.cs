@@ -119,10 +119,10 @@ namespace Licenta.API.Services
             return userForDetailed;
         }
 
-        public IEnumerable<UserForRecommendationDto> MapUsersForRecommendation(List<User> users, int currentUserId)
+        public IEnumerable<UserForRecommendationDto> MapUsersForRecommendation(List<User> users, int userId)
         {
             var usersToReturn = _mapper.Map<IEnumerable<UserForRecommendationDto>>(users);
-            var currentUser = GetUser(currentUserId).Result;
+            var currentUser = GetUser(userId).Result;
             foreach (var user in usersToReturn)
             {
                 user.Distance = LevenshteinDistance.Compute(user.Interests, currentUser.Interests);

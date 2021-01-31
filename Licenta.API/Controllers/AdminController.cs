@@ -92,8 +92,6 @@ namespace Licenta.Controllers
         [HttpGet("GetTeachers")]
         public async Task<IActionResult> GetTeachers()
         {
-            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-
             var teachers = await _adminService.GetTeachers();
 
             var teachersToReturn = _adminService.MapTeachersForReturn(teachers);
@@ -185,7 +183,7 @@ namespace Licenta.Controllers
                 return NoContent();
             }
 
-            throw new Exception("Error deleting the class!");
+            return BadRequest("Error deleting the class!");
         }
     }
 }

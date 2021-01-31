@@ -1,7 +1,8 @@
-﻿using Licenta.API.Data;
-using Licenta.API.Services;
+﻿using Licenta.API.Services;
 using Licenta.Dtos;
+using Licenta.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -13,10 +14,12 @@ namespace Licenta.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
+        private readonly SignInManager<User> _signInManager;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IAuthService authService, SignInManager<User> signInManager)
         {
             _authService = authService;
+            _signInManager = signInManager;
         }
 
         [HttpPost("register")]
@@ -45,7 +48,7 @@ namespace Licenta.Controllers
         {
             var user = _authService.FindUser(userForLoginDto.Username);
 
-            var result = await _authService.SignInUser(user, userForLoginDto.Password);
+            var result = await _signInManager.CheckPasswordSignInAsync(user, userForLoginDto.Password, false);
 
             if (result.Succeeded)
             {

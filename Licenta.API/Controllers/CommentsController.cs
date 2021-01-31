@@ -39,21 +39,10 @@ namespace Licenta.API.Controllers
             return BadRequest("Something went wrong!");
         }
 
-        //[HttpGet("get/{postId}")]
-        //public async Task<IActionResult> GetAllComments(postId)
-        //{
-        //    var comments = await _commentsService.GetAllComments(postId);
-
-        //    var mappedComments = _postsService.MapPostsForReturn(comments);
-
-        //    return Ok(mappedComments);
-        //}
-
-
         [HttpPost("update")]
         public async Task<IActionResult> UpdateComment(Comment comment)
         {
-            var updatedComment = await _commentsService.UpdateComment(comment);
+            await _commentsService.UpdateComment(comment);
 
             if (await _genericsRepo.SaveAll())
             {

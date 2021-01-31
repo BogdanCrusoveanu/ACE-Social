@@ -11,7 +11,6 @@ namespace Licenta.API.Services
         Task<IdentityResult> RegisterUser(User user, string password);
         UserForDetailedDto MapRegisteredUser(User user);
         User FindUser(string username);
-        Task<SignInResult> SignInUser(User user, string password);
         UserForListDto MapUserForLogin(User user);
         Task<string> GenerateJWT(User user);
         void AddUserToDivisions(UserForRegisterDto userForRegister, User user, UserForDetailedDto userForDetailed);

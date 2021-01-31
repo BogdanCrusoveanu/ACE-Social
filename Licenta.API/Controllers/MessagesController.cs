@@ -57,7 +57,6 @@ namespace Licenta.Controllers
         [HttpGet("thread/{recipientId}")]
         public async Task<IActionResult> GetMessageThread(int userId, int recipientId)
         {
-            var uid = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
@@ -91,7 +90,7 @@ namespace Licenta.Controllers
                 return CreatedAtRoute("GetMessage", new { userId, id = message.Id }, messageToReturn);
             }
 
-            throw new Exception("Creating the message failed on save");
+            return BadRequest("Creating the message failed on save");
         }
 
         [HttpPost("{id}")]
@@ -124,7 +123,7 @@ namespace Licenta.Controllers
                 return NoContent();
             }
 
-            throw new Exception("Error deleting the message!");
+            return BadRequest("Error deleting the message!");
         }
 
         [HttpPost("{id}/read")]

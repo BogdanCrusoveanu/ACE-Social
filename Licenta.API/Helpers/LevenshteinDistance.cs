@@ -20,14 +20,6 @@ namespace Licenta.API.Helpers
                 return firstLength;
             }
 
-            for (int i = 0; i <= firstLength; distance[i, 0] = i++)
-            {
-            }
-
-            for (int j = 0; j <= secondLength; distance[0, j] = j++)
-            {
-            }
-
             for (int i = 1; i <= firstLength; i++)
             {
                 for (int j = 1; j <= secondLength; j++)

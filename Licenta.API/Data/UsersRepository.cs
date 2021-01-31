@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Licenta.API.Data;
-using Licenta.Helpers;
+﻿using Licenta.Helpers;
 using Licenta.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Licenta.Data
 {
@@ -88,16 +87,6 @@ namespace Licenta.Data
                 userParams.PageNumber, userParams.PageSize);
         }
 
-        //public async Task<PagedList<User>> GetUsersWithRoles(UserParams userParams)
-        //{
-        //    var users = _context.Users.OrderByDescending(u => u.LastActive).AsQueryable();
-
-        //    users = users.Where(u => u.Id != userParams.UserId);
-
-        //    return await PagedList<User>.CreateAsync(users,
-        //        userParams.PageNumber, userParams.PageSize);
-        //}
-
         public async Task<PagedList<User>> GetUsersFromGroup(int groupId, UserParams userParams)
         {
             var users = _context.Users.Where(x => _context.UserGroups.Any(y => y.GroupId == groupId && y.UserId == x.Id));
@@ -124,7 +113,7 @@ namespace Licenta.Data
 
         public async Task<List<User>> GetUsersToRecommend(int userId)
         {
-            var users = await _context.Users.Where(u => u.Likers.Any(l => l.LikerId == userId) == false).Where(u => (u.Id != userId)).ToListAsync();
+            var users = await _context.Users.Where(u => !u.Likers.Any(l => l.LikerId == userId)).Where(u => (u.Id != userId)).ToListAsync();
 
             return users;
         }

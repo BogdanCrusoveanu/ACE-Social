@@ -20,20 +20,18 @@ namespace Licenta.API.Services
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _config;
-        private readonly SignInManager<User> _signInManager;
         private readonly ISpecializationsRepository _specializationsRepo;
         private readonly IGenericsRepository _genericsRepo;
         private readonly IGroupsRepository _groupsRepo;
         private readonly ISubGroupsRepository _subGroupsRepo;
 
         public AuthService(IMapper mapper, UserManager<User> userManager, IConfiguration config,
-            SignInManager<User> signInManager, ISpecializationsRepository specializationsRepo,
+             ISpecializationsRepository specializationsRepo,
             IGenericsRepository genericsRepo, IGroupsRepository groupsRepo, ISubGroupsRepository subGroupsRepo)
         {
             _mapper = mapper;
             _userManager = userManager;
             _config = config;
-            _signInManager = signInManager;
             _specializationsRepo = specializationsRepo;
             _genericsRepo = genericsRepo;
             _groupsRepo = groupsRepo;
@@ -72,11 +70,6 @@ namespace Licenta.API.Services
                 await _userManager.AddToRoleAsync(user, "Student");
 
             return result;
-        }
-
-        public async Task<SignInResult> SignInUser(User user, string password)
-        {
-            return await _signInManager.CheckPasswordSignInAsync(user, password, false);
         }
 
         public async Task<string> GenerateJWT(User user)

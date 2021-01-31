@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace Licenta.Data
 {
-    public class Seed
+    public static class Seed
     {
         public static void SeedUsers(UserManager<User> userManager, RoleManager<Role> roleManager)
         {

@@ -27,13 +27,13 @@ namespace Licenta.API.Services
             _genericsRepo.Add(course);
         }
 
-        public async Task<bool> CourseExists(Course addedCourse, int id)
+        public async Task<bool> CourseExists(Course course, int id)
         {
             var courses =  await GetCoursesForUser(id);
 
-            foreach (var course in courses)
+            foreach (var item in courses)
             {
-                if (addedCourse.Name == course.Name)
+                if (course.Name == item.Name)
                 {
                     return true;
                 }

@@ -165,7 +165,7 @@ namespace Licenta.Controllers
             if (await _genericsRepo.SaveAll())
                 return NoContent();
 
-            throw new Exception($"Updating user {id} failed on save");
+            return BadRequest($"Updating user {id} failed on save");
         }
     }
 }

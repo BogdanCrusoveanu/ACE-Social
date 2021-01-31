@@ -88,7 +88,7 @@ namespace Licenta.API.Controllers
         [HttpPost("update")]
         public async Task<IActionResult> UpdatePost(Post post)
         {
-            var updatedPost = await _postsService.UpdatePost(post);
+            await _postsService.UpdatePost(post);
 
             if (await _genericsRepo.SaveAll())
             {

@@ -2,21 +2,19 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
 namespace Licenta.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [AllowAnonymous]
     public class WeatherForecastController : ControllerBase
     {
-        private readonly ILogger<WeatherForecastController> _logger;
         private readonly DataContext _context;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, DataContext context)
+        public WeatherForecastController(DataContext context)
         {
-            _logger = logger;
             _context = context;
         }
 

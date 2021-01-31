@@ -29,16 +29,16 @@ namespace Licenta.API.Data
             {
                 case "Inbox":
                     messages = messages.Where(u => u.RecipientId == messageParams.UserId
-                    && u.RecipientDeleted == false);
+                    && !u.RecipientDeleted);
                     break;
 
                 case "Outbox":
                     messages = messages.Where(u => u.SenderId == messageParams.UserId
-                    && u.SenderDeleted == false);
+                    && !u.SenderDeleted);
                     break;
                 default:
                     messages = messages.Where(u => u.RecipientId == messageParams.UserId
-                    && u.isRead == false && u.RecipientDeleted == false);
+                    && u.isRead == false && !u.RecipientDeleted);
                     break;
             }
 
@@ -51,9 +51,9 @@ namespace Licenta.API.Data
         public async Task<IEnumerable<Message>> GetMessageThread(int userId, int recipientId)
         {
             var messages = await _context.Messages.Where(m => m.RecipientId == userId
-                       && m.RecipientDeleted == false && m.SenderId == recipientId
+                       && !m.RecipientDeleted && m.SenderId == recipientId
                        || m.RecipientId == recipientId && m.SenderId == userId
-                       && m.SenderDeleted == false)
+                       && !m.SenderDeleted)
                 .OrderByDescending(m => m.MessageSent)
                 .ToListAsync();
 

@@ -1,5 +1,4 @@
-﻿using Licenta.Helpers;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Licenta.Dtos
@@ -17,11 +16,9 @@ namespace Licenta.Dtos
         public int Year { get; set; }
         public string Specialization { get; set; }
         public string Group { get; set; }
-        //public string SemiGroup { get; set; }
         public string SubGroup { get; set; }
         public DateTime Created { get; set; }
         public DateTime LastActive { get; set; }
-
         public UserForRegisterDto()
         {
             Created = DateTime.Now;

@@ -1,5 +1,4 @@
-﻿using Licenta.API.Data;
-using Licenta.API.Services;
+﻿using Licenta.API.Services;
 using Licenta.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -15,16 +14,14 @@ namespace Licenta.API.Controllers
         private readonly ISeminarsService _seminarsService;
         private readonly ILaboratoriesService _laboratoriesService;
         private readonly ICompanyPresentationsService _companyPresentationsService;
-        private readonly IGenericsRepository _genericsRepo;
 
         public ActivitiesController(ICoursesService coursesService,ISeminarsService seminarsService,
-            ILaboratoriesService laboratoriesService, ICompanyPresentationsService companiesPresentationsService, IGenericsRepository genericsRepo)
+            ILaboratoriesService laboratoriesService, ICompanyPresentationsService companiesPresentationsService)
         {
             _coursesService = coursesService;
             _seminarsService = seminarsService;
             _laboratoriesService = laboratoriesService;
             _companyPresentationsService = companiesPresentationsService;
-            _genericsRepo = genericsRepo;
         }
 
         [HttpGet("{id}")]

@@ -18,20 +18,18 @@ namespace Licenta.API.Services
         private readonly Cloudinary _cloudinary;
         private readonly IPhotosRepository _photosRepo;
         private readonly IMapper _mapper;
-        private readonly IOptions<CloudinarySettings> _cloudinaryConfig;
         private readonly IGenericsRepository _genericsRepo;
 
         public PhotosService(IPhotosRepository photosRepo, IMapper mapper, IOptions<CloudinarySettings> cloudinaryConfig, IGenericsRepository genericsRepo)
         {
             _photosRepo = photosRepo;
             _mapper = mapper;
-            _cloudinaryConfig = cloudinaryConfig;
             _genericsRepo = genericsRepo;
 
             Account acc = new Account(
-                _cloudinaryConfig.Value.CloudName,
-                _cloudinaryConfig.Value.ApiKey,
-                _cloudinaryConfig.Value.ApiSecret
+                cloudinaryConfig.Value.CloudName,
+                cloudinaryConfig.Value.ApiKey,
+                cloudinaryConfig.Value.ApiSecret
             );
 
             _cloudinary = new Cloudinary(acc);

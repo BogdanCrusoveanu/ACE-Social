@@ -25,9 +25,9 @@ namespace Licenta.Helpers
                 .ForMember(dest => dest.FullName, opt =>
                     opt.MapFrom(src => src.FirstName + " " + src.LastName))
                 .ForMember(dest => dest.GroupName, opt =>
-                    opt.MapFrom(src => src.UserGroups.Where(ug => ug.UserId == src.Id).FirstOrDefault().Group.Name))
+                    opt.MapFrom(src => src.UserGroups.FirstOrDefault(ug => ug.UserId == src.Id).Group.Name))
                 .ForMember(dest => dest.IsFriend, opt =>
-                    opt.MapFrom(src => src.Likers.Where(ug => ug.LikerId == src.Id).FirstOrDefault().LikerId))
+                    opt.MapFrom(src => src.Likers.FirstOrDefault(ug => ug.LikerId == src.Id).LikerId))
                 .ForMember(dest => dest.Friends, opt =>
                     opt.MapFrom(src => src.Likers));
 
@@ -39,9 +39,9 @@ namespace Licenta.Helpers
                 .ForMember(dest => dest.FullName, opt =>
                     opt.MapFrom(src => src.FirstName + " " + src.LastName))
                 .ForMember(dest => dest.GroupName, opt =>
-                    opt.MapFrom(src => src.UserGroups.Where(ug => ug.UserId == src.Id).FirstOrDefault().Group.Name))
+                    opt.MapFrom(src => src.UserGroups.FirstOrDefault(ug => ug.UserId == src.Id).Group.Name))
                 .ForMember(dest => dest.IsFriend, opt =>
-                    opt.MapFrom(src => src.Likers.Where(ug => ug.LikerId == src.Id).FirstOrDefault().LikerId))
+                    opt.MapFrom(src => src.Likers.FirstOrDefault(ug => ug.LikerId == src.Id).LikerId))
                 .ForMember(dest => dest.Friends, opt =>
                     opt.MapFrom(src => src.Likers));
 
@@ -117,7 +117,7 @@ namespace Licenta.Helpers
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src =>
                    src.User.FirstName + " " + src.User.LastName))
                 .ForMember(dest => dest.MainPhotoUrl, opt => opt.MapFrom(src =>
-                  src.User.Photos.Where(p => p.IsMain).FirstOrDefault().Url))
+                  src.User.Photos.FirstOrDefault(p => p.IsMain).Url))
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src =>
                   src.User.Id));
 
@@ -125,7 +125,7 @@ namespace Licenta.Helpers
                .ForMember(dest => dest.UserName, opt => opt.MapFrom(src =>
                   src.User.FirstName + " " + src.User.LastName))
                 .ForMember(dest => dest.MainPhotoUrl, opt => opt.MapFrom(src =>
-                  src.User.Photos.Where(p => p.IsMain).FirstOrDefault().Url))
+                  src.User.Photos.FirstOrDefault(p => p.IsMain).Url))
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src =>
                   src.User.Id));
 
